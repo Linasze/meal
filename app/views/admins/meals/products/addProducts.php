@@ -41,7 +41,14 @@
 <?php echo $data['kcal_err'];?>
 </span>
 </div>
-
+<div class="col-md mt-2">
+    <select class="form-control" name="cat">
+        <option value="1">Carb</option>
+        <option value="2">Protein</option>
+        <option value="3">Fat</option>
+        <option value="4">Other</option>
+    </select>
+</div>
 <div class="col-md mt-3">
 <input type="submit" value="Save" class="btn btn-primary mt-3">
 </div>

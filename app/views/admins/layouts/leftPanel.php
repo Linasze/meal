@@ -11,16 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="shortcut icon" href="favicon.ico">
-
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/animate.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/normalize.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/themify-icons.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/flag-icon.min.css">
-    <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/css/cs-skin-elastic.css">
+
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="<?php echo URLROOT;?>/admin/assets/scss/style.css">
-    <link href="<?php echo URLROOT;?>/admin/assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -49,7 +49,7 @@
                         <a href="<?php echo URLROOT;?>/admins"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo URLROOT;?>/"> <i class="menu-icon fa fa-dashboard"></i>Go back to site </a>
+                        <a href="<?php echo URLROOT;?>/"> <i class="menu-icon fa fa-circle"></i>Go back to site </a>
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">

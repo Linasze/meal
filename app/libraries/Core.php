@@ -21,11 +21,20 @@ class Core {
            // Unset 0 index
            unset($url[0]);
 
-       }
+       }elseif(file_exists('../app/controllers/admin/' . ucwords($url[0]) . '.php')){
+        // if exist, set as controller
+        $this->currentController = ucwords($url[0]);
+
+        // Unset 0 index
+        unset($url[0]);
+   }
 
        //Require the controller
-
+       if(file_exists('../app/controllers/' .$this->currentController . '.php')){
        require_once '../app/controllers/'.$this->currentController . '.php';
+        }else{
+            require_once '../app/controllers/admin/'.$this->currentController . '.php';
+        }
 
        // Instantiate constroller class
        $this->currentController = new $this->currentController;

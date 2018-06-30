@@ -19,9 +19,6 @@
         // Check for view file
         if(file_exists('../app/views/' . $view . '.php')){
             require_once '../app/views/' . $view . '.php';
-
-        }elseif(file_exists('../app/views/' .$folder.'/' . $view . '.php')){
-            require_once '../app/views/' .$folder.'/' . $view . '.php'; 
         }else{
             // View does not exist
             die('View does not exist');

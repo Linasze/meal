@@ -3,8 +3,8 @@
 <div class="col-sm-8 col-lg-8">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
-                    <?php if(!empty($data['products'])) : ?>
-                     <?php foreach($data['products'] as $product) : ?>   
+                    <?php if(!empty($data['meals'])) : ?>
+                     <?php foreach($data['meals'] as $meal) : ?>   
                        
     <div class="dropdown float-right">   
         <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
@@ -12,13 +12,13 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <div class="dropdown-menu-content">
-                <a class="dropdown-item" href="editProduct/<?php echo $product->id;?>">Edit</a>
-                <a class="dropdown-item" href="deleteProduct/<?php echo $product->id;?>">Delete</a>
+                <a class="dropdown-item" href="editMeal/<?php echo $meal->id;?>">Edit</a>
+                <a class="dropdown-item" href="deleteMeal/<?php echo $meal->id;?>">Delete</a>
             </div>
         </div>
     </div>
 
-<div class="text-white"><?php echo $product->title; ?></div>
+<div class="text-white"><?php echo $meal->title; ?></div>
  <hr>
     
                      <?php endforeach; ?>
@@ -29,7 +29,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <div class="dropdown-menu-content">
-                                    <a class="dropdown-item" href="addProducts">Add</a>
+                                    <a class="dropdown-item" href="addMeals">Add</a>
                                  
                                 </div>
                                 </div>
