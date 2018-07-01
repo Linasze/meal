@@ -1,10 +1,12 @@
 <?php
 
-use App\models\Product;
-use App\models\Meal;
+
+
+if($_SESSION['user_rights'] == 1) {
 
 class Admins extends Controller {
-    
+   
+
     public function __construct(){
         $this->productModel = $this->model('Product');
         $this->mealModel = $this->model('Meal');
@@ -16,6 +18,7 @@ class Admins extends Controller {
     }
 
     public function manageMeals(){
+       
         $row = $this->productModel->rowCount();
         $row2 = $this->mealModel->rowCount();
         $data = [
@@ -25,7 +28,9 @@ class Admins extends Controller {
         $this->view('admins/meals/manageMeals', $data);
     }
 
-  
-        
+}
 
+}else{
+    header('HTTP/1.0 403 Forbidden');
+    exit;
 }

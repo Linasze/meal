@@ -1,5 +1,4 @@
-<?php require_once APPROOT . '/views/theme/header.php'; ?>
-
+<?php require_once APPROOT . '/views/theme/publicheader.php'; ?>
 <div class="container">
 
 <div class="row">
@@ -100,7 +99,13 @@
   </div>
 </div>
 
-<?php require_once APPROOT . '/views/theme/footer.php'; ?>
-
+<?php require_once APPROOT . '/views/theme/publicfooter.php'; ?>
+    <script src="<?php echo URLROOT;?>/js/main.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/age.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/sex.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/height.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/weight.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/activity.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/purpose.js"></script>
                 
 

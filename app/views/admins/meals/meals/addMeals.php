@@ -1,10 +1,14 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
+<div class="col-md card card-body">  
 <form action="<?php echo URLROOT;?>/meals/addMeals" method="post">
 <div class="col-md-6">
+<div class="form-group ">
     <h4 class="mb-2">Title</h4>
     <input class="form-control mb-2" type="text" name="title">
-</div>
+</div></div>
+
 <div class="col-md-6">
+<div class="form-group">
     <h4 class="mb-2">Type</h4>
    <select class="form-control" name="type_id">
       <?php foreach($data['mealtypes'] as $meal_type): ?>
@@ -13,6 +17,7 @@
    </select>
 </div>
 </div>
+
 
 <!-- Select protein products -->
 <div class="col-md-3">
@@ -90,5 +95,5 @@
     <input type="submit" value="Submit">
 </div>
 </form>
-
+</div>  
 <?php require_once APPROOT . '/views/admins/layouts/rightPanel.php'; ?>

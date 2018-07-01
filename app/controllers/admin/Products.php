@@ -1,5 +1,7 @@
 <?php
 
+if($_SESSION['user_rights'] == 1) {
+
 class Products extends Controller {
 
 
@@ -141,4 +143,9 @@ class Products extends Controller {
             }
    }
         
+}
+
+}else{
+    header('HTTP/1.0 403 Forbidden');
+    exit;
 }

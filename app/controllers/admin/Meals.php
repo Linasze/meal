@@ -1,6 +1,6 @@
 <?php
 
-use App\models\Product;
+if($_SESSION['user_rights'] == 1) {
 
 class Meals extends Controller {
 
@@ -197,4 +197,9 @@ class Meals extends Controller {
   }
 
 
+}
+
+}else{
+    header('HTTP/1.0 403 Forbidden');
+    exit;
 }

@@ -49,7 +49,7 @@
                         <a href="<?php echo URLROOT;?>/admins"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo URLROOT;?>/"> <i class="menu-icon fa fa-circle"></i>Go back to site </a>
+                        <a href="<?php echo URLROOT;?>/dashboards"> <i class="menu-icon fa fa-circle"></i>Go back to site </a>
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">

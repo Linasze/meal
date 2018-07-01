@@ -1,4 +1,4 @@
-<?php require_once APPROOT . '/views/theme/header.php'; ?>
+<?php require_once APPROOT . '/views/theme/publicheader.php'; ?>
 <div class="row">
     <div class="col-md-6 mx-auto mt-5">
         <div class="card card-body bg-light mt-5">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-<?php require_once APPROOT . '/views/theme/footer.php'; ?>
+<?php require_once APPROOT . '/views/theme/publicfooter.php'; ?>
