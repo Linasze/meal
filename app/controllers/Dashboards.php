@@ -8,8 +8,10 @@ class Dashboards extends Controller {
     }
 
     public function index(){
-        
-        $this->view('dashboards/index');
+        $id =  $_SESSION['user_id'];
+       
+        $data = $this->userModel->getUserInfo($id);
+        $this->view('dashboards/index', $data);
     }
      
 }
