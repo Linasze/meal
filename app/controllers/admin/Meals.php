@@ -187,5 +187,14 @@ class Meals extends Controller {
         }
     }
 
+    public function deleteMeal($id){
+        if($this->mealModel->deleteMeal($id)){
+             flash('product_message', 'Meal removed');
+             redirect('meals/showMeals');
+           }else{
+             die('Something went wrong');
+           }
+  }
+
 
 }

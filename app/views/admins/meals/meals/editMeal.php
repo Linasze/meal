@@ -14,34 +14,10 @@
     <h4 class="mb-2">Type</h4>
    <select class="form-control" name="type_id">
        <option selected hidden value="<?php echo $data['type_id'];?>">
-       <?php switch($data['type_id']){
-           case "1":
-           echo "Breakfast";
-           break;
-           case "2":
-           echo "Brunch";
-           break;
-           case "3":
-           echo "Lunch";
-           break;
-           case "4":
-           echo "Afternoon meal";
-           break;
-           case "5":
-           echo "Dinner";
-           break; 
-           case "6":
-           echo "Evening meal";
-           break;
-        
-       } ?>
-       </option>
-       <option value="1">Breakfast</option>
-       <option value="2">Brunch</option>
-       <option value="3">Lunch</option>
-       <option value="4">Afternoon meal</option>
-       <option value="5">Dinner</option>
-       <option value="6">Evening meal</option>
+       <?php foreach($data['mealtypes'] as $mealtype) : ?>
+    <option class="form-control" value="<?php echo $product->id; ?>"
+     <?php if($mealtype->id == $data['type_id']){?> selected <?php };?>><?php echo $mealtype->title; ?></option> 
+     <?php endforeach; ?></option>
    </select>
 </div>
 </div>
