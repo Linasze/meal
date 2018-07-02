@@ -68,9 +68,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?php echo URLROOT;?>/settings">
                   <span data-feather="file"></span>
-                  Orders
+                  Settings
                 </a>
               </li>
               <li class="nav-item">
