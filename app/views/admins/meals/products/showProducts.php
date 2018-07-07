@@ -1,5 +1,13 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 <?php flash('product_message'); ?>
+
+<div class="col-md-12 card card-body">
+<div class="mb-3 col-md-12 d-flex bd-highlight">
+<h3 class="mr-auto p-2 bd-highlight">Show Meal</h3> 
+<a href="<?php echo URLROOT; ?>/products/addProducts" class="p-2 bd-highlight btn btn-light"><i class="fa fa-plus-circle"></i> Add</a>
+<a href="<?php echo URLROOT; ?>/admins/manageMeals" class="p-2 bd-highlight btn btn-light"><i class="fa fa-backward"></i> Back</a>
+
+   </div>
 <div class="col-sm-8 col-lg-8">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">

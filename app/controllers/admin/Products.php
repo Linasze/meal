@@ -83,6 +83,8 @@ class Products extends Controller {
                 'protein' => $_POST['protein'],
                 'fat' => $_POST['fat'],
                 'kcal' => $_POST['kcal'],
+                'cat' => $_POST['cat'],
+                'use_id' => $_POST['use_id'],
                 'title_err' => '',
                 'carb_err' => '',
                 'protein_err' => '',
@@ -127,7 +129,8 @@ class Products extends Controller {
             'carb' => $product->carb,
             'protein' => $product->protein,
             'fat' => $product->fat,
-            'kcal' => $product->kcal
+            'kcal' => $product->kcal,
+            'use_id' => $product->use_id
           ];
 
          $this->view('admins/meals/products/editProduct', $data);

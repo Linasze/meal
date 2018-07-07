@@ -1,9 +1,10 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 
-<!-- <a href="<?php echo URLROOT;?>/posts" class="btn btn-light"><i class="fa fa-backward"></i> Back</a> -->
-    
     <div class="card card-body bg-light ">
-        <h3>Edit Product</h3>
+    <div class="mb-3 col-md-12 form-inline">
+<h3 class="mt-auto">Edit Product</h3> 
+<a href="<?php echo URLROOT; ?>/products/showProducts" class="ml-auto btn btn-light"><i class="fa fa-backward"></i> Back</a>
+   </div
         <p>Macronutrients written per 100g. product.</p>
         <form action="<?php echo URLROOT; ?>/products/editProduct/<?php echo $data['id']; ?>" method="post">
             <div class="col-4">
@@ -15,7 +16,7 @@
             </div>
 
              <div class="col-2">
-              <input type="number" name="carb" class="form-control form-control-lg <?php echo (!empty($data['carb_err'])) ? 'is-invalid' : ''; ?>"
+              <input type="text" name="carb" class="form-control form-control-lg <?php echo (!empty($data['carb_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['carb']; ?>" placeholder="Carbs">
                 <span class="invalid-feedback">
                     <?php echo $data['carb_err']; ?>
@@ -23,7 +24,7 @@
             </div>
 
              <div class="col-2">
-              <input type="number" name="protein" class="form-control form-control-lg <?php echo (!empty($data['protein_err'])) ? 'is-invalid' : ''; ?>"
+              <input type="text" name="protein" class="form-control form-control-lg <?php echo (!empty($data['protein_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['protein']; ?>" placeholder="Proteins">
                 <span class="invalid-feedback">
                     <?php echo $data['protein_err']; ?>
@@ -31,7 +32,7 @@
             </div>
 
              <div class="col-2">
-              <input type="number" name="fat" class="form-control form-control-lg <?php echo (!empty($data['fat_err'])) ? 'is-invalid' : ''; ?>"
+              <input type="text" name="fat" class="form-control form-control-lg <?php echo (!empty($data['fat_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['fat']; ?>" placeholder="Fats">
                 <span class="invalid-feedback">
                     <?php echo $data['fat_err']; ?>
@@ -39,14 +40,26 @@
             </div>
 
              <div class="col-2">
-              <input type="number" name="kcal" class="form-control form-control-lg <?php echo (!empty($data['kcal_err'])) ? 'is-invalid' : ''; ?>"
+              <input type="text" name="kcal" class="form-control form-control-lg <?php echo (!empty($data['kcal_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['kcal']; ?>" placeholder="Kcals">
                 <span class="invalid-feedback">
                     <?php echo $data['kcal_err']; ?>
                 </span>
-            </div>
+                </div>
+                <div class="form-group col-md mt-2">
+    <select class="form-control" name="cat">
+        <option value="1">Carb</option>
+        <option value="2">Protein</option>
+        <option value="3">Fat</option>
+        <option value="4">Other</option>
+    </select>
+</div>
+                <div class="col-2">
+              <input type="text" name="use_id" class="form-control form-control-lg"
+                    value="<?php echo $data['use_id']; ?>" placeholder="Use %?">
+            </div> 
 
-          <div class="col-2 mt-3"> 
+          <div class="col-12 mt-3"> 
             <input type="submit" class="btn btn-success" value="Submit">
         </form>
         </div> 

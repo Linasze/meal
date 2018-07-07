@@ -1,5 +1,9 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 <div class="col-md card card-body">  
+<div class="mb-3 col-md-12 form-inline">
+<h3 class="mt-auto">Add Meal</h3> 
+<a href="<?php echo URLROOT; ?>/admins/manageMeals" class="ml-auto btn btn-light"><i class="fa fa-backward"></i> Back</a>
+   </div>
 <form action="<?php echo URLROOT;?>/meals/addMeals" method="post">
 <div class="col-md-6">
 <div class="form-group ">
@@ -26,7 +30,7 @@
    <h4 class="mb-2 text-center">Protein</h4>
    <?php for($i = 1; $i<=10; $i++): ?>
 
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
+    <select class="form-control mb-2" name="protein<?php echo $i;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 2): ?>
@@ -43,8 +47,8 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Carb</h4>
-    <?php for($i = 11; $i<=20; $i++): ?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
+    <?php for($i = 1; $i<=10; $i++): ?>
+    <select class="form-control mb-2" name="carb<?php echo $i;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 1): ?>
@@ -61,8 +65,8 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Fat</h4>
-    <?php for($i = 21; $i<=30; $i++): ?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
+    <?php for($i = 1; $i<=10; $i++): ?>
+    <select class="form-control mb-2" name="fat<?php echo $i;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 3): ?>
@@ -78,8 +82,8 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Other</h4>
-   <?php for($i = 31; $i <= 40; $i++):?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
+   <?php for($i = 1; $i <= 10; $i++):?>
+    <select class="form-control mb-2" name="other<?php echo $i;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 4): ?>

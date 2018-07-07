@@ -1,12 +1,15 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 
 
-     <div class="col-md card card-body">
-        <h3>Edit Product</h3> 
-        <p>Macronutrients written per 100g. product.</p>
+     <div class="col-md-12 card card-body">
+     
+<div class="mb-3 col-md-12 form-inline">
+<h3 class="mt-auto">Edit Meal</h3> 
+<a href="<?php echo URLROOT; ?>/meals/showMeals" class="ml-auto btn btn-light"><i class="fa fa-backward"></i> Back</a>
+   </div>
         
 <form action="<?php echo URLROOT; ?>/meals/editMeal/<?php echo $data['id']; ?>" method="post">
-    <div class="col-md-6">
+    <div class="col-md-6 ">
         <div class="form-group">
     <h4 class="mb-2">Title</h4>
     <input class="form-control mb-2" type="text" name="title" value="<?php echo $data['title'];?>">
@@ -21,7 +24,7 @@
        <?php foreach($data['mealtypes'] as $mealtype) : ?>
     <option class="form-control" value="<?php echo $mealtype->id; ?>"
      <?php if($mealtype->id == $data['type_id']){?> selected <?php };?>><?php echo $mealtype->title; ?></option> 
-     <?php endforeach; ?></option>
+     <?php endforeach; ?>
    </select>
 </div></div>
 

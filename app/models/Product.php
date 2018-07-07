@@ -43,13 +43,15 @@ class Product {
     }
 
     public function updateProduct($data){
-        $this->db->query('UPDATE products SET title = :title, carb = :carb, protein = :protein, fat = :fat, kcal = :kcal WHERE id = :id');
+        $this->db->query('UPDATE products SET title = :title, carb = :carb, protein = :protein, fat = :fat, kcal = :kcal,use_id = :use_id,cat = :cat  WHERE id = :id');
         $this->db->bind(':id', $data['id']);       
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':carb', $data['carb']);
         $this->db->bind(':protein', $data['protein']);
         $this->db->bind(':fat', $data['fat']);
         $this->db->bind(':kcal', $data['kcal']);
+        $this->db->bind(':use_id', $data['use_id']);
+        $this->db->bind(':cat', $data['cat']);
         if($this->db->execute()){
             return true;
         }else{
