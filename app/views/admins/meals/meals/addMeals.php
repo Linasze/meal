@@ -78,7 +78,7 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Other</h4>
-   <?php for($i = 30; $i <= 35; $i++):?>
+   <?php for($i = 31; $i <= 40; $i++):?>
     <select class="form-control mb-2" name="product<?php echo $i;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
@@ -90,8 +90,12 @@
 <?php endfor;?>
 </div>
 </div>
+<div class="col-md col-sm">
+<textarea class="form-control" name="recipe" cols="30" rows="10" placeholder="Recipe"></textarea>
+</div>
 
-<div class="col-md col-xs">
+
+<div class="col-md col-xs mt-3">
     <input type="submit" value="Submit">
 </div>
 </form>

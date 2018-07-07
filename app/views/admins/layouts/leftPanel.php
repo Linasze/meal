@@ -45,11 +45,11 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="<?php echo URLROOT;?>/admins"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                <li class="active">
+                        <a href="<?php echo URLROOT;?>/dashboards"> <i class="menu-icon fa fa-circle"></i>Go back to site </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo URLROOT;?>/dashboards"> <i class="menu-icon fa fa-circle"></i>Go back to site </a>
+                        <a href="<?php echo URLROOT;?>/admins"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">

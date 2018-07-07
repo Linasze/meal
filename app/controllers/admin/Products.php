@@ -137,7 +137,7 @@ class Products extends Controller {
     public function deleteProduct($id){
          if($this->productModel->deleteProduct($id)){
               flash('product_message', 'Product removed');
-              redirect('admins/manageMeals');
+              redirect('products/showProducts');
             }else{
               die('Something went wrong');
             }

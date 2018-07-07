@@ -65,9 +65,9 @@ class User {
         }
     }
 
-    public function getUserInfo($id){
+    public function getUserInfo($user_id){
         $this->db->query("SELECT * FROM users WHERE id = :id");
-        $this->db->bind(':id', $id);
+        $this->db->bind(':id', $user_id);
         return $this->db->single();
     }
 }

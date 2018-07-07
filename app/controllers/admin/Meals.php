@@ -16,6 +16,7 @@ class Meals extends Controller {
             $data = [
                 'title' => $_POST['title'],
                 'type_id' => $_POST['type_id'],
+                'recipe' => $_POST['recipe'],
                 'product1' => $_POST['product1'],
                 'product2' => $_POST['product2'],
                 'product3' => $_POST['product3'],
@@ -51,7 +52,14 @@ class Meals extends Controller {
                 'product33' => $_POST['product33'],
                 'product34' => $_POST['product34'],
                 'product35' => $_POST['product35'],
+                'product36' => $_POST['product36'],
+                'product37' => $_POST['product37'],
+                'product38' => $_POST['product38'],
+                'product39' => $_POST['product39'],
+                'product40' => $_POST['product40']
             ];
+
+            
 
             if($this->mealModel->addMeal($data)){
                 flash('product_message', 'Meal added');
@@ -89,41 +97,51 @@ class Meals extends Controller {
                 'id' => $id,
                 'title' => $_POST['title'],
                 'type_id' => $_POST['type_id'],
-                'product1' => $_POST['product1'],
-                'product2' => $_POST['product2'],
-                'product3' => $_POST['product3'],
-                'product4' => $_POST['product4'],
-                'product5' => $_POST['product5'],
-                'product6' => $_POST['product6'],
-                'product7' => $_POST['product7'],
-                'product8' => $_POST['product8'],
-                'product9' => $_POST['product9'],
-                'product10' => $_POST['product10'],
-                'product11' => $_POST['product11'],
-                'product12' => $_POST['product12'],
-                'product13' => $_POST['product13'],
-                'product14' => $_POST['product14'],
-                'product15' => $_POST['product15'],
-                'product16' => $_POST['product16'],
-                'product17' => $_POST['product17'],
-                'product18' => $_POST['product18'],
-                'product19' => $_POST['product19'],
-                'product20' => $_POST['product20'],
-                'product21' => $_POST['product21'],
-                'product22' => $_POST['product22'],
-                'product23' => $_POST['product23'],
-                'product24' => $_POST['product24'],
-                'product25' => $_POST['product25'],
-                'product26' => $_POST['product26'],
-                'product27' => $_POST['product27'],
-                'product28' => $_POST['product28'],
-                'product29' => $_POST['product29'],
-                'product30' => $_POST['product30'],
-                'product31' => $_POST['product31'],
-                'product32' => $_POST['product32'],
-                'product33' => $_POST['product33'],
-                'product34' => $_POST['product34'],
-                'product35' => $_POST['product35']
+                'recipe' => $_POST['recipe'],
+                'protein1' => $_POST['protein1'],
+                'protein2' => $_POST['protein2'],
+                'protein3' => $_POST['protein3'],
+                'protein4' => $_POST['protein4'],
+                'protein5' => $_POST['protein5'],
+                'protein6' => $_POST['protein6'],
+                'protein7' => $_POST['protein7'],
+                'protein8' => $_POST['protein8'],
+                'protein9' => $_POST['protein9'],
+                'protein10' => $_POST['protein10'],
+                
+                'carb1' => $_POST['carb1'],
+                'carb2' => $_POST['carb2'],
+                'carb3' => $_POST['carb3'],
+                'carb4' => $_POST['carb4'],
+                'carb5' => $_POST['carb5'],
+                'carb6' => $_POST['carb6'],
+                'carb7' => $_POST['carb7'],
+                'carb8' => $_POST['carb8'],
+                'carb9' => $_POST['carb9'],
+                'carb10' => $_POST['carb10'],
+
+                'fat1' => $_POST['fat1'],
+                'fat2' => $_POST['fat2'],
+                'fat3' => $_POST['fat3'],
+                'fat4' => $_POST['fat4'],
+                'fat5' => $_POST['fat5'],
+                'fat6' => $_POST['fat6'],
+                'fat7' => $_POST['fat7'],
+                'fat8' => $_POST['fat8'],
+                'fat9' => $_POST['fat9'],
+                'fat10' => $_POST['fat10'],
+
+                'other1' => $_POST['other1'],
+                'other2' => $_POST['other2'],
+                'other3' => $_POST['other3'],
+                'other4' => $_POST['other4'],
+                'other5' => $_POST['other5'],
+                'other6' => $_POST['other6'],
+                'other7' => $_POST['other7'],
+                'other8' => $_POST['other8'],
+                'other9' => $_POST['other9'],
+                'other10' => $_POST['other10']
+               
             ];
  
             if($this->mealModel->updateMeal($data)){
@@ -140,50 +158,30 @@ class Meals extends Controller {
         $meal = $this->mealModel->getMealById($id);
         $products = $this->productModel->getProducts();
         $mealtypes = $this->mealtypeModel->getTypes();
+        
+        $protein = explode(",", $meal->protein);
+        $carb = explode(",", $meal->carb);
+        $fat = explode(",", $meal->fat);
+        $other = explode(",", $meal->other);
+    
+         
         $data = [
             'id' => $id,
             'title' => $meal->title,
             'products' => $products,
+            'protein' => $protein,
+            'carb' => $carb,
+            'fat' => $fat,
+            'other' => $other,
             'mealtypes' => $mealtypes,
-            'type_id' => $meal->type_id,
-            'product1' => $meal->product1,
-            'product2' => $meal->product2,
-            'product3' => $meal->product3,
-            'product4' => $meal->product4,
-            'product5' => $meal->product5,
-            'product6' => $meal->product6,
-            'product7' => $meal->product7,
-            'product8' => $meal->product8,
-            'product9' => $meal->product9,
-            'product10' => $meal->product10,
-            'product11' => $meal->product11,
-            'product12' => $meal->product12,
-            'product13' => $meal->product13,
-            'product14' => $meal->product14,
-            'product15' => $meal->product15,
-            'product16' => $meal->product16,
-            'product17' => $meal->product17,
-            'product18' => $meal->product18,
-            'product19' => $meal->product19,
-            'product20' => $meal->product20,
-            'product21' => $meal->product21,
-            'product22' => $meal->product22,
-            'product23' => $meal->product23,
-            'product24' => $meal->product24,
-            'product25' => $meal->product25,
-            'product26' => $meal->product26,
-            'product27' => $meal->product27,
-            'product28' => $meal->product28,
-            'product29' => $meal->product29,
-            'product30' => $meal->product30,
-            'product31' => $meal->product31,
-            'product32' => $meal->product32,
-            'product33' => $meal->product33,
-            'product34' => $meal->product34,
-            'product35' => $meal->product35
+            'recipe' => $meal->recipe,
+            'type_id' => $meal->type_id
+            
+         
         ];
 
-         $this->view('admins/meals/meals/editMeal', $data);
+      
+         $this->view('admins/meals/meals/editMeal', $data, $product);
         }
     }
 

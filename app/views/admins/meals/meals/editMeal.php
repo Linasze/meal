@@ -17,14 +17,13 @@
 <div class="form-group">
     <h4 class="mb-2">Type</h4>
    <select class="form-control" name="type_id">
-       <option selected hidden value="<?php echo $data['type_id'];?>">
+      
        <?php foreach($data['mealtypes'] as $mealtype) : ?>
-    <option class="form-control" value="<?php echo $product->id; ?>"
+    <option class="form-control" value="<?php echo $mealtype->id; ?>"
      <?php if($mealtype->id == $data['type_id']){?> selected <?php };?>><?php echo $mealtype->title; ?></option> 
      <?php endforeach; ?></option>
    </select>
 </div></div>
-
 
 <!-- Select protein products -->
 
@@ -32,19 +31,20 @@
 
     <div class="form-group">
    <h4 class="mb-2 text-center">Protein</h4>
-   <?php for($i = 1; $i<=10; $i++): ?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
-    <option selected hidden value="0">Pasirinkite produkta</option>
+  
+   <?php for($i = 0; $i<=9; $i++): ?>
+   <select class="form-control mb-2" name="protein<?php echo $i+1; ?>">
+    <option  value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 2): ?>
     <option class="form-control" value="<?php echo $product->id; ?>"
-     <?php if($product->id == $data['product'.$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
-  
+    <?php if($product->id == $data['protein'][$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
+      
 <?php endif; ?>
 <?php endforeach; ?>
 </select>
 <?php endfor; ?>
-      
+
     </div>
 </div>
 
@@ -52,18 +52,19 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Carb</h4>
-    <?php for($i = 11; $i<=20; $i++): ?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
-    <option selected hidden value="0">Pasirinkite produkta</option>
+   <?php for($i = 0; $i<= 9; $i++): ?>
+    <select class="form-control mb-2" name="carb<?php echo $i+1;?>">
+    <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 1): ?>
     <option class="form-control" value="<?php echo $product->id; ?>"
-     <?php if($product->id == $data['product'.$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
+     <?php if($product->id == $data['carb'][$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
 
 <?php endif; ?>
 <?php endforeach; ?>
 </select>
 <?php endfor; ?>
+  
 
     </div>
 </div>
@@ -72,17 +73,17 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Fat</h4>
-    <?php for($i = 21; $i<=30; $i++): ?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
-    <option selected hidden value="0">Pasirinkite produkta</option>
+   <?php for($i = 0; $i<= 9; $i++): ?>
+    <select class="form-control mb-2" name="fat<?php echo $i+1; ?>">
+    <option  value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 3): ?>
     <option class="form-control" value="<?php echo $product->id; ?>"
-     <?php if($product->id == $data['product'.$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
+     <?php if($product->id == $data['fat'][$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
 <?php endif; ?>
 <?php endforeach; ?>
 </select>
-<?php endfor;?>
+<?php endfor; ?>
 </div>
 </div>
 
@@ -90,18 +91,22 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Other</h4>
-   <?php for($i = 30; $i <= 35; $i++):?>
-    <select class="form-control mb-2" name="product<?php echo $i;?>">
-    <option selected hidden value="0">Pasirinkite produkta</option>
+   <?php for($i = 0; $i<= 9; $i++): ?>
+    <select class="form-control mb-2" name="other<?php echo $i+1;?>">
+    <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
     <?php if($product->cat == 4): ?>
     <option class="form-control" value="<?php echo $product->id; ?>"
-     <?php if($product->id == $data['product'.$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
+     <?php if($product->id == $data['other'][$i]){?> selected <?php };?>><?php echo $product->title; ?></option> 
 <?php endif; ?>
 <?php endforeach; ?>
 </select>
 <?php endfor;?>
+
 </div>
+</div>
+<div class="col-md col-sm">
+<textarea class="form-control" name="recipe" cols="30" rows="10"><?php echo $data['recipe'];?></textarea>
 </div>
 
           <div class="col-md mt-3"> 

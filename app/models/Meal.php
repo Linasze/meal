@@ -17,49 +17,36 @@ class Meal {
     public function getMeals(){
         $this->db->query("SELECT * FROM meals");
         return $this->db->resultSet();
+        
+    }
+
+      public function getMealByType($type_id){
+        $this->db->query("SELECT * FROM meals WHERE type_id = $type_id");
+        return $this->db->resultSet();
     }
 
 
     public function addMeal($data){
-        $this->db->query("INSERT INTO meals (title, type_id,product1,product2,product3,product4,product5,product6,product7,product8,product9,product10,product11,product12,product13,product14,product15,product16,product17,product18,product19,product20,product21,product22,product23,product24,product25,product26,product27,product28,product29,product30,product31,product32,product33,product34,product35)
-        VALUES (:title, :type_id,:product1,:product2,:product3,:product4,:product5,:product6,:product7,:product8,:product9,:product10,:product11,:product12,:product13,:product14,:product15,:product16,:product17,:product18,:product19,:product20,:product21,:product22,:product23,:product24,:product25,:product26,:product27,:product28,:product29,:product30,:product31,:product32,:product33,:product34,:product35)");
+        $this->db->query("INSERT INTO meals (title, type_id, recipe,products) VALUES (:title, :type_id,:recipe,:products)");
         $this->db->bind(':title',  $data['title']);
         $this->db->bind(':type_id',  $data['type_id']);
-        $this->db->bind(':product1',  $data['product1']);
-        $this->db->bind(':product2',  $data['product2']);
-        $this->db->bind(':product3',  $data['product3']);
-        $this->db->bind(':product4',  $data['product4']);
-        $this->db->bind(':product5',  $data['product5']);
-        $this->db->bind(':product6',  $data['product6']);
-        $this->db->bind(':product7',  $data['product7']);
-        $this->db->bind(':product8',  $data['product8']);
-        $this->db->bind(':product9',  $data['product9']);
-        $this->db->bind(':product10',  $data['product10']);
-        $this->db->bind(':product11',  $data['product11']);
-        $this->db->bind(':product12',  $data['product12']);
-        $this->db->bind(':product13',  $data['product13']);
-        $this->db->bind(':product14',  $data['product14']);
-        $this->db->bind(':product15',  $data['product15']);
-        $this->db->bind(':product16',  $data['product16']);
-        $this->db->bind(':product17',  $data['product17']);
-        $this->db->bind(':product18',  $data['product18']);
-        $this->db->bind(':product19',  $data['product19']);
-        $this->db->bind(':product20',  $data['product20']);
-        $this->db->bind(':product21',  $data['product21']);
-        $this->db->bind(':product22',  $data['product22']);
-        $this->db->bind(':product23',  $data['product23']);
-        $this->db->bind(':product24',  $data['product24']);
-        $this->db->bind(':product25',  $data['product25']);
-        $this->db->bind(':product26',  $data['product26']);
-        $this->db->bind(':product27',  $data['product27']);
-        $this->db->bind(':product28',  $data['product28']);
-        $this->db->bind(':product29',  $data['product29']);
-        $this->db->bind(':product30',  $data['product30']);
-        $this->db->bind(':product31',  $data['product31']);
-        $this->db->bind(':product32',  $data['product32']);
-        $this->db->bind(':product33',  $data['product33']);
-        $this->db->bind(':product34',  $data['product34']);
-        $this->db->bind(':product35',  $data['product35']);
+        $this->db->bind(':recipe',  $data['recipe']);
+       
+        $products = array($data['product1'], $data['product2'],$data['product3'],$data['product4'],$data['product5'],
+        $data['product6'],$data['product7'],$data['product8'],$data['product9'],$data['product10'],$data['product11'],
+        $data['product12'],$data['product13'],$data['product14'],$data['product15'],$data['product16'],$data['product17'],
+        $data['product18'],$data['product19'],$data['product20'],$data['product21'],$data['product22'],$data['product23'],
+        $data['product24'],$data['product25'],$data['product26'],$data['product27'],$data['product28'],$data['product29'],
+        $data['product30'],$data['product31'],$data['product32'],$data['product33'],$data['product34'],$data['product35'],
+        $data['product36'],$data['product37'],$data['product38'],$data['product39'],$data['product40']);
+        
+        function is_not_null($val){
+            return ($val !== NULL && $val !== FALSE && $val !== '0');
+        }
+        $products = array_filter($products, 'is_not_null');
+        $products = implode(",", $products );
+        $this->db->bind(':products',  $products);
+
         if($this->db->execute()){
             return true;
         }else{
@@ -67,53 +54,50 @@ class Meal {
         }
     }
 
-    public function getMealById($id){
+    public function getMealById($meal_id){
         $this->db->query('SELECT * FROM meals WHERE id = :id');
-        $this->db->bind(':id', $id);
+        $this->db->bind(':id', $meal_id);
         return $this->db->single();
     }
 
 
     public function updateMeal($data){
-        $this->db->query('UPDATE meals SET title = :title, type_id = :type_id ,product1 = :product1 ,product2 = :product2 ,product3 = :product3 ,product4 = :product4,product5 = :product5 ,product6 = :product6,product7 = :product7,product8 = :product8,product9 = :product9,product10 = :product10,product11 = :product11,product12 = :product12,product13 = :product13,product14 = :product14,product15 = :product15,product16 = :product16,product17 = :product17,product18 = :product18,product19 = :product19,product20 = :product20,product21 = :product21,product22= :product22,product23 = :product23,product24 = :product24,product25 = :product25,product26 = :product26 ,product27 = :product27,product28 = :product28,product29 = :product29,product30 = :product30,product31 = :product31,product32 = :product32,product33 = :product33,product34 = :product34,product35 = :product35 WHERE id = :id');
+       echo $data['type_id'];
+        $this->db->query('UPDATE meals SET title = :title, type_id = :type_id, recipe = :recipe ,protein = :protein, carb = :carb ,fat = :fat, other = :other WHERE id = :id');
         $this->db->bind(':id', $data['id']);       
         $this->db->bind(':title',  $data['title']);
         $this->db->bind(':type_id',  $data['type_id']);
-        $this->db->bind(':product1',  $data['product1']);
-        $this->db->bind(':product2',  $data['product2']);
-        $this->db->bind(':product3',  $data['product3']);
-        $this->db->bind(':product4',  $data['product4']);
-        $this->db->bind(':product5',  $data['product5']);
-        $this->db->bind(':product6',  $data['product6']);
-        $this->db->bind(':product7',  $data['product7']);
-        $this->db->bind(':product8',  $data['product8']);
-        $this->db->bind(':product9',  $data['product9']);
-        $this->db->bind(':product10',  $data['product10']);
-        $this->db->bind(':product11',  $data['product11']);
-        $this->db->bind(':product12',  $data['product12']);
-        $this->db->bind(':product13',  $data['product13']);
-        $this->db->bind(':product14',  $data['product14']);
-        $this->db->bind(':product15',  $data['product15']);
-        $this->db->bind(':product16',  $data['product16']);
-        $this->db->bind(':product17',  $data['product17']);
-        $this->db->bind(':product18',  $data['product18']);
-        $this->db->bind(':product19',  $data['product19']);
-        $this->db->bind(':product20',  $data['product20']);
-        $this->db->bind(':product21',  $data['product21']);
-        $this->db->bind(':product22',  $data['product22']);
-        $this->db->bind(':product23',  $data['product23']);
-        $this->db->bind(':product24',  $data['product24']);
-        $this->db->bind(':product25',  $data['product25']);
-        $this->db->bind(':product26',  $data['product26']);
-        $this->db->bind(':product27',  $data['product27']);
-        $this->db->bind(':product28',  $data['product28']);
-        $this->db->bind(':product29',  $data['product29']);
-        $this->db->bind(':product30',  $data['product30']);
-        $this->db->bind(':product31',  $data['product31']);
-        $this->db->bind(':product32',  $data['product32']);
-        $this->db->bind(':product33',  $data['product33']);
-        $this->db->bind(':product34',  $data['product34']);
-        $this->db->bind(':product35',  $data['product35']);
+        $this->db->bind(':recipe',  $data['recipe']);        
+        $protein = array($data['protein1'], $data['protein2'],$data['protein3'],$data['protein4'],$data['protein5'],
+        $data['protein6'],$data['protein7'],$data['protein8'],$data['protein9'],$data['protein10']);
+        
+        $carb = array($data['carb1'],  $data['carb2'],$data['carb3'],$data['carb4'],$data['carb5'],$data['carb6'],$data['carb7'],
+        $data['carb8'],$data['carb9'],$data['carb10']);
+        
+        $fat = array($data['fat1'],$data['fat2'],$data['fat3'], $data['fat4'],$data['fat5'],$data['fat6'],$data['fat7'],$data['fat8']
+        ,$data['fat9'], $data['fat10']);
+        
+        $other = array($data['other1'],$data['other2'],$data['other3'],$data['other4'],$data['other5'],
+        $data['other6'],$data['other7'],$data['other8'],$data['other9'],$data['other10']);
+        
+        function is_not_null($val){
+            return ($val !== NULL && $val !== FALSE && $val !== '0');
+        }
+        $protein = array_filter($protein, 'is_not_null');
+        $carb = array_filter($carb, 'is_not_null');
+        $fat = array_filter($fat, 'is_not_null');
+        $other = array_filter($other, 'is_not_null');
+
+        $protein = implode(",", $protein );
+        $carb = implode(",", $carb );
+        $fat = implode(",", $fat );
+        $other = implode(",", $other );
+
+        $this->db->bind(':protein',  $protein);
+        $this->db->bind(':carb',  $carb);
+        $this->db->bind(':fat',  $fat);
+        $this->db->bind(':other',  $other);
+       
         if($this->db->execute()){
             return true;
         }else{

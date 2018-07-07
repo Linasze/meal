@@ -36,9 +36,9 @@ class Product {
         return $this->db->resultSet();
     }
 
+
     public function getProductById($id){
-        $this->db->query('SELECT * FROM products WHERE id = :id');
-        $this->db->bind(':id', $id);
+        $this->db->query("SELECT * FROM products WHERE id = $id");
         return $this->db->single();
     }
 

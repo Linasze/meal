@@ -8,8 +8,8 @@ class Setting {
         $this->db = new Database();
     }
 
-    public function getUserSettings($id){
-        $this->db->query("SELECT * FROM users INNER JOIN user_settings ON users.id = user_settings.user_id WHERE users.id = $id");
+    public function getUserSettings($user_id){
+        $this->db->query("SELECT * FROM users INNER JOIN user_settings ON users.id = user_settings.user_id WHERE users.id = $user_id");
         return $this->db->single();
     }
 
@@ -26,8 +26,5 @@ class Setting {
         }
 
     }
-
-
-
 
 }
