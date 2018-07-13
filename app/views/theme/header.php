@@ -38,7 +38,7 @@
       <?php if(isset($_SESSION['user_id'])) : ?>
 
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Hello <?php echo $_SESSION['user_name'];?></a>
+          <a class="nav-link" href="#!">Hello <?php echo $_SESSION['user_name'];?></a>
         </li>
         </ul>
      <?php if($_SESSION['user_rights'] == 1): ?>

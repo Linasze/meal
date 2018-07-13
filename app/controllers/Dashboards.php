@@ -19,9 +19,9 @@ class Dashboards extends Controller {
         $breakfast = $this->mealModel->getMealById($user_settings->breakfast);
         $getbreakfast = $this->mealModel->getMealByType(1);
         $products = $this->productModel->getProducts();
-        if(!empty($breakfast->other)){
-        $productByIdOther = $this->productModel->getProductById($breakfast->other);
-        }
+        $use_id = explode(",", $breakfast->other);
+        //$productByIdOther = $this->productModel->getProductById($use_id[0]); 
+       
 
         // $brunch = $this->mealModel->getMealById($user_settings->brunch);
         // $lunch = $this->mealModel->getMealById($user_settings->lunch);
@@ -29,40 +29,43 @@ class Dashboards extends Controller {
         // $dinner = $this->mealModel->getMealById($user_settings->dinner);
         // $evening_meal = $this->mealModel->getMealById($user_settings->evening_meal);
       
-        $break = explode(",", $breakfast->products);
         $protein = explode(",", $breakfast->protein);
         $carb = explode(",", $breakfast->carb);
         $fat = explode(",", $breakfast->fat);
         $other = explode(",", $breakfast->other);
         $users = $this->userModel->getUserInfo($user_id);
        
+      
         $caloriesperserving = $users->kcal / $user_settings->eating_count; 
+         
         // Calculate macro
-        if(!empty($productByIdOther->use_id)){
+        if(!empty($use_id)){
             $proteinsperserving = $caloriesperserving /100 * 20 /4;            
-            $carbsperserving = ($caloriesperserving /100 * 60 - $productByIdOther->use_id) /4;
+            $carbsperserving = $caloriesperserving /100 * 60 /4;
             $fatsperserving = $caloriesperserving /100 * 20 /9;
-            $othersperserving = $caloriesperserving /100 * $productByIdOther->use_id /4;
+            $othersperserving = $caloriesperserving /100;
         }else{
             $proteinsperserving = $caloriesperserving /100 * 20 /4;
             $carbsperserving = $caloriesperserving /100 * 60 /4;
             $fatsperserving = $caloriesperserving /100 * 20 /9;
         }
-        $data = [
-            'breakfast' => $breakfast,
-            'getbreakfast' => $getbreakfast,
-            'protein' => $protein,
-            'carb' => $carb,
-            'fat' => $fat,
-            'other' => $other,
-            'products' => $products,
-            'user_settings' => $user_settings,
-            'proteinsperserving' => $proteinsperserving,
-            'carbsperserving' => $carbsperserving,
-            'fatsperserving' => $fatsperserving,
-            'othersperserving' => $othersperserving
-        ];
-        
+            $data = [
+                'breakfast' => $breakfast,
+                'getbreakfast' => $getbreakfast,
+                'protein' => $protein,
+                'carb' => $carb,
+                'fat' => $fat,
+                'other' => $other,
+                'products' => $products,
+                'user_settings' => $user_settings,
+                'proteinsperserving' => $proteinsperserving,
+                'carbsperserving' => $carbsperserving,
+                'fatsperserving' => $fatsperserving,
+                'othersperserving' => $othersperserving,
+                'use_id' => $use_id
+            
+            ];
+            
 
         $this->view('dashboards/index', $data);
     }else{

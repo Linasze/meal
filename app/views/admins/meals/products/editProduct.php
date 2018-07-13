@@ -7,7 +7,7 @@
    </div
         <p>Macronutrients written per 100g. product.</p>
         <form action="<?php echo URLROOT; ?>/products/editProduct/<?php echo $data['id']; ?>" method="post">
-            <div class="col-4">
+            <div class="col-md-4">
               <input type="text" name="title" class="form-control form-control-lg <?php echo (!empty($data['title_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['title']; ?>" placeholder="Product">
                 <span class="invalid-feedback">
@@ -15,7 +15,7 @@
                 </span>
             </div>
 
-             <div class="col-2">
+             <div class="col-md-2">
               <input type="text" name="carb" class="form-control form-control-lg <?php echo (!empty($data['carb_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['carb']; ?>" placeholder="Carbs">
                 <span class="invalid-feedback">
@@ -23,7 +23,7 @@
                 </span>
             </div>
 
-             <div class="col-2">
+             <div class="col-md-2">
               <input type="text" name="protein" class="form-control form-control-lg <?php echo (!empty($data['protein_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['protein']; ?>" placeholder="Proteins">
                 <span class="invalid-feedback">
@@ -31,7 +31,7 @@
                 </span>
             </div>
 
-             <div class="col-2">
+             <div class="col-md-2">
               <input type="text" name="fat" class="form-control form-control-lg <?php echo (!empty($data['fat_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['fat']; ?>" placeholder="Fats">
                 <span class="invalid-feedback">
@@ -39,7 +39,7 @@
                 </span>
             </div>
 
-             <div class="col-2">
+             <div class="col-md-2">
               <input type="text" name="kcal" class="form-control form-control-lg <?php echo (!empty($data['kcal_err'])) ? 'is-invalid' : ''; ?>"
                     value="<?php echo $data['kcal']; ?>" placeholder="Kcals">
                 <span class="invalid-feedback">
@@ -54,7 +54,7 @@
         <option value="4">Other</option>
     </select>
 </div>
-                <div class="col-2">
+                <div class="col-md-2">
               <input type="text" name="use_id" class="form-control form-control-lg"
                     value="<?php echo $data['use_id']; ?>" placeholder="Use %?">
             </div> 

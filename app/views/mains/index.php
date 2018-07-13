@@ -10,19 +10,19 @@
 <div class="form-inline">
 
 <!-- <label>Enter age:</label> -->
-<input class="form-control col-2" type="number" name="age" placeholder="Age" required>
+<input class="form-control col-md-2" type="number" name="age" placeholder="Age" required>
 <!-- <label>Sex:</label> -->
-<select name='sex' class='form-control  mx-sm-3 col-2' required>
+<select name='sex' class='form-control  mx-sm-3 col-md-2' required>
   <option value='1'>Men</option>
   <option value='2'>Women</option>
  </select>
 
 <!-- <label>Height:</label> -->
-<input type="number" name="height" class="form-control col-3" placeholder="Height">
+<input type="number" name="height" class="form-control col-md-3" placeholder="Height">
 
 
 <!-- <label>Weight:</label> -->
-<input type="number" name="weight" class="form-control mx-sm-3 col-3" placeholder="Weight">
+<input type="number" name="weight" class="form-control mx-sm-3 col-md-3" placeholder="Weight">
 </div>
 
 <div class="form-group mt-2">
