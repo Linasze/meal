@@ -43,13 +43,14 @@ class Dashboards extends Controller {
             $proteinsperserving = $caloriesperserving /100 * 20 /4;            
             $carbsperserving = $caloriesperserving /100 * 60 /4;
             $fatsperserving = $caloriesperserving /100 * 20 /9;
-            $othersperserving = $caloriesperserving /100;
+            $othersperserving = $caloriesperserving /100 * 10/ 4;
         }else{
             $proteinsperserving = $caloriesperserving /100 * 20 /4;
             $carbsperserving = $caloriesperserving /100 * 60 /4;
             $fatsperserving = $caloriesperserving /100 * 20 /9;
         }
             $data = [
+                'user_settings' => $user_settings,
                 'breakfast' => $breakfast,
                 'getbreakfast' => $getbreakfast,
                 'protein' => $protein,
@@ -96,5 +97,20 @@ class Dashboards extends Controller {
         }
     }
     
-     
+                   
+    public function generate(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            $user_id = $_SESSION['user_id'];
+               if($this->userModel->generatePlan($user_id)){    
+                 flash('message', 'Nutrition plan generated!');
+                    redirect('dashboards/index');
+               }else{
+                   die('Something went wrong');
+               }
+            
+            }else{
+            $this->view('dashboards/index');
+                }
+    }
 }

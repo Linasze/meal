@@ -16,34 +16,59 @@ class Users extends Controller {
              'name' => trim($_POST['name']),
              'email' => trim($_POST['email']),
              'password' => trim($_POST['password']),
-             'password2' => trim($_POST['password2']),
+             'confirm_password' => trim($_POST['confirm_password']),
              'kcal' => trim($_POST['kcal']),
              'age' => trim($_POST['age']),
              'sex' => trim($_POST['sex']),
              'height' => trim($_POST['height']),
              'weight' => trim($_POST['weight']),
              'activity' => trim($_POST['activity']),
-             'purpose' => trim($_POST['purpose'])
-             
+             'purpose' => trim($_POST['purpose']),
+             'name_err' => '',
+             'password_err' => '',
+             'confirm_password_err' => '',
+             'email_err' => ''    
          ];
 
-         if($this->userModel->findUserByEmail($data['email'])){
-            die('Email has taken');
-            
-        }
- // Hash password
+         
+       if(empty($data['name'])){
+            $data['name_err'] = "Name field is empty";
+       }
+       if($this->userModel->findUserByEmail($data['email']) == $data['email']){
+           $data['email_err'] = "Email already used";
+       }
+       if(empty($data['email'])){
+        $data['email_err'] = "Email field is empty";   
+       }
+       if(empty($data['password'])){
+           $data['password_err'] = "Password field is empty";
+       }
+       if(empty($data['confirm_password'])){
+           $data['confirm_password_err'] = "Confirm password field is empty";
+       }
+       if($data['password'] != $data['confirm_password']){
+             $data['confirm_password_err'] = "Password do not match";
+       }
+   
+    if(empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && 
+    empty($data['email_err']) && empty($data['confirm_password_err'])){
+ 
+        // Hash password
  $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
  // Register user
  if($this->userModel->register($data)){
     flash('register_success', 'You are register and can login');
-  redirect('users/login');
+    redirect('users/login');
  }else{
      die('Something went wrong');
  }
-       }else{
-        $this->view('users/register', $data);
+        }else{
+             $this->view('users/register', $data);
         }
+}else{
+    $this->view('users/register', $data);
+}
         
     }
 

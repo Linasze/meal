@@ -6,11 +6,9 @@
 <div class="card card-body">
 
 <form id="myform" method="POST">
-
 <div class="form-inline">
-
 <!-- <label>Enter age:</label> -->
-<input class="form-control col-md-2" type="number" name="age" placeholder="Age" required>
+<input class="form-control col-md-2" type="text" name="age" placeholder="Age" required>
 <!-- <label>Sex:</label> -->
 <select name='sex' class='form-control  mx-sm-3 col-md-2' required>
   <option value='1'>Men</option>
@@ -18,11 +16,11 @@
  </select>
 
 <!-- <label>Height:</label> -->
-<input type="number" name="height" class="form-control col-md-3" placeholder="Height">
+<input type="text" name="height" class="form-control col-md-3" placeholder="Height">
 
 
 <!-- <label>Weight:</label> -->
-<input type="number" name="weight" class="form-control mx-sm-3 col-md-3" placeholder="Weight">
+<input type="text" name="weight" class="form-control mx-sm-3 col-md-3" placeholder="Weight">
 </div>
 
 <div class="form-group mt-2">
@@ -56,11 +54,11 @@
 </div>
 </div>
 
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLiveLabel" aria-hidden="true">
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalLiveLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content ">
       <div class="modal-header ">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Calories</h5>
+        <h5 class="modal-title" id="ModalLiveLabel">Calories</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -70,14 +68,14 @@
       <div id="kcal"></div>
 
                   <h2>Need nutrition plan?</h2>
-                   <p>Register and take it!</p>
+                   <p>Register and take it!</p> 
 
-          <form action="users/register" method="post">
+         <form action="users/register" method="post">
           <div class="form-group">
           <input type="text" class="form-control col-7 mx-auto mb-2" name="name" placeholder="Enter name" required>
           <input type="email" class="form-control col-7 mx-auto mb-2" name="email" placeholder="Enter email" required>
           <input type="password" class="form-control col-7 mx-auto mb-2" name="password" placeholder="Enter password" required>
-          <input type="password" class="form-control col-7 mx-auto mb-2" name="password2" placeholder="Confirm password" required>
+          <input type="password" class="form-control col-7 mx-auto mb-2" name="confirm_password" placeholder="Confirm password" required>
  
   
       <input type="hidden" name="kcal" id="kcal" value="kcal">
@@ -100,6 +98,7 @@
 </div>
 
 <?php require_once APPROOT . '/views/theme/publicfooter.php'; ?>
+
     <script src="<?php echo URLROOT;?>/js/main.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/age.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/sex.js"></script>
@@ -107,5 +106,6 @@
     <script src="<?php echo URLROOT;?>/js/data/weight.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/activity.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/purpose.js"></script>
+    
                 
 

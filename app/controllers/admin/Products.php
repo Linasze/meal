@@ -7,6 +7,8 @@ class Products extends Controller {
 
     public function __construct(){
         $this->productModel = $this->model('Product');
+        $this->typeModel = $this->model('Type');
+
     }
 
     // public function index(){
@@ -136,6 +138,7 @@ class Products extends Controller {
         }else{
     
         $product = $this->productModel->getProductById($id);
+        $type = $this->typeModel->getTypes();
          $data = [
             'id' => $id,
             'title' => $product->title,
@@ -143,11 +146,63 @@ class Products extends Controller {
             'protein' => $product->protein,
             'fat' => $product->fat,
             'kcal' => $product->kcal,
-            'use_id' => $product->use_id
+            'cat' => $product->cat,
+            'use_id' => $product->use_id,
+            'type' => $type
           ];
 
          $this->view('admins/meals/products/editProduct', $data);
         }
+    }
+     
+    // Neveikia
+    public function searchProduct(){
+        if($_SERVER['REQUEST_METHOD'] = 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data2 = ['search' => $_POST['search'] ];
+            if(!empty($data2['search'])) {
+                $this->productModel->searchProduct($data2);
+               
+             
+                $this->view('admins/meals/products/searchProduct', $data);
+            
+            }else{
+            $total_results = $this->productModel->rowCount();
+            $limit = 10;
+            $total_pages = ceil($total_results/$limit);
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else{
+                $page = $_GET['page'];
+            }
+            
+            $starting_limit = ($page-1)*$limit;
+            $products = $this->productModel->getProductsAdmin($starting_limit,$limit);
+            $data = [
+                'products' => $products,
+                'total_pages' => $total_pages    
+            ];
+            $this->view('admins/meals/products/showProducts', $data);
+            }
+        }else{
+            $total_results = $this->productModel->rowCount();
+            $limit = 10;
+            $total_pages = ceil($total_results/$limit);
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else{
+                $page = $_GET['page'];
+            }
+            
+            $starting_limit = ($page-1)*$limit;
+            $products = $this->productModel->getProductsAdmin($starting_limit,$limit);
+            $data = [
+                'products' => $products,
+                'total_pages' => $total_pages    
+            ];
+            $this->view('admins/meals/products/showProducts', $data);
+        }
+
     }
 
     public function deleteProduct($id){

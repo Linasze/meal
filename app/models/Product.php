@@ -44,6 +44,15 @@ class Product {
     }
 
 
+    // Neveikia
+    public function searchProduct($data2){
+        $this->db->query("SELECT * FROM products WHERE title LIKE :title");
+        $this->db->bind(':title', '%' . $data2['search'] . '%');
+        $data = $this->db->resultSet();
+        return $data;
+    }
+
+
     public function getProductById($id){
         $this->db->query("SELECT * FROM products WHERE id = $id");
         return $this->db->single();

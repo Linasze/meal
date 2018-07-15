@@ -1,3 +1,9 @@
+
+$("#trigger").click(function () {
+  $("#myModal").modal("show");
+});
+
+
 $("#trigger").click(function () {
   var url = "rezult.php"; // the script where you handle the form input.
 
@@ -15,8 +21,5 @@ $("#trigger").click(function () {
   return false; // avoid to execute the actual submit of the form.
 });
 
-$("#trigger").click(function () {
-  $("#myModal").modal("show");
-});
 
 

@@ -21,8 +21,6 @@ class User {
         $this->db->bind(':activity', $data['activity']);
         $this->db->bind(':purpose', $data['purpose']);
 
-
-
         // Execute
         if($this->db->execute()){
             return true;
@@ -30,6 +28,17 @@ class User {
             return false;
         }
            
+    }
+
+    public function generatePlan($user_id){
+        $this->db->query("INSERT INTO user_settings (user_id) VALUES (:user_id)");
+        $this->db->bind(':user_id', $user_id);
+        // Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

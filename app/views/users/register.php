@@ -48,6 +48,15 @@
                     </span>
                 </div>
 
+      <input type="hidden" name="kcal" id="kcal" value="<?php echo $data['kcal']; ?>">
+      <input type="hidden" name="age" id="age" value="<?php echo $data['age']; ?>">
+      <input type="hidden" name="sex" id="sex" value="<?php echo $data['sex']; ?>">
+      <input type="hidden" name="height" id="height"  value="<?php echo $data['height']; ?>">
+      <input type="hidden" name="weight" id="weight"  value="<?php echo $data['weight']; ?>">
+      <input type="hidden" name="activity" id="activity" value="<?php echo $data['activity']; ?>">
+      <input type="hidden" name="purpose" id="purpose" value="<?php echo $data['purpose']; ?>">
+
+
                 <div class="row">
                     <div class="col">
                         <input type="submit" value="Register" class="btn btn-success btn-block">

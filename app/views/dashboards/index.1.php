@@ -37,7 +37,10 @@
 <?php  endif;?>
 
 <?php if($product->id == $data['other'][$i]): ?>
-<?php  echo $product->title . " ". round($data['othersperserving'] * 100 / $product->carb). " g" ."<br>";?>
+<?php  echo $product->title ." ";?>
+<?php if(!empty($product->use_id)){ 
+ if($product->id == $data['use_id'][$i]){
+echo round($data['othersperserving'] * $product->use_id /4 * 100 / $product->carb). " g" ."<br>";}}?>
 <?php  endif;?>
 <?php endforeach;?>
 <?php endfor;?>

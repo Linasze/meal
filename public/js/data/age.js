@@ -1,3 +1,4 @@
+
 $("#trigger").click(function () {
     var url = "data/age.php"; // the script where you handle the form input.
 
