@@ -76,7 +76,7 @@ class Products extends Controller {
         }
         
         $starting_limit = ($page-1)*$limit;
-        $products = $this->productModel->getProducts($starting_limit,$limit);
+        $products = $this->productModel->getProductsAdmin($starting_limit,$limit);
         $data = [
             'products' => $products,
             'total_pages' => $total_pages    
