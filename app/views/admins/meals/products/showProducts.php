@@ -3,7 +3,7 @@
 
 <div class="col-md-12 card card-body">
 <div class="mb-3 col-md-12 d-flex bd-highlight">
-<h3 class="mr-auto p-2 bd-highlight">Show Meal</h3> 
+<h3 class="mr-auto p-2 bd-highlight">Show Products</h3> 
 <a href="<?php echo URLROOT; ?>/products/addProducts" class="p-2 bd-highlight btn btn-light"><i class="fa fa-plus-circle"></i> Add</a>
 <a href="<?php echo URLROOT; ?>/admins/manageMeals" class="p-2 bd-highlight btn btn-light"><i class="fa fa-backward"></i> Back</a>
 
@@ -30,6 +30,13 @@
  <hr>
     
                      <?php endforeach; ?>
+<nav aria-label="Page navigation">
+  <ul class="pagination ">
+<?php for ($page=1; $page <= $data['total_pages']; $page++):?>
+   <li class="page-item "><a class="page-link bg-flat-color-1" href="<?php echo "?page=$page"; ?>"><?php echo $page;?></a></li>
+<?php endfor; ?>
+  </ul>
+</nav>
                      <?php else: ?>
                      <div class="dropdown float-right">
                             <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">

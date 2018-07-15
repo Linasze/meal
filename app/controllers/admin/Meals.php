@@ -86,8 +86,21 @@ class Meals extends Controller {
     }
 
     public function showMeals(){
-        $meals = $this->mealModel->getMeals();
-        $data = ['meals' => $meals];
+        $total_results = $this->mealModel->rowCount();
+        $limit = 10;
+        $total_pages = ceil($total_results/$limit);
+        if (!isset($_GET['page'])) {
+            $page = 1;
+        } else{
+            $page = $_GET['page'];
+        }
+        
+        $starting_limit = ($page-1)*$limit;
+        $meals = $this->mealModel->getMeals($starting_limit,$limit);
+        $data = [
+            'meals' => $meals,
+            'total_pages' => $total_pages    
+        ];
         $this->view('admins/meals/meals/showMeals', $data);
     }
 

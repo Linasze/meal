@@ -31,6 +31,13 @@
  <hr>
     
                      <?php endforeach; ?>
+<nav aria-label="Page navigation">
+  <ul class="pagination ">
+<?php for ($page=1; $page <= $data['total_pages']; $page++):?>
+   <li class="page-item "><a class="page-link bg-flat-color-1" href="<?php echo "?page=$page"; ?>"><?php echo $page;?></a></li>
+<?php endfor; ?>
+  </ul>
+</nav>          
                      <?php else: ?>
                      <div class="dropdown float-right">
                             <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">

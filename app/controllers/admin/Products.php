@@ -66,8 +66,21 @@ class Products extends Controller {
     }
 
     public function showProducts(){
-        $products = $this->productModel->getProducts();
-        $data = ['products' => $products];
+        $total_results = $this->productModel->rowCount();
+        $limit = 10;
+        $total_pages = ceil($total_results/$limit);
+        if (!isset($_GET['page'])) {
+            $page = 1;
+        } else{
+            $page = $_GET['page'];
+        }
+        
+        $starting_limit = ($page-1)*$limit;
+        $products = $this->productModel->getProducts($starting_limit,$limit);
+        $data = [
+            'products' => $products,
+            'total_pages' => $total_pages    
+        ];
         $this->view('admins/meals/products/showProducts', $data);
     }
 

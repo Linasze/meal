@@ -31,8 +31,10 @@ class Product {
         }
     }
 
-    public function getProducts(){
-        $this->db->query('SELECT * FROM products');
+    public function getProducts($starting_limit,$limit){
+        $this->db->query('SELECT * FROM products ORDER BY id DESC LIMIT :starting_limit, :limit');
+        $this->db->bind(':starting_limit', $starting_limit);
+        $this->db->bind(':limit', $limit);
         return $this->db->resultSet();
     }
 
