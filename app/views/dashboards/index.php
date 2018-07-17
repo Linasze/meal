@@ -30,24 +30,41 @@
 <?php 
 
 if(empty($product->use_id)){ 
-    if(empty($data['get_product1']->use_id)){
+    if(!empty($product->use_id)){
         if($product->id == $data['protein'][$i]){
             echo round($data['proteinsperservingUseEmpty']/ $product->protein/2).  " g". "<br>";
         } 
     }else{
-        if($product->id == $data['protein'][$i]){
-            echo round($data['proteinsperservingUseEmpty']).  " g". "<br>";
+ 
+        if(count($data['protein']) == 2 && empty($data['get_product1']->use_id)){
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty']/ $product->protein/2).  " ge". "<br>";
+            }
+        }elseif(count($data['protein']) == 2 && !empty($data['get_product1']->use_id)){
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty']).  " ga". "<br>";
+            }
+        }elseif(count($data['protein']) == 3 && !empty($data['get_product1']->use_id) && !empty($data['get_product2']->use_id)){
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty']/ $product->protein-$data['minus'] ).  " gugu". "<br>";
+            }
+        }elseif(count($data['protein']) == 3 && !empty($data['get_product2']->use_id)){
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty']/ $product->protein/2).  " gege". "<br>";
+            }
+       
+
+        }else{
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty']).  " gg". "<br>";
+            }
         }
     }
 }
 
-
-?> 
-
-<?php 
 if(!empty($product->use_id)){ 
     if($product->id == $data['protein'][$i]){
-      echo round($data['proteinsperserving']). " g". "<br>";      
+      echo round($data['proteinsperserving']/ $product->protein /100 * $product->use_id). " g". "<br>";      
     }
 }
 
@@ -83,6 +100,7 @@ echo round($data['othersperserving'] * $product->use_id /4 * 100 / $product->car
 Carbs:   <?php echo round($data['carbsperservingAll']); ?><br>
 Protein: <?php echo round($data['proteinsperservingAll']); ?><br>
 Fat:     <?php echo round($data['fatsperservingAll']); ?><br>
+
 </div>
 </div>
 </div>
