@@ -22,7 +22,7 @@ class Dashboards extends Controller {
         $product_id = explode(",", $breakfast->other);
         $product_idProtein = explode(",", $breakfast->protein);
 
-       
+
 
         // $brunch = $this->mealModel->getMealById($user_settings->brunch);
         // $lunch = $this->mealModel->getMealById($user_settings->lunch);
@@ -49,28 +49,24 @@ class Dashboards extends Controller {
         if(count($product_id) <=2 || count($product_idProtein) <= 2){
             switch (count($protein)) {
                 case 1:
-                    // One Product with out use_id
-                    // ATTENTION!! PADARYTI VIENO PRODUKTO RODYMA SU USE_ID
+                    // One Product with out use_id or with use_id
                     $get_product0 = $this->productModel->getProductById($product_idProtein[0]);
-                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 20 /4  * 100 / $get_product0->protein; 
+                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 20 /4; 
+                    $proteinsperserving = $caloriesperserving /100  * 20 /4;
                 break;
 
                 case 2:
                     $get_product0 = $this->productModel->getProductById($product_idProtein[0]);
                     $get_product1 = $this->productModel->getProductById($product_idProtein[1]);
                 if(!empty($get_product1->use_id)){   
-                    // Two products one with out use_id and one with use_is  
-                    $proteinsperserving = $caloriesperserving /100  * 20 /4 * 100;
-                    $minus = $caloriesperserving /100  * 20 /4 * 100 / $get_product1->protein /100 * $get_product1->use_id;
-                    $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4  * 100 / $get_product0->protein - $minus; 
+                    // One with out use_id and one with use_is  
+                    $proteinsperserving = $caloriesperserving /100  * 20 /4;
+                    $minus = $caloriesperserving /100  * 20 /4 / 100  * $get_product1->use_id;
+                    $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus; 
                    
                 }elseif(empty($get_product1->use_id)){
                     // Two products with out use_id
-                    $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 * 100;
-                }else{                   
-                   
-                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 20/4 *100/ $get_product1->protein; 
-                    $proteinsperserving = $caloriesperserving /100 * 20/4 * 100/ $get_product0->protein;                    
+                    $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4;
                 }
                 break;
 
@@ -80,32 +76,29 @@ class Dashboards extends Controller {
                 $get_product2 = $this->productModel->getProductById($product_idProtein[2]);
                 if(!empty($get_product1->use_id)){
                     if(empty($get_product2->use_id)){     
-                              
-                        $minus = $caloriesperserving /100 * 20 /4 * 100 / $get_product1->protein /100 * $get_product1->use_id;
-                        $proteinsperserving = $caloriesperserving /100 * 20 /4 * 100;
-                        $proteinsperservingUseEmpty =  $caloriesperserving /100  * 20 /4  * 100 / $get_product0->protein /2 - $minus;
+                        // One with out use_id one with use_id and without use_id                       
+                        $minus = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 /2 - $minus;
                     }else{  
-                        // Tree product one without use_id two with use_id        
-                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 * 100 / $get_product1->protein /100 * $get_product1->use_id;
-                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 * 100 / $get_product2->protein /100 * $get_product2->use_id;
+                        // One without use_id two with use_id                        
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4  /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4  /100 * $get_product2->use_id;
                         $minus =  $proteinsperserving1 + $proteinsperserving2;
-                        $proteinsperservingUseEmpty =  $caloriesperserving /100  * 20 /4  * 100;
-                        $proteinsperserving = $caloriesperserving /100 * 20 /4 * 100;                       
-                       
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100  * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;                        
                     }
                 }elseif(!empty($get_product2->use_id)){    
-                        // Two product with out use_id and one with use_id
-                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 * 100 / $get_product1->protein /100 * $get_product1->use_id;
-                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 * 100 / $get_product2->protein /100 * $get_product2->use_id;
+                        // Two product with out use_id and one with use_id  
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
                         $minus =  $proteinsperserving1 + $proteinsperserving2;
-                        $proteinsperservingUseEmpty =  $caloriesperserving /100  * 20 /4  * 100  - $minus;
-                        $proteinsperserving = $caloriesperserving /100 * 20 /4 * 100;                       
-                       
-                    
-                     
-                                       
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;                     
+                                    
                 }else{
-                    $proteinsperservingUseEmpty = $caloriesperserving /100 /3; 
+                    //Three products with out use_id
+                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 20/4 /3; 
                 }
                 
                 break;
@@ -224,7 +217,6 @@ class Dashboards extends Controller {
                 'carbsperservingAll' => $carbsperservingAll,
                 'fatsperservingAll' => $fatsperservingAll,
                 'proteinsperservingUseEmpty' => $proteinsperservingUseEmpty,
-                'minus' => $minus,
                 'get_product1' => $get_product1,
                 'get_product2' => $get_product2
                
