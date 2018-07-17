@@ -1,7 +1,7 @@
 <?php
 
 
-
+if(!empty($_SESSION['user_id'])){
 if($_SESSION['user_rights'] == 1) {
 
 class Admins extends Controller {
@@ -33,4 +33,8 @@ class Admins extends Controller {
 }else{
     header('HTTP/1.0 403 Forbidden');
     exit;
+}
+
+}else{
+    redirect('users/login');
 }

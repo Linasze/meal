@@ -11,9 +11,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+   
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <link href="<?php echo URLROOT; ?>/timepicker/dist/timepicker.min.css" rel="stylesheet">
   </head>
 
   <body>

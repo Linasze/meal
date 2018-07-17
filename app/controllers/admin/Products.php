@@ -1,5 +1,6 @@
 <?php
 
+if(!empty($_SESSION['user_id'])){
 if($_SESSION['user_rights'] == 1) {
 
 class Products extends Controller {
@@ -63,7 +64,9 @@ class Products extends Controller {
             }
 
        }else{
-        $this->view('admins/meals/products/addProducts');
+           $type = $this->typeModel->getTypes();
+           $data = ['type' => $type];
+        $this->view('admins/meals/products/addProducts' , $data);
        }
     }
 
@@ -219,4 +222,7 @@ class Products extends Controller {
 }else{
     header('HTTP/1.0 403 Forbidden');
     exit;
+}
+}else{
+    redirect('users/login');
 }

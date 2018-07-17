@@ -152,8 +152,7 @@ class Users extends Controller {
         unset($_SESSION['user_name']);
         unset($_SESSION['user_email']);
         session_destroy();
-        flash('logout_success', 'successfully');
-        redirect('mains/index');
+        redirect();
    
     }
 }

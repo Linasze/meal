@@ -48,10 +48,9 @@
 </div>
 <div class="col-md mt-2">
     <select class="form-control" name="cat">
-        <option value="1">Carb</option>
-        <option value="2">Protein</option>
-        <option value="3">Fat</option>
-        <option value="4">Other</option>
+      <?php foreach($data['type'] as $type): ?>
+      <option value="<?php echo $type->id;?>"><?php echo $type->title;?></option>
+     <?php endforeach;?>
     </select>
 </div>
 <div class="col-md mt-3">

@@ -1,6 +1,6 @@
 <?php require_once APPROOT . '/views/theme/publicheader.php'; ?>
+<?php if(empty($_SESSION['user_id'])): ?>
 <div class="container">
-
 <div class="row">
 <div class="col-md-6 mx-auto mt-5">
 <div class="card card-body">
@@ -107,5 +107,8 @@
     <script src="<?php echo URLROOT;?>/js/data/activity.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/purpose.js"></script>
     
-                
+<?php else: ?>
+
+<?php redirect('dashboards/index'); ?>
+<?php endif; ?>
 

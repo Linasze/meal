@@ -8,7 +8,7 @@ class Settings extends Controller {
 
     public function index(){
         $id = $_SESSION['user_id'];
-        $data = $this->settingModel->getUserSettings($id);;
+        $data = $this->settingModel->getUserSettings($id); 
         $this->view('settings/index', $data);
     }
 

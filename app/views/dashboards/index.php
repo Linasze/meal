@@ -23,9 +23,36 @@
 
 <?php for($i = 0; $i <=9; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
-<?php $break = explode(",", $product->other);?>
+
 <?php if($product->id == $data['protein'][$i]): ?>
-<?php  echo $product->title . " " . round($data['proteinsperserving'] * 100 / $product->protein). " g". "<br>"; ?>
+<?php echo $product->title . " ";?> 
+
+<?php 
+
+if(empty($product->use_id)){ 
+    if(empty($data['get_product1']->use_id)){
+        if($product->id == $data['protein'][$i]){
+            echo round($data['proteinsperservingUseEmpty']/ $product->protein/2).  " g". "<br>";
+        } 
+    }else{
+        if($product->id == $data['protein'][$i]){
+            echo round($data['proteinsperservingUseEmpty']).  " g". "<br>";
+        }
+    }
+}
+
+
+?> 
+
+<?php 
+if(!empty($product->use_id)){ 
+    if($product->id == $data['protein'][$i]){
+      echo round($data['proteinsperserving']). " g". "<br>";      
+    }
+}
+
+?>
+
 <?php  endif;?>
 
 <?php if($product->id == $data['carb'][$i]): ?> 
@@ -37,11 +64,26 @@
 <?php  endif;?>
 
 <?php if($product->id == $data['other'][$i]): ?>
-<?php  echo $product->title . " ". round($data['othersperserving'] * 100 / $product->carb). " g" ."<br>";?>
+<?php  echo $product->title ." ";?>
+<?php if(empty($product->use_id)){
+echo "<br>";
+}?>
+<?php if(!empty($product->use_id)){ 
+ if($product->id == $data['product_id'][$i]){
+echo round($data['othersperserving'] * $product->use_id /4 * 100 / $product->carb). " g" ."<br>";
+}}?>
 <?php  endif;?>
 <?php endforeach;?>
 <?php endfor;?>
 <?php  endif;?>
+</div>
+
+<div class="card card-body">
+<div class="col-md-16">
+Carbs:   <?php echo round($data['carbsperservingAll']); ?><br>
+Protein: <?php echo round($data['proteinsperservingAll']); ?><br>
+Fat:     <?php echo round($data['fatsperservingAll']); ?><br>
+</div>
 </div>
 </div>
 <?php require_once APPROOT . '/views/theme/footer.php'; ?>
