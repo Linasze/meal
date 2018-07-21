@@ -21,7 +21,7 @@
 <h4><?php echo $data['breakfast']->title; ?></h4>
 <p><?php echo $data['breakfast']->recipe; ?></p>
 
-<?php for($i = 0; $i <=9; $i++): ?>
+<?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
 
 <?php if($product->id == $data['protein'][$i]): ?>
@@ -38,24 +38,28 @@ if(empty($product->use_id)){
  
         if(count($data['protein']) == 2 && empty($data['get_product1']->use_id)){
             if($product->id == $data['protein'][$i]){
-                echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " ge". "<br>";
+                echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is  
         }elseif(count($data['protein']) == 2 && !empty($data['get_product1']->use_id)){
             if($product->id == $data['protein'][$i]){
-                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " ga". "<br>";
+                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }elseif(count($data['protein']) == 3 && !empty($data['get_product1']->use_id) && !empty($data['get_product2']->use_id)){
             if($product->id == $data['protein'][$i]){
-                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " gugu". "<br>";
+                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }elseif(count($data['protein']) == 3 && !empty($data['get_product2']->use_id)){
             if($product->id == $data['protein'][$i]){
-                echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " gege". "<br>";
+                echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " g". "<br>";
+            }
+        }elseif(count($data['protein']) == 4 && !empty($data['get_product3']->use_id)){
+            if($product->id == $data['protein'][$i]){
+                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }else{
             if($product->id == $data['protein'][$i]){
-                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " gg". "<br>";
+                echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }
     }
@@ -63,7 +67,8 @@ if(empty($product->use_id)){
 
 if(!empty($product->use_id)){ 
     if($product->id == $data['protein'][$i]){
-      echo round($data['proteinsperserving'] /100 * $product->use_id * 100/ $product->protein). " g". "<br>";      
+      echo round($data['proteinsperserving'] /100 * $product->use_id // * 100/ $product->protein
+      ). " g". "<br>";      
     }
 }
 

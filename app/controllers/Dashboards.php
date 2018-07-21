@@ -88,7 +88,7 @@ class Dashboards extends Controller {
                         $proteinsperservingUseEmpty =  $caloriesperserving /100  * 20 /4 - $minus;
                         $proteinsperserving = $caloriesperserving /100 * 20 /4;                        
                     }
-                }elseif(!empty($get_product2->use_id)){    
+                }elseif(empty($get_product2->use_id)){    
                         // Two product with out use_id and one with use_id  
                         $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
                         $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
@@ -102,27 +102,319 @@ class Dashboards extends Controller {
                 }
                 
                 break;
+
                 case 4:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /4; 
+                $get_product0 = $this->productModel->getProductById($product_idProtein[0]);
+                $get_product1 = $this->productModel->getProductById($product_idProtein[1]);
+                $get_product2 = $this->productModel->getProductById($product_idProtein[2]);
+                $get_product3 = $this->productModel->getProductById($product_idProtein[3]);
+                if(empty($get_product0->use_id)){
+                    if(empty($get_product1->use_id) && !empty($get_product2->use_id)){
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+                           
+                    }elseif(empty($get_product1->use_id) && empty($get_product2->use_id) && empty($get_product3->use_id)){ 
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+                   
+                    }elseif(empty($get_product1->use_id) && empty($get_product2->use_id)){                       
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+
+                    }elseif(empty($get_product2->use_id) && !empty($get_product3->use_id)){                     
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                      
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+
+                    }elseif(empty($get_product2->use_id) && empty($get_product3->use_id)){                        
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                      
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;
+
+                    }elseif(empty($get_product3->use_id)){                     
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }else{
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+                    }
+                         
+                }elseif(empty($get_product1->use_id)){
+                      if(empty($get_product2->use_id) && !empty($get_product3->use_id)){
+                                    
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+
+                    }elseif(empty($get_product2->use_id) && empty($get_product3->use_id)){ 
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+
+                    }elseif(!empty($get_product2->use_id)){ 
+                                   
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }else{
+                        
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;                             
+                    }
+                 
+                }elseif(empty($get_product2->use_id)){
+                     if(empty($get_product3->use_id)){                         
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 ;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }else{
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                     
+                        $minus =  $proteinsperserving0 + $proteinsperserving1;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;                             
+                    }
+                
+                }elseif(empty($get_product3->use_id)){
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;               
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus);
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                }
+               
                 break;
+
                 case 5:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /5; 
+                $get_product0 = $this->productModel->getProductById($product_idProtein[0]);
+                $get_product1 = $this->productModel->getProductById($product_idProtein[1]);
+                $get_product2 = $this->productModel->getProductById($product_idProtein[2]);
+                $get_product3 = $this->productModel->getProductById($product_idProtein[3]);
+                $get_product4 = $this->productModel->getProductById($product_idProtein[4]);
+            if(empty($get_product0->use_id)){
+                    if(empty($get_product1->use_id) && !empty($get_product2->use_id) && !empty($get_product3->use_id) && !empty($get_product4->use_id)){
+                        
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3 +$proteinsperserving4;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+
+                    }elseif(empty($get_product1->use_id) && empty($get_product2->use_id) && empty($get_product3->use_id)&& empty($get_product4->use_id)){         
+                      
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 /5;
+                        
+                    }elseif(empty($get_product1->use_id) && empty($get_product2->use_id) && empty($get_product3->use_id)){                      
+                       
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;
+                        $minus = $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+                    
+                    }elseif(empty($get_product1->use_id) && empty($get_product2->use_id)){  
+                        if(!empty($get_product3->use_id)){
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;                       
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;                
+                        $minus =  $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+                        }else{
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;                       
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;                
+                        $minus =  $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+                        }   
+
+                    }elseif(empty($get_product2->use_id) && !empty($get_product3->use_id)){     
+                        
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                      
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4; 
+
+                    }elseif(empty($get_product2->use_id) && empty($get_product3->use_id)){   
+                        if(!empty($get_product1->use_id)){ 
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                      
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;
+                        }else{
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                      
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;
+                        }    
+
+                    }elseif(empty($get_product3->use_id)){   
+                        if(!empty($get_product2->use_id)){
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                        }else{
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus) /2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                        }
+                    }elseif(empty($get_product4->use_id)){   
+                         
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;                       
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+                       
+                    }else{
+                      
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;
+                        $minus =  $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+                    }
+                         
+            }elseif(empty($get_product1->use_id)){
+                      if(empty($get_product2->use_id) && !empty($get_product3->use_id) && !empty($get_product4->use_id)){
+                        
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+
+                    }elseif(empty($get_product3->use_id) ){   
+                        
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $minus =  $proteinsperserving0;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/4;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;    
+                         
+
+                    }elseif(empty($get_product4->use_id) ){
+                        if(!empty($get_product3->use_id)){
+                           
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;    
+                        }                 
+                       
+                    }else{
+                        
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product4->use_id;
+                        $minus =  $proteinsperserving0 + $proteinsperserving2 + $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+                    }
+                 
+            }elseif(empty($get_product2->use_id)){
+                     if(empty($get_product3->use_id)){   
+                        
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 ;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/3;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }else{
+                       
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;                     
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;                     
+                        $proteinsperserving4 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id;                     
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 + $proteinsperserving3 + $proteinsperserving4;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;                             
+                    }
+                
+            }elseif(empty($get_product3->use_id)){
+                    if(empty($get_product4->use_id)){
+                       
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;               
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }else{
+                      
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id;               
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 + $proteinsperserving2;
+                        $proteinsperservingUseEmpty =  ($caloriesperserving /100 * 20 /4 - $minus)/2;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;   
+                    }
+                
+            }else{ 
+                        $proteinsperserving0 = $caloriesperserving /100 * 20 /4 /100 * $get_product0->use_id;
+                        $proteinsperserving1 = $caloriesperserving /100 * 20 /4 /100 * $get_product1->use_id;               
+                        $proteinsperserving2 = $caloriesperserving /100 * 20 /4 /100 * $get_product2->use_id; 
+                        $proteinsperserving3 = $caloriesperserving /100 * 20 /4 /100 * $get_product3->use_id; 
+                        $minus =  $proteinsperserving0 + $proteinsperserving1 + $proteinsperserving2 + $proteinsperserving3;
+                        $proteinsperservingUseEmpty =  $caloriesperserving /100 * 20 /4 - $minus;
+                        $proteinsperserving = $caloriesperserving /100 * 20 /4;  
+            
+
+            }
                 break;
-                case 6:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /6; 
-                break;
-                case 7:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /7; 
-                break;     
-                case 8:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /8; 
-                break;
-                case 9:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /9; 
-                break;
-                case 10:
-                $proteinsperserving = $caloriesperserving /100 * 20 /4 /10; 
-                break;
+               
             }
             switch (count($carb)) {
                 case 1:
@@ -140,21 +432,7 @@ class Dashboards extends Controller {
                 case 5:
                 $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 20; 
                 break;
-                case 6:
-                $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 16; 
-                break;
-                case 7:
-                $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 14; 
-                break;     
-                case 8:
-                $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 12.5; 
-                break;
-                case 9:
-                $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 11.1; 
-                break;
-                case 10:
-                $carbsperserving = $caloriesperserving /100 * 60 /4 /100 * 10; 
-                break;
+               
             }
             switch (count($fat)) {
                 case 1:
@@ -172,21 +450,7 @@ class Dashboards extends Controller {
                 case 5:
                 $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 20; 
                 break;
-                case 6:
-                $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 16; 
-                break;
-                case 7:
-                $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 14; 
-                break;     
-                case 8:
-                $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 12.5; 
-                break;
-                case 9:
-                $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 11.1; 
-                break;
-                case 10:
-                $fatsperserving = $caloriesperserving /100 * 20 /9 /100 * 10; 
-                break;
+               
             }
             
                 $othersperserving = $caloriesperserving /100; 
@@ -218,7 +482,8 @@ class Dashboards extends Controller {
                 'fatsperservingAll' => $fatsperservingAll,
                 'proteinsperservingUseEmpty' => $proteinsperservingUseEmpty,
                 'get_product1' => $get_product1,
-                'get_product2' => $get_product2
+                'get_product2' => $get_product2,
+                'get_product3' => $get_product3
                
             ];
             

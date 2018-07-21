@@ -35,7 +35,7 @@
     <div class="form-group">
    <h4 class="mb-2 text-center">Protein</h4>
   
-   <?php for($i = 0; $i<=9; $i++): ?>
+   <?php for($i = 0; $i<=4; $i++): ?>
    <select class="form-control mb-2" name="protein<?php echo $i+1; ?>">
     <option  value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
@@ -55,7 +55,7 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Carb</h4>
-   <?php for($i = 0; $i<= 9; $i++): ?>
+   <?php for($i = 0; $i<= 4; $i++): ?>
     <select class="form-control mb-2" name="carb<?php echo $i+1;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
@@ -76,7 +76,7 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Fat</h4>
-   <?php for($i = 0; $i<= 9; $i++): ?>
+   <?php for($i = 0; $i<= 4; $i++): ?>
     <select class="form-control mb-2" name="fat<?php echo $i+1; ?>">
     <option  value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
@@ -94,7 +94,7 @@
 <div class="col-md-3">
     <div class="form-group">
    <h4 class="mb-2 text-center">Other</h4>
-   <?php for($i = 0; $i<= 9; $i++): ?>
+   <?php for($i = 0; $i<= 4; $i++): ?>
     <select class="form-control mb-2" name="other<?php echo $i+1;?>">
     <option value="0">Pasirinkite produkta</option>
     <?php foreach($data['products'] as $product) : ?>
