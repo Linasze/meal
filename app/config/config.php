@@ -12,4 +12,4 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost/meal');
 
 //Site Name
-define('SITENAME', 'Dar vienas OOP MVC');
+define('SITENAME', 'Meals nutrition calculator');
