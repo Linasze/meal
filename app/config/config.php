@@ -12,8 +12,4 @@ define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost/meal');
 
 //Site Name
-<<<<<<< HEAD
 define('SITENAME', 'Meals nutrition calculator');
-=======
-define('SITENAME', 'Meals nutrition calculator');
->>>>>>> ff855dc5e137077919028b218ae0d401186786a0
