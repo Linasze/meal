@@ -38,4 +38,26 @@ class Setting {
         }
     }
 
+    public function updateLunch($data){
+        $this->db->query("UPDATE user_settings SET lunch = :lunch WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);       
+        $this->db->bind(':lunch', $data['lunch']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateDinner($data){
+        $this->db->query("UPDATE user_settings SET dinner = :dinner WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);       
+        $this->db->bind(':dinner', $data['dinner']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
