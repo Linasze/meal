@@ -1,5 +1,5 @@
 $("#trigger").click(function () {
-    var url = "http://localhost/meal/data/activity.php"; // the script where you handle the form input.
+    var url = "data/activity.php"; // the script where you handle the form input.
 
     $.ajax({
         type: "POST",

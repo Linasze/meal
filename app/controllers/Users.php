@@ -54,11 +54,12 @@ class Users extends Controller {
     empty($data['email_err']) && empty($data['confirm_password_err'])){
  
         // Hash password
- $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
       // Kilocalories divided by activity
-  $data['kcal'] = $data['kcal'] / $data['activity'];
- // Register user
+     //$data['kcal'] = $data['kcal'] / $data['activity'];
+
+     // Register user
  if($this->userModel->register($data)){
     flash('register_success', 'You are register and can login');
     redirect('users/login');
