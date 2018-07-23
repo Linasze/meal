@@ -47,8 +47,9 @@ class Dashboards extends Controller {
         $users = $this->userModel->getUserInfo($user_id);
 
         // Calories per one serving
+        if(!empty($user_settings)){
         $caloriesperserving = ($users->kcal / $user_settings->eating_count) + ($users->purpose/$user_settings->eating_count); 
-        
+        }
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 
         $carbsperservingAll = $caloriesperserving /100 * 60 /4;  
