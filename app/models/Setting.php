@@ -38,10 +38,32 @@ class Setting {
         }
     }
 
+    public function updateBrunch($data){
+        $this->db->query("UPDATE user_settings SET brunch = :brunch WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);       
+        $this->db->bind(':brunch', $data['brunch']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function updateLunch($data){
         $this->db->query("UPDATE user_settings SET lunch = :lunch WHERE user_id = :user_id");
         $this->db->bind(':user_id', $data['user_id']);       
         $this->db->bind(':lunch', $data['lunch']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateAfternoon($data){
+        $this->db->query("UPDATE user_settings SET afternoon_meal = :afternoon WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);       
+        $this->db->bind(':afternoon', $data['afternoon']);
         if($this->db->execute()){
             return true;
         }else{
@@ -60,4 +82,14 @@ class Setting {
         }
     }
 
+    public function updateEvening($data){
+        $this->db->query("UPDATE user_settings SET evening_meal = :evening WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);       
+        $this->db->bind(':evening', $data['evening']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

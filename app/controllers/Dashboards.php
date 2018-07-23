@@ -17,11 +17,17 @@ class Dashboards extends Controller {
         $user_id = $_SESSION['user_id'];
         $user_settings = $this->settingModel->getUserSettings($user_id);
         $breakfast = $this->mealModel->getMealById($user_settings->breakfast);
+        $brunch = $this->mealModel->getMealById($user_settings->brunch);
         $lunch = $this->mealModel->getMealById($user_settings->lunch);
+        $afternoon = $this->mealModel->getMealById($user_settings->afternoon_meal);
         $dinner = $this->mealModel->getMealById($user_settings->dinner);
+        $evening = $this->mealModel->getMealById($user_settings->evening_meal);
         $getbreakfast = $this->mealModel->getMealByType(1);
+        $getbrunch = $this->mealModel->getMealByType(2);
         $getlunch = $this->mealModel->getMealByType(3);
+        $getafternoon = $this->mealModel->getMealByType(4);
         $getdinner = $this->mealModel->getMealByType(5);
+        $getevening = $this->mealModel->getMealByType(6);
 
         $products = $this->productModel->getProducts();
        
@@ -32,11 +38,23 @@ class Dashboards extends Controller {
         $fat = explode(",", $breakfast->fat);
         $other = explode(",", $breakfast->other);
 
+        // Get brunch nutrients
+        $proteinBrunch = explode(",", $brunch->protein);
+        $carbBrunch = explode(",", $brunch->carb);
+        $fatBrunch = explode(",", $brunch->fat);
+        $otherBrunch = explode(",", $brunch->other);
+
         // Get lunch nutrients
         $proteinLunch = explode(",", $lunch->protein);
         $carbLunch = explode(",", $lunch->carb);
         $fatLunch = explode(",", $lunch->fat);
         $otherLunch = explode(",", $lunch->other);
+
+        // Get afternoon nutrients
+        $proteinAfternoon = explode(",", $afternoon->protein);
+        $carbAfternoon = explode(",", $afternoon->carb);
+        $fatAfternoon = explode(",", $afternoon->fat);
+        $otherAfternoon = explode(",", $afternoon->other);
 
          // Get dinner nutrients
          $proteinDinner = explode(",", $dinner->protein);
@@ -44,18 +62,28 @@ class Dashboards extends Controller {
          $fatDinner = explode(",", $dinner->fat);
          $otherDinner = explode(",", $dinner->other);
 
+         // Get evening nutrients
+         $proteinEvening = explode(",", $evening->protein);
+         $carbEveningr = explode(",", $evening->carb);
+         $fatEvening = explode(",", $evening->fat);
+         $otherEvening = explode(",", $evening->other);
+
+         // Get user info
         $users = $this->userModel->getUserInfo($user_id);
+        
+        // Person calories in terms of physical activity
+        $kcal = $users->kcal * $users->activity; 
 
         // Calories per one serving
         if(!empty($user_settings)){
-        $caloriesperserving = ($users->kcal / $user_settings->eating_count) + ($users->purpose/$user_settings->eating_count); 
+        $caloriesperserving = ($kcal / $user_settings->eating_count) + ($users->purpose/$user_settings->eating_count); 
         }
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 
         $carbsperservingAll = $caloriesperserving /100 * 60 /4;  
         $fatsperservingAll = $caloriesperserving /100 * 20 /9; 
         
-     
+             // BREAKFAST
         // Calculate macro nutrients for breakfast protein
         if(count($protein) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastProtein.php';
@@ -74,7 +102,7 @@ class Dashboards extends Controller {
 
         }
 
-           // Calculate macros for breakfast carbs             
+           // Calculate macros for breakfast fat            
         if(count($fat) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastFat.php';
         }else{            
@@ -91,8 +119,45 @@ class Dashboards extends Controller {
            $othersperserving = $caloriesperserving /100 * 20 /4;
 
         }
-           
 
+               // BRUNCH
+         // Calculate macro nutrients for brunch protein
+         if(count($proteinBrunch) > 1){
+            require_once APPROOT . '/libraries/algorithm/brunch/brunchProtein.php';
+        }else{
+            $proteinsperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4;
+            $proteinsperservingbrunch = $caloriesperserving /100 * 20 /4;
+
+        }
+
+           // Calculate macros for brunch carbs             
+        if(count($carbBrunch) > 1){
+            require_once APPROOT . '/libraries/algorithm/brunch/brunchCarb.php';
+        }else{            
+           $carbsperservingUseEmptybrunch = $caloriesperserving /100 * 60 /4;
+           $carbsperservingbrunch = $caloriesperserving /100 * 60 /4;
+
+        }
+
+           // Calculate macros for brunch fat             
+        if(count($fatBrunch) > 1){
+            require_once APPROOT . '/libraries/algorithm/brunch/brunchFat.php';
+        }else{            
+           $fatsperservingUseEmptybrunch = $caloriesperserving /100 * 20 /9;
+           $fatsperservingbrunch = $caloriesperserving /100 * 20 /9;
+
+        }
+
+         // Calculate macros for brunch others            
+         if(count($otherBrunch) > 1){
+            require_once APPROOT . '/libraries/algorithm/brunch/brunchOther.php';
+        }else{            
+           $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4;
+           $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+
+        }          
+           
+            //LUNCH
         // Calculate macro nutrients for lunch protein
         if(count($proteinLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchProtein.php';
@@ -111,7 +176,7 @@ class Dashboards extends Controller {
 
         }
 
-           // Calculate macros for lunch carbs             
+           // Calculate macros for lunch fat            
         if(count($fatLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchFat.php';
         }else{            
@@ -127,11 +192,48 @@ class Dashboards extends Controller {
            $othersperservingUseEmptylunch = $caloriesperserving /100 * 20 /4;
            $othersperservinglunch = $caloriesperserving /100 * 20 /4;
 
-        }          
+        }  
+        
+                     //AFTERNOON MEAL
+         // Calculate macro nutrients for afternoon meal protein
+         if(count($proteinAfternoon) > 1){
+            require_once APPROOT . '/libraries/algorithm/afternoon/afternoonProtein.php';
+        }else{
+            $proteinsperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /4;
+            $proteinsperservingafternoon = $caloriesperserving /100 * 20 /4;
+
+        }
+
+           // Calculate macros for afternoon carbs             
+        if(count($carbAfternoon) > 1){
+            require_once APPROOT . '/libraries/algorithm/afternoon/afternoonCarb.php';
+        }else{            
+           $carbsperservingUseEmptyafternoon = $caloriesperserving /100 * 60 /4;
+           $carbsperservingafternoon = $caloriesperserving /100 * 60 /4;
+
+        }
+
+           // Calculate macros for afternoon fat             
+        if(count($fatAfternoon) > 1){
+            require_once APPROOT . '/libraries/algorithm/afternoon/afternoonFat.php';
+        }else{            
+           $fatsperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /9;
+           $fatsperservingafternoon = $caloriesperserving /100 * 20 /9;
+
+        }
+
+         // Calculate macros for afternoon others            
+         if(count($otherAfternoon) > 1){
+            require_once APPROOT . '/libraries/algorithm/afternoon/afternoonOther.php';
+        }else{            
+           $othersperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /4;
+           $othersperservingafternoon = $caloriesperserving /100 * 20 /4;
+
+        }       
               
 
-
-         // Calculate macro nutrients for  protein
+               //DINNER
+         // Calculate macro nutrients for dinner  protein
          if(count($proteinDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerProtein.php';
         }else{
@@ -149,7 +251,7 @@ class Dashboards extends Controller {
 
         }
 
-           // Calculate macros for dinner carbs             
+           // Calculate macros for dinner fat             
         if(count($fatDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerFat.php';
         }else{            
@@ -166,32 +268,93 @@ class Dashboards extends Controller {
            $othersperservingdinner = $caloriesperserving /100 * 20 /4;
 
         }
+
+
+
+              // Evening meal
+         // Calculate macro nutrients for evening  protein
+         if(count($proteinEvening) > 1){
+            require_once APPROOT . '/libraries/algorithm/evening/eveningProtein.php';
+        }else{
+            $proteinsperservingUseEmptyevening = $caloriesperserving /100 * 20 /4;
+            $proteinsperservingevening = $caloriesperserving /100 * 20 /4;
+
+        }
+
+           // Calculate macros for evening carbs             
+        if(count($carbEvening) > 1){
+            require_once APPROOT . '/libraries/algorithm/evening/eveningCarb.php';
+        }else{            
+           $carbsperservingUseEmptyevening = $caloriesperserving /100 * 60 /4;
+           $carbsperservingevening = $caloriesperserving /100 * 60 /4;
+
+        }
+
+           // Calculate macros for evening fat             
+        if(count($fatEvening) > 1){
+            require_once APPROOT . '/libraries/algorithm/evening/eveningFat.php';
+        }else{            
+           $fatsperservingUseEmptyevening = $caloriesperserving /100 * 20 /9;
+           $fatsperservingevening = $caloriesperserving /100 * 20 /9;
+
+        }
+
+         // Calculate macros for evening others            
+         if(count($otherEvening) > 1){
+            require_once APPROOT . '/libraries/algorithm/evening/eveningOther.php';
+        }else{            
+           $othersperservingUseEmptyevening = $caloriesperserving /100 * 20 /4;
+           $othersperservingevening = $caloriesperserving /100 * 20 /4;
+
+        }
            
       
             $data = [
                 'user_settings' => $user_settings,
                 'breakfast' => $breakfast,
+                'brunch' => $brunch,
                 'lunch' => $lunch,
+                'afternoon' => $afternoon,
                 'dinner' => $dinner,
+                'evening' => $evening,
+
                 'getbreakfast' => $getbreakfast,
+                'getbrunch' => $getbrunch,
                 'getlunch' => $getlunch,
+                'getafternoon' => $getafternoon,
                 'getdinner' => $getdinner,
+                'getevening' => $getevening,
 
                 
                 'protein' => $protein,
                 'carb' => $carb,
                 'fat' => $fat,
                 'other' => $other,
+
+                'proteinBrunch' => $proteinBrunch,
+                'carbBrunch' => $carbBrunch,
+                'fatBrunch' => $fatBrunch,
+                'otherBrunch' => $otherBrunch,
                 
                 'proteinLunch' => $proteinLunch,
                 'carbLunch' => $carbLunch,
                 'fatLunch' => $fatLunch,
                 'otherLunch' => $otherLunch,
 
+                'proteinAfternoon' => $proteinAfternoon,
+                'carbAfternoon' => $carbAfternoon,
+                'fatAfternoon' => $fatAfternoon,
+                'otherAfternoon' => $otherAfternoon,
+
                 'proteinDinner' => $proteinDinner,
                 'carbDinner' => $carbDinner,
                 'fatDinner' => $fatDinner,
                 'otherDinner' => $otherDinner,
+
+                'proteinEvening' => $proteinEvening,
+                'carbEvening' => $carbEvening,
+                'fatEvening' => $fatEvening,
+                'otherEvening' => $otherEvening,
 
                 'products' => $products,
                 'user_settings' => $user_settings,
@@ -201,15 +364,30 @@ class Dashboards extends Controller {
                 'fatsperserving' => $fatsperserving,
                 'othersperserving' => $othersperserving,
 
+                'proteinsperservingbrunch' => $proteinsperservingbrunch,
+                'carbsperservingbrunch' => $carbsperservingbrunch,
+                'fatsperservingbrunch' => $fatsperservingbrunch,
+                'othersperservingbrunch' => $othersperservingbrunch, 
+
                 'proteinsperservinglunch' => $proteinsperservinglunch,
                 'carbsperservinglunch' => $carbsperservinglunch,
                 'fatsperservinglunch' => $fatsperservinglunch,
                 'othersperservinglunch' => $othersperservinglunch,  
-                
+               
+                'proteinsperservingafternoon' => $proteinsperservingafternoon,
+                'carbsperservingafternoon' => $carbsperservingafternoon,
+                'fatsperservingafternoon' => $fatsperservingafternoon,
+                'othersperservingafternoon' => $othersperservingafternoon,  
+
                 'proteinsperservingdinner' => $proteinsperservingdinner,
                 'carbsperservingdinner' => $carbsperservingdinner,
                 'fatsperservingdinner' => $fatsperservingdinner,
                 'othersperservingdinner' => $othersperservingdinner,  
+
+                'proteinsperservingevening' => $proteinsperservingevening,
+                'carbsperservingevening' => $carbsperservingevening,
+                'fatsperservingevening' => $fatsperservingevening,
+                'othersperservingevening' => $othersperservingevening, 
                 
                 'proteinsperservingAll' => $proteinsperservingAll,
                 'carbsperservingAll' => $carbsperservingAll,
@@ -219,16 +397,31 @@ class Dashboards extends Controller {
                 'carbsperservingUseEmpty' => $carbsperservingUseEmpty,
                 'fatsperservingUseEmpty' => $fatsperservingUseEmpty,
                 'othersperservingUseEmpty' => $othersperservingUseEmpty,
+
+                'proteinsperservingUseEmptybrunch' => $proteinsperservingUseEmptybrunch,
+                'carbsperservingUseEmptybrunch' => $carbsperservingUseEmptybrunch,
+                'fatsperservingUseEmptybrunch' => $fatsperservingUseEmptybrunch,
+                'othersperservingUseEmptybrunch' => $othersperservingUseEmptybrunch,
                 
                 'proteinsperservingUseEmptylunch' => $proteinsperservingUseEmptylunch,
                 'carbsperservingUseEmptylunch' => $carbsperservingUseEmptylunch,
                 'fatsperservingUseEmptylunch' => $fatsperservingUseEmptylunch,
                 'othersperservingUseEmptylunch' => $othersperservingUseEmptylunch,
 
+                'proteinsperservingUseEmptyafternoon' => $proteinsperservingUseEmptyafternoon,
+                'carbsperservingUseEmptyafternoon' => $carbsperservingUseEmptyafternoon,
+                'fatsperservingUseEmptyafternoon' => $fatsperservingUseEmptyafternoon,
+                'othersperservingUseEmptyafternoon' => $othersperservingUseEmptyafternoon,
+
                 'proteinsperservingUseEmptydinner' => $proteinsperservingUseEmptydinner,
                 'carbsperservingUseEmptydinner' => $carbsperservingUseEmptydinner,
                 'fatsperservingUseEmptydinner' => $fatsperservingUseEmptydinner,
                 'othersperservingUseEmptydinner' => $othersperservingUseEmptydinner,
+
+                'proteinsperservingUseEmptyevening' => $proteinsperservingUseEmptyevening,
+                'carbsperservingUseEmptyevening' => $carbsperservingUseEmptyevening,
+                'fatsperservingUseEmptyevening' => $fatsperservingUseEmptyevening,
+                'othersperservingUseEmptyevening' => $othersperservingUseEmptyevening,
                 
                 'get_product1' => $get_product1,
                 'get_product2' => $get_product2,
@@ -243,6 +436,19 @@ class Dashboards extends Controller {
                 'getPr2' => $getPr2,
                 'getPr3' => $getPr3,
 
+                'get_product1brunch' => $get_product1brunch,
+                'get_product2brunch' => $get_product2brunch,
+                'get_product3brunch' => $get_product3brunch,
+                'getProduct1brunch' => $getProduct1brunch,
+                'getProduct2brunch' => $getProduct2brunch,
+                'getProduct3brunch' => $getProduct3brunch,
+                'getPro1brunch' => $getPro1brunch,
+                'getPro2brunch' => $getPro2brunch,
+                'getPro3brunch' => $getPro3brunch,
+                'getPr1brunch' => $getPr1brunch,
+                'getPr2brunch' => $getPr2brunch,
+                'getPr3brunch' => $getPr3brunch,
+
                 'get_product1lunch' => $get_product1lunch,
                 'get_product2lunch' => $get_product2lunch,
                 'get_product3lunch' => $get_product3lunch,
@@ -256,6 +462,19 @@ class Dashboards extends Controller {
                 'getPr2lunch' => $getPr2lunch,
                 'getPr3lunch' => $getPr3lunch,
 
+                'get_product1afternoon' => $get_product1afternoon,
+                'get_product2afternoon' => $get_product2afternoon,
+                'get_product3afternoon' => $get_product3afternoon,
+                'getProduct1afternoon' => $getProduct1afternoon,
+                'getProduct2afternoon' => $getProduct2afternoon,
+                'getProduct3afternoon' => $getProduct3afternoon,
+                'getPro1afternoon' => $getPro1afternoon,
+                'getPro2afternoon' => $getPro2afternoon,
+                'getPro3afternoon' => $getPro3afternoon,
+                'getPr1afternoon' => $getPr1afternoon,
+                'getPr2afternoon' => $getPr2afternoon,
+                'getPr3afternoon' => $getPr3afternoon,
+
                 'get_product1dinner' => $get_product1dinner,
                 'get_product2dinner' => $get_product2dinner,
                 'get_product3dinner' => $get_product3dinner,
@@ -267,14 +486,27 @@ class Dashboards extends Controller {
                 'getPro3dinner' => $getPro3dinner,
                 'getPr1dinner' => $getPr1dinner,
                 'getPr2dinner' => $getPr2dinner,
-                'getPr3dinner' => $getPr3dinner
+                'getPr3dinner' => $getPr3dinner,
+
+                'get_product1evening' => $get_product1evening,
+                'get_product2evening' => $get_product2evening,
+                'get_product3evening' => $get_product3evening,
+                'getProduct1evening' => $getProduct1evening,
+                'getProduct2evening' => $getProduct2evening,
+                'getProduct3evening' => $getProduct3evening,
+                'getPro1evening' => $getPro1evening,
+                'getPro2evening' => $getPro2evening,
+                'getPro3evening' => $getPro3evening,
+                'getPr1evening' => $getPr1evening,
+                'getPr2evening' => $getPr2evening,
+                'getPr3evening' => $getPr3evening
+
                
             ];
             
 
         $this->view('dashboards/index', $data);
-    }else{
-    
+    }else{    
         $this->view('users/login');
     
     }
@@ -290,6 +522,27 @@ class Dashboards extends Controller {
             ];
 
             if($this->settingModel->updateBreakfast($data)){
+                flash('message', 'Updated');
+                    redirect('dashboards/index');
+                    }else{
+                        die('Something went wrong');
+                    
+            }
+        }else{
+            $this->view('dashboards/index');
+        }
+    }
+
+    public function changeBrunch(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'brunch' => $_POST['brunch']
+            ];
+
+            if($this->settingModel->updateBrunch($data)){
                 flash('message', 'Updated');
                     redirect('dashboards/index');
                     }else{
@@ -322,6 +575,27 @@ class Dashboards extends Controller {
         }
     }
 
+    public function changeAfternoon(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'afternoon' => $_POST['afternoon']
+            ];
+
+            if($this->settingModel->updateAfternoon($data)){
+                flash('message', 'Updated');
+                    redirect('dashboards/index');
+                    }else{
+                        die('Something went wrong');
+                    
+            }
+        }else{
+            $this->view('dashboards/index');
+        }
+    }
+
         public function changeDinner(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
@@ -332,6 +606,28 @@ class Dashboards extends Controller {
             ];
 
             if($this->settingModel->updateDinner($data)){
+                flash('message', 'Updated');
+                    redirect('dashboards/index');
+                    }else{
+                        die('Something went wrong');
+                    
+            }
+        }else{
+            $this->view('dashboards/index');
+        }
+    }
+
+
+    public function changeEvening(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'evening' => $_POST['evening']
+            ];
+
+            if($this->settingModel->updateEvening($data)){
                 flash('message', 'Updated');
                     redirect('dashboards/index');
                     }else{

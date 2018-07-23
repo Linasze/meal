@@ -56,6 +56,8 @@ class Users extends Controller {
         // Hash password
  $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
+      // Kilocalories divided by activity
+  $data['kcal'] = $data['kcal'] / $data['activity'];
  // Register user
  if($this->userModel->register($data)){
     flash('register_success', 'You are register and can login');
