@@ -13,12 +13,13 @@ class Setting {
         return $this->db->single();
     }
 
-    public function update($data) {
+    public function updatePlan($data) {
         $this->db->query("UPDATE user_settings SET wake_up = :wake_up ,go_sleep = :go_sleep ,eating_count = :eating_count WHERE user_id = :user_id");
         $this->db->bind(':user_id', $data['user_id']);       
         $this->db->bind(':wake_up', $data['wake_up']);
         $this->db->bind(':go_sleep', $data['go_sleep']);
         $this->db->bind(':eating_count', $data['eating_count']);
+          
         if($this->db->execute()){
             return true;
         }else{

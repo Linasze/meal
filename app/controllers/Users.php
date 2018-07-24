@@ -17,13 +17,12 @@ class Users extends Controller {
              'email' => trim($_POST['email']),
              'password' => trim($_POST['password']),
              'confirm_password' => trim($_POST['confirm_password']),
-             'kcal' => trim($_POST['kcal']),
-             'age' => trim($_POST['age']),
-             'sex' => trim($_POST['sex']),
-             'height' => trim($_POST['height']),
-             'weight' => trim($_POST['weight']),
-             'activity' => trim($_POST['activity']),
-             'purpose' => trim($_POST['purpose']),
+             'age' => $_POST['age'],
+             'sex' => $_POST['sex'],
+             'height' => $_POST['height'],
+             'weight' => $_POST['weight'],
+             'activity' => $_POST['activity'],
+             'purpose' => $_POST['purpose'],
              'name_err' => '',
              'password_err' => '',
              'confirm_password_err' => '',
@@ -55,9 +54,6 @@ class Users extends Controller {
  
         // Hash password
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-
-      // Kilocalories divided by activity
-        $data['kcal'] = $data['kcal'] / $data['activity'];
 
      // Register user
  if($this->userModel->register($data)){

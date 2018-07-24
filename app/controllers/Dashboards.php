@@ -72,11 +72,16 @@ class Dashboards extends Controller {
         $users = $this->userModel->getUserInfo($user_id);
         
         // Person calories in terms of physical activity
-        $kcal = $users->kcal * $users->activity; 
+        if($users->sex == 1){
+            $kcal = round((66.5 + (13.75 * $users->weight) + (5.003 * $users->height) - (6.755 * $users->age)) * $users->activity + $users->purpose);
+            }else{ 
+            $kcal = round((655.1 + (9.563 * $users->weight) + (1.850 * $users->height) - (4.676 * $users->age)) * $users->activity + $users->purpose);
+        }
 
+       
         // Calories per one serving
         if(!empty($user_settings)){
-        $caloriesperserving = ($kcal / $user_settings->eating_count) + ($users->purpose/$user_settings->eating_count); 
+        $caloriesperserving = $kcal / $user_settings->eating_count; 
         }
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 

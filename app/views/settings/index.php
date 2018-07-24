@@ -1,33 +1,93 @@
 <?php require_once APPROOT . '/views/theme/header.php'; ?>
 <?php flash('update'); ?>
-<div class="col-md-10 mx-auto">
-<div class="card card-body text-center">
-Nutrition plan settings
-</div>
-<div class="card card-body">
-<form action="<?php echo URLROOT;?>/settings/update" method="post">
-<div class="form-goup form-inline">
-<input class="form-control" type="text" name="wake_up" data-toggle="timepicker" value="<?php echo $data->wake_up;?>">
-<input class="form-control" type="text" name="go_sleep" data-toggle="timepicker" value="<?php echo $data->go_sleep;?>">
-<select class="form-control" name="eating_count">
-<?php for($i = 3; $i <= 6; $i++): ?>
-     <option class="form-control" value="<?php echo $i; ?>"<?php if($data->eating_count == $i){?> selected <?php };?>> <?php echo $i; ?></option>
-<?php endfor;?>   
-    </select>
-</div>
-<input class="btn btn-primary mt-3" type="submit" value="Update">
-</form>
-</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="<?php echo URLROOT;?>/settings/index" class="list-group-item list-group-item-action active">Dashboard</a>
+              <a href="<?php echo URLROOT;?>/settings/planSets" class="list-group-item list-group-item-action">Plan settings</a>
+              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Used</a>
+              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Enquiry</a>
+              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Dealer</a>
+              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Media</a>
+              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Post</a>
+                           
+              
+            </div> 
+		</div>
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h4>My info</h4>
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <form>
+                              <div class="form-group row">
+                                <label for="username" class="col-4 col-form-label">User Name</label> 
+                                <div class="col-8">
+                                  <input id="name" name="name"  class="form-control here" required="required" type="text" value="<?php echo $data['user']->name;?>">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="email" class="col-4 col-form-label">Email</label> 
+                                <div class="col-8">
+                                  <input id="email" name="email" required="required" class="form-control here" type="text" value="<?php echo $data['user']->email;?>">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="name" class="col-4 col-form-label">First Name</label> 
+                                <div class="col-8">
+                                  <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="lastname" class="col-4 col-form-label">Last Name</label> 
+                                <div class="col-8">
+                                  <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
+                                </div>
+                              </div>
+                             
+                              <div class="form-group row">
+                                <label for="pass" class="col-4 col-form-label">Change Password</label> 
+                                <div class="col-8">
+                                  <input id="pass" name="pass" placeholder="Password" class="form-control here" required="required" type="text">
+                                </div>
+                              </div>
+							  <div class="form-group row">
+                                <label for="pass" class="col-4 col-form-label">Retype Password</label> 
+                                <div class="col-8">
+                                  <input id="pass" name="pass" placeholder="Password" class="form-control here" required="required" type="text">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label class="col-4">Send User Notification</label> 
+                                <div class="col-8">
+                                  <label class="custom-control custom-checkbox">
+                                    <input name="checkbox" class="custom-control-input" value="user-notification" type="checkbox"> 
+                                    <span class="custom-control-indicator"></span> 
+                                    <span class="custom-control-description">Send the new user an email about their account.</span>
+                                  </label>
+                                </div>
+                              </div>
+                            
+                              <div class="form-group row">
+                                <div class="offset-4 col-8">
+                                  <button name="submit" type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                              </div>
+                            </form>
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
 	</div>
- </div>
- <script>
-	        document.addEventListener("DOMContentLoaded", function(event)
-			{
-			    timepicker.load({
-			        interval: 15
-			       
-			    });
-			});
-		</script>
+</div>
 <?php require_once APPROOT . '/views/theme/footer.php'; ?>
 

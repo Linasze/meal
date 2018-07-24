@@ -9,11 +9,10 @@ class User {
 
     // Register user
     public function register($data){
-        $this->db->query('INSERT INTO users (name,email,password, kcal,age,sex,height,weight,activity,purpose) VALUES(:name, :email, :password, :kcal, :age, :sex, :height, :weight, :activity, :purpose)');
+        $this->db->query('INSERT INTO users (name,email,password,age,sex,height,weight,activity,purpose) VALUES(:name, :email, :password, :age, :sex, :height, :weight, :activity, :purpose)');
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':kcal', $data['kcal']);
         $this->db->bind(':age', $data['age']);
         $this->db->bind(':sex', $data['sex']);
         $this->db->bind(':height', $data['height']);
@@ -78,5 +77,19 @@ class User {
         $this->db->query("SELECT * FROM users WHERE id = :id");
         $this->db->bind(':id', $user_id);
         return $this->db->single();
+    }
+
+    public function updateUserPlanSets($data){
+       $this->db->query("UPDATE users SET  activity = :activity, purpose = :purpose WHERE id = :user_id");
+       $this->db->bind(':user_id', $data['user_id']); 
+       //$this->db->bind(':kcal', $data['kcal']);
+       $this->db->bind(':activity', $data['activity']);
+       $this->db->bind(':purpose', $data['purpose']);
+      
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

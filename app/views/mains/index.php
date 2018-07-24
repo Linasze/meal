@@ -77,8 +77,6 @@
           <input type="password" class="form-control col-7 mx-auto mb-2" name="password" placeholder="Enter password" required>
           <input type="password" class="form-control col-7 mx-auto mb-2" name="confirm_password" placeholder="Confirm password" required>
  
-  
-      <input type="hidden" name="kcal" id="kcal" value="kcal">
       <input type="hidden" name="age" id="age" value="age">
       <input type="hidden" name="sex" id="sex" value="sex">
       <input type="hidden" name="height" id="height" value="height">
