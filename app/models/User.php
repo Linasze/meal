@@ -79,6 +79,19 @@ class User {
         return $this->db->single();
     }
 
+    public function updatePersonalInfo($data){
+        $this->db->query('UPDATE users SET name = :name, first_name = :first_name, last_name = :last_name, password = :password WHERE id = : id');
+        $this->db->bind('name', $data['name']);
+        $this->db->bind('first_name', $data['first_name']);
+        $this->db->bind('last_name', $data['last_name']);
+        $this->db->bind('password', $data['password']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function updateUserPlanSets($data){
        $this->db->query("UPDATE users SET  activity = :activity, purpose = :purpose WHERE id = :user_id");
        $this->db->bind(':user_id', $data['user_id']); 

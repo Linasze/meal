@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="<?php echo URLROOT;?>/settings/index" class="list-group-item list-group-item-action">Dashboard</a>
+              <a href="<?php echo URLROOT;?>/settings/index" class="list-group-item list-group-item-action">Personal settings</a>
               <a href="<?php echo URLROOT;?>/settings/planSets" class="list-group-item list-group-item-action active">Plan Settings</a>
               <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Used</a>
               <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Enquiry</a>
@@ -40,11 +40,11 @@
           </div>
         </div>
         <div class="form-group row">
-          <label  class="col-4 col-form-label">Eatings count</label> 
+          <label  class="col-4 col-form-label">Eatings count per day</label> 
           <div class="col-8">
           <select class="form-control" name="eating_count">
                 <?php for($i = 3; $i <= 6; $i++): ?>
-          <option class="form-control" value="<?php echo $i; ?>"<?php if($data->eating_count == $i){?> selected <?php };?>> <?php echo $i; ?></option>
+          <option class="form-control" value="<?php echo $i; ?>"<?php if($data['settings']->eating_count == $i){?> selected <?php };?>> <?php echo $i; ?></option>
                 <?php endfor;?>   
           </select>
           </div>
@@ -52,7 +52,7 @@
         <div class="form-group row">
           <label class="col-4 col-form-label">Kilocalories</label> 
           <div class="col-8">
-    <input id="kcal" name="kcal" class="form-control here" type="text" value="<?php
+    <input id="kcal" name="kcal" class="form-control here" required="required" type="text" value="<?php
   if($data['user']->sex == 1){
 echo round((66.5 + (13.75 * $data['user']->weight) + (5.003 * $data['user']->height) - (6.755 * $data['user']->age)) * $data['user']->activity + $data['user']->purpose);
 }else{ 

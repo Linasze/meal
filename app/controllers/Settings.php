@@ -31,6 +31,34 @@ class Settings extends Controller {
         $this->view('settings/planSets', $data);
     }
 
+    public function updatePersonalInfo(){
+        // if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        //     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        //     $data = [
+        //         'id' => $_SESSION['user_id'],
+        //         'name' => trim($_POST['name']),
+        //         'first_name' => trim($_POST['first_name']),
+        //         'last_name' => trim($_POST['last_name'])
+               
+        //     ];
+
+        // if(empty($data['password_err']) && empty($data['confirm_password_err'])){
+        //     if($this->userModel->updatePersonalInfo($data)){
+        //     flash('update', 'Personal info updated');
+        //     redirect('settings/index');
+        //     }else{
+        //         die('Something went wrong');
+        //     }
+        // }else{
+        //     $this->view('settings/index', $data);
+        // }
+
+        // }else{
+        //     $this->view('settings/index');
+        // }
+    }
+
     public function updatePlan(){
         if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
