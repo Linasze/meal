@@ -114,8 +114,8 @@
             $othersperserving = $caloriesperserving /100 * 20 /4;  
         }
              
-    }elseif(empty($getPr1->use_id)){
-          if(empty($getPr2->use_id) && !empty($getPr3->use_id)){
+    }elseif(!empty($getPr0->use_id)){
+           if(empty($getPr2->use_id) && !empty($getPr3->use_id)){
                         
             $othersperserving0 = $caloriesperserving /100 * 20 /4 /100 * $getPr0->use_id;
             $othersperserving2 = $caloriesperserving /100 * 20 /4 /100 * $getPr2->use_id;
