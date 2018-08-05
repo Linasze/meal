@@ -1,18 +1,28 @@
-<div class="card card-body">
-Afternoon meal
-<form action="<?php echo URLROOT;?>/dashboards/changeAfternoon" method="post" class="form-group form-inline">
-<select class="form-control" name="afternoon">
-<?php foreach($data['getafternoon'] as $getafternoon) : ?>
-<option class="form-control" value="<?php echo $getafternoon->id; ?>"
-     <?php if($getafternoon->id == $data['user_settings']->afternoon ){?> selected <?php };?>><?php echo $getafternoon->title; ?></option> 
-<?php endforeach;?>
-</select> 
-<input type="submit" class="btn btn-secondary" value="Change">
-</form>
-<div class="col-md card card-body">
-<h4><?php echo $data['afternoon']->title; ?></h4>
-<p><?php echo $data['afternoon']->recipe; ?></p>
+<div id="headingFour">
+   <div class="card-header">
+        <div class="row">
+   <div class="col-md-2 text-center"> 15:00<br> Afternoon meal</div>
+     <div class="col-md-3">
 
+     <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+       <font size="2"><?php echo $data['afternoon']->title; ?></font>
+     </button>
+   </div>
+   <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptyafternoon']);?></div>
+   <div class="col-md-2 text-center mt-2"> <?php echo round($data['carbsperservingUseEmptyafternoon']);?></div>
+   <div class="col-md-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmptyafternoon']);?></div>
+   <div class="col-md-1 text-center mt-2"> <?php echo round($data['caloriesperservingAfternoon']);?></div>
+   <div class="col-md-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
+      </div>
+      </div>
+
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+
+   <div class="card-body">
+    <div class="row">
+<div class="col-md-4 text-left">
+
+    <h5>Products</h5>
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
 
@@ -222,6 +232,16 @@ if(!empty($product->use_id)){
 
 <?php endforeach;?>
 <?php endfor;?>
+</div>
+
+<div class="col-md-8 text-left">
+    <h5>Recipe</h5>
+    <font size="2">
+        <?php echo $data['afternoon']->recipe; ?>
+    </font>
+</div>
+</div>
+</div>
 
 </div>
 </div>

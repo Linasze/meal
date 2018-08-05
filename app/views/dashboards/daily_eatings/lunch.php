@@ -1,18 +1,28 @@
-<div class="card card-body">
-Lunch
-<form action="<?php echo URLROOT;?>/dashboards/changeLunch" method="post" class="form-group form-inline">
-<select class="form-control" name="lunch">
-<?php foreach($data['getlunch'] as $getlunch) : ?>
-<option class="form-control" value="<?php echo $getlunch->id; ?>"
-     <?php if($getlunch->id == $data['user_settings']->lunch ){?> selected <?php };?>><?php echo $getlunch->title; ?></option> 
-<?php endforeach;?>
-</select> 
-<input type="submit" class="btn btn-secondary" value="Change">
-</form>
-<div class="col-md card card-body">
-<h4><?php echo $data['lunch']->title; ?></h4>
-<p><?php echo $data['lunch']->recipe; ?></p>
+<div id="headingThree">
+   <div class="card-header">
+        <div class="row">
+   <div class="col-md-2 text-center"> 12:00<br> Lunch</div>
+     <div class="col-md-3">
 
+     <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+       <font size="2"><?php echo $data['lunch']->title; ?></font>
+     </button>
+   </div>
+   <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptylunch']);?></div>
+   <div class="col-md-2 text-center mt-2"> <?php echo round($data['carbsperservingUseEmptylunch']);?></div>
+   <div class="col-md-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmptylunch']);?></div>
+   <div class="col-md-1 text-center mt-2"> <?php echo round($data['caloriesperservingLunch']);?></div>
+   <div class="col-md-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
+      </div>
+      </div>
+
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+
+   <div class="card-body">
+    <div class="row">
+<div class="col-md-4 text-left">
+
+    <h5>Products</h5>
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
 
@@ -222,6 +232,16 @@ if(!empty($product->use_id)){
 
 <?php endforeach;?>
 <?php endfor;?>
+</div>
+
+<div class="col-md-8 text-left">
+    <h5>Recipe</h5>
+    <font size="2">
+        <?php echo $data['lunch']->recipe; ?>
+    </font>
+</div>
+</div>
+</div>
 
 </div>
 </div>
