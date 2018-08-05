@@ -57,7 +57,7 @@
 echo round((66.5 + (13.75 * $data['user']->weight) + (5.003 * $data['user']->height) - (6.755 * $data['user']->age)) * $data['user']->activity + $data['user']->purpose);
 }else{ 
 echo round((655.1 + (9.563 * $data['user']->weight) + (1.850 * $data['user']->height) - (4.676 * $data['user']->age)) * $data['user']->activity + $data['user']->purpose);
- } ?>">
+ } ?>" disabled>
           </div>
         </div>
         
