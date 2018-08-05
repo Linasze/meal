@@ -81,48 +81,90 @@ class Dashboards extends Controller {
        
         // Calories per one serving
         if(!empty($user_settings)){
-        $caloriesperserving = $kcal / $user_settings->eating_count; 
+           $caloriesperserving = $kcal / $user_settings->eating_count; 
         }
+
+       
+
+
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 
         $carbsperservingAll = $caloriesperserving /100 * 60 /4;  
         $fatsperservingAll = $caloriesperserving /100 * 20 /9; 
         
              // BREAKFAST
+             
         // Calculate macro nutrients for breakfast protein
         if(count($protein) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastProtein.php';
         }else{
-            $proteinsperservingUseEmpty = $caloriesperserving /100 * 20 /4;
-            $proteinsperserving = $caloriesperserving /100 * 20 /4;
+            if(!empty($breakfast->protein)){
+                if($user_settings->eating_count == 3){
+                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 20 /4;
+                    $proteinsperserving = $caloriesperserving /100 * 20 /4;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 15 /4;
+                    $proteinsperserving = $caloriesperserving /100 * 15 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $proteinsperservingUseEmpty = $caloriesperserving /100 * 15 /4;
+                    $proteinsperserving = $caloriesperserving /100 * 15 /4;
+                }
+            }
 
         }
 
            // Calculate macros for breakfast carbs             
         if(count($carb) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastCarb.php';
-        }else{            
-           $carbsperservingUseEmpty = $caloriesperserving /100 * 60 /4;
-           $carbsperserving = $caloriesperserving /100 * 60 /4;
-
+        }else{     
+            if(!empty($breakfast->carb)){    
+                if($user_settings->eating_count == 3){
+                    $carbsperservingUseEmpty = $caloriesperserving /100 * 60 /4;
+                    $carbsperserving = $caloriesperserving /100 * 60 /4;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $carbsperservingUseEmpty = $caloriesperserving /100 * 55 /4;
+                    $carbsperserving = $caloriesperserving /100 * 55 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $carbsperservingUseEmpty = $caloriesperserving /100 * 55 /4;
+                    $carbsperserving = $caloriesperserving /100 * 55 /4;
+                }
+            }
         }
 
            // Calculate macros for breakfast fat            
         if(count($fat) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastFat.php';
-        }else{            
-           $fatsperservingUseEmpty = $caloriesperserving /100 * 20 /9;
-           $fatsperserving = $caloriesperserving /100 * 20 /9;
-
+        }else{    
+            if(!empty($breakfast->fat)){    
+                if($user_settings->eating_count == 3){
+                    $fatsperservingUseEmpty = $caloriesperserving /100 * 20 /9;
+                    $fatsperserving = $caloriesperserving /100 * 20 /9;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $fatsperservingUseEmpty = $caloriesperserving /100 * 15 /9;
+                    $fatsperserving = $caloriesperserving /100 * 15 /9;
+                }elseif($user_settings->eating_count == 6){
+                    $fatsperservingUseEmpty = $caloriesperserving /100 * 15 /9;
+                    $fatsperserving = $caloriesperserving /100 * 15 /9;
+                }
+            }
         }
 
          // Calculate macros for breakfast others            
          if(count($other) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastOther.php';
-        }else{            
-           $othersperservingUseEmpty = $caloriesperserving /100 * 20 /4;
-           $othersperserving = $caloriesperserving /100 * 20 /4;
-
+        }else{      
+            if(!empty($breakfast->other)){
+                if($user_settings->eating_count == 3){
+                    $othersperservingUseEmpty = $caloriesperserving /100 * 20 /4;
+                    $othersperserving = $caloriesperserving /100 * 20 /4;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $othersperservingUseEmpty = $caloriesperserving /100 * 15 /4;
+                    $othersperserving = $caloriesperserving /100 * 15 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $othersperservingUseEmpty = $caloriesperserving /100 * 15 /4;
+                    $othersperserving = $caloriesperserving /100 * 15 /4;
+                }
+            }
         }
 
                // BRUNCH
@@ -130,35 +172,61 @@ class Dashboards extends Controller {
          if(count($proteinBrunch) > 1){
             require_once APPROOT . '/libraries/algorithm/brunch/brunchProtein.php';
         }else{
-            $proteinsperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4;
-            $proteinsperservingbrunch = $caloriesperserving /100 * 20 /4;
-
+             if(!empty($brunch->protein)){
+                if($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $proteinsperservingUseEmptybrunch = $caloriesperserving /100 * 15 /4;
+                    $proteinsperservingbrunch = $caloriesperserving /100 * 15 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $proteinsperservingUseEmptybrunch = $caloriesperserving /100 * 15 /4;
+                    $proteinsperservingbrunch = $caloriesperserving /100 * 15 /4; 
+                } 
+             }
         }
 
            // Calculate macros for brunch carbs             
         if(count($carbBrunch) > 1){
             require_once APPROOT . '/libraries/algorithm/brunch/brunchCarb.php';
-        }else{            
-           $carbsperservingUseEmptybrunch = $caloriesperserving /100 * 60 /4;
-           $carbsperservingbrunch = $caloriesperserving /100 * 60 /4;
-
+        }else{   
+            if(!empty($brunch->carb)){  
+                if($user_settings->eating_count == 4 || $user_settings->eating_count == 5){       
+                    $carbsperservingUseEmptybrunch = $caloriesperserving /100 * 55 /4;
+                    $carbsperservingbrunch = $caloriesperserving /100 * 55 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $carbsperservingUseEmptybrunch = $caloriesperserving /100 * 55 /4;
+                    $carbsperservingbrunch = $caloriesperserving /100 * 55 /4;
+                }
+            }
         }
 
            // Calculate macros for brunch fat             
         if(count($fatBrunch) > 1){
             require_once APPROOT . '/libraries/algorithm/brunch/brunchFat.php';
-        }else{            
-           $fatsperservingUseEmptybrunch = $caloriesperserving /100 * 20 /9;
-           $fatsperservingbrunch = $caloriesperserving /100 * 20 /9;
+        }else{   
+            if(!empty($brunch->fat)){  
+                if($user_settings->eating_count == 4 || $user_settings->eating_count == 5){         
+                    $fatsperservingUseEmptybrunch = $caloriesperserving /100 * 15 /9;
+                    $fatsperservingbrunch = $caloriesperserving /100 * 15 /9;
+                }elseif($user_settings->eating_count == 6){ 
+                    $fatsperservingUseEmptybrunch = $caloriesperserving /100 * 15 /9;
+                    $fatsperservingbrunch = $caloriesperserving /100 * 15 /9;
+                }
+            }
 
         }
 
          // Calculate macros for brunch others            
          if(count($otherBrunch) > 1){
             require_once APPROOT . '/libraries/algorithm/brunch/brunchOther.php';
-        }else{            
-           $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4;
-           $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }else{    
+            if(!empty($brunch->other)){    
+                if($user_settings->eating_count == 4 || $user_settings->eating_count == 5){      
+                    $othersperservingUseEmptybrunch = $caloriesperserving /100 * 15 /4;
+                    $othersperservingbrunch = $caloriesperserving /100 * 15 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $othersperservingUseEmptybrunch = $caloriesperserving /100 * 15 /4;
+                    $othersperservingbrunch = $caloriesperserving /100 * 15 /4;
+                }
+            }
 
         }          
            
@@ -167,72 +235,117 @@ class Dashboards extends Controller {
         if(count($proteinLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchProtein.php';
         }else{
-            $proteinsperservingUseEmptylunch = $caloriesperserving /100 * 20 /4;
-            $proteinsperservinglunch = $caloriesperserving /100 * 20 /4;
-
+            if(!empty($lunch->protein)){  
+                if($user_settings->eating_count == 3){
+                    $proteinsperservingUseEmptylunch = $caloriesperserving /100 * 20 /4;
+                    $proteinsperservinglunch = $caloriesperserving /100 * 20 /4;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){
+                    $proteinsperservingUseEmptylunch = $caloriesperserving /100 * 30 /4;
+                    $proteinsperservinglunch = $caloriesperserving /100 * 30 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $proteinsperservingUseEmptylunch = $caloriesperserving /100 * 30 /4;
+                    $proteinsperservinglunch = $caloriesperserving /100 * 30 /4;
+                }
+            }
         }
 
            // Calculate macros for lunch carbs             
         if(count($carbLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchCarb.php';
-        }else{            
-           $carbsperservingUseEmptylunch = $caloriesperserving /100 * 60 /4;
-           $carbsperservinglunch = $caloriesperserving /100 * 60 /4;
-
+        }else{  
+            if(!empty($lunch->carb)){       
+                if($user_settings->eating_count == 3){
+                    $carbsperservingUseEmptylunch = $caloriesperserving /100 * 60 /4;
+                    $carbsperservinglunch = $caloriesperserving /100 * 60 /4;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){      
+                    $carbsperservingUseEmptylunch = $caloriesperserving /100 * 70 /4;
+                    $carbsperservinglunch = $caloriesperserving /100 * 70 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $carbsperservingUseEmptylunch = $caloriesperserving /100 * 70 /4;
+                    $carbsperservinglunch = $caloriesperserving /100 * 70 /4;
+                }
+            }
         }
 
            // Calculate macros for lunch fat            
         if(count($fatLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchFat.php';
-        }else{            
-           $fatsperservingUseEmptylunch = $caloriesperserving /100 * 20 /9;
-           $fatsperservinglunch = $caloriesperserving /100 * 20 /9;
-
+        }else{   
+            if(!empty($lunch->fat)){  
+                if($user_settings->eating_count == 3){
+                    $fatsperservingUseEmptylunch = $caloriesperserving /100 * 20 /9;
+                    $fatsperservinglunch = $caloriesperserving /100 * 20 /9;
+                }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){       
+                    $fatsperservingUseEmptylunch = $caloriesperserving /100 * 30 /9;
+                    $fatsperservinglunch = $caloriesperserving /100 * 30 /9;
+                }elseif($user_settings->eating_count == 6){ 
+                    $fatsperservingUseEmptylunch = $caloriesperserving /100 * 30 /9;
+                    $fatsperservinglunch = $caloriesperserving /100 * 30 /9;
+                }
+            }
         }
 
          // Calculate macros for lunch others            
          if(count($otherLunch) > 1){
             require_once APPROOT . '/libraries/algorithm/lunch/lunchOther.php';
-        }else{            
-           $othersperservingUseEmptylunch = $caloriesperserving /100 * 20 /4;
-           $othersperservinglunch = $caloriesperserving /100 * 20 /4;
-
+        }else{     
+            if(!empty($lunch->other)){    
+                if($user_settings->eating_count == 3){
+                    $othersperservingUseEmptylunch = $caloriesperserving /100 * 20 /4;
+                    $othersperservinglunch = $caloriesperserving /100 * 20 /4;
+                 }elseif($user_settings->eating_count == 4 || $user_settings->eating_count == 5){  
+                    $othersperservingUseEmptylunch = $caloriesperserving /100 * 30 /4;
+                    $othersperservinglunch = $caloriesperserving /100 * 30 /4;
+                }elseif($user_settings->eating_count == 6){ 
+                    $othersperservingUseEmptylunch = $caloriesperserving /100 * 30 /4;
+                    $othersperservinglunch = $caloriesperserving /100 * 30 /4;
+                }
+            }
         }  
         
                      //AFTERNOON MEAL
+
          // Calculate macro nutrients for afternoon meal protein
          if(count($proteinAfternoon) > 1){
             require_once APPROOT . '/libraries/algorithm/afternoon/afternoonProtein.php';
         }else{
-            $proteinsperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /4;
-            $proteinsperservingafternoon = $caloriesperserving /100 * 20 /4;
+            if(!empty($afternoon->protein)){  
+                    $proteinsperservingUseEmptyafternoon = $caloriesperserving /100 * 15 /4;
+                    $proteinsperservingafternoon = $caloriesperserving /100 * 15 /4;
+            }
 
         }
 
            // Calculate macros for afternoon carbs             
         if(count($carbAfternoon) > 1){
             require_once APPROOT . '/libraries/algorithm/afternoon/afternoonCarb.php';
-        }else{            
-           $carbsperservingUseEmptyafternoon = $caloriesperserving /100 * 60 /4;
-           $carbsperservingafternoon = $caloriesperserving /100 * 60 /4;
+        }else{         
+            if(!empty($afternoon->carb)){     
+                    $carbsperservingUseEmptyafternoon = $caloriesperserving /100 * 55 /4;
+                    $carbsperservingafternoon = $caloriesperserving /100 * 55 /4;
+            }
 
         }
 
            // Calculate macros for afternoon fat             
         if(count($fatAfternoon) > 1){
             require_once APPROOT . '/libraries/algorithm/afternoon/afternoonFat.php';
-        }else{            
-           $fatsperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /9;
-           $fatsperservingafternoon = $caloriesperserving /100 * 20 /9;
+        }else{         
+            if(!empty($afternoon->fat)){     
+                    $fatsperservingUseEmptyafternoon = $caloriesperserving /100 * 15 /9;
+                    $fatsperservingafternoon = $caloriesperserving /100 * 15 /9;
+                }
 
         }
 
          // Calculate macros for afternoon others            
          if(count($otherAfternoon) > 1){
             require_once APPROOT . '/libraries/algorithm/afternoon/afternoonOther.php';
-        }else{            
-           $othersperservingUseEmptyafternoon = $caloriesperserving /100 * 20 /4;
-           $othersperservingafternoon = $caloriesperserving /100 * 20 /4;
+        }else{        
+            if(!empty($afternoon->other)){      
+                    $othersperservingUseEmptyafternoon = $caloriesperserving /100 * 15 /4;
+                    $othersperservingafternoon = $caloriesperserving /100 * 15 /4;
+            }
 
         }       
               
@@ -242,17 +355,36 @@ class Dashboards extends Controller {
          if(count($proteinDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerProtein.php';
         }else{
-            $proteinsperservingUseEmptydinner = $caloriesperserving /100 * 20 /4;
-            $proteinsperservingdinner = $caloriesperserving /100 * 20 /4;
-
+            if(!empty($dinner->protein)){  
+                if($user_settings->eating_count == 3 || $user_settings->eating_count == 4){
+                    $proteinsperservingUseEmptydinner = $caloriesperserving /100 * 20 /4;
+                    $proteinsperservingdinner = $caloriesperserving /100 * 20 /4;
+                }elseif($user_settings->eating_count == 5){
+                    $proteinsperservingUseEmptydinner = $caloriesperserving /100 * 25 /4;
+                    $proteinsperservingdinner = $caloriesperserving /100 * 25 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $proteinsperservingUseEmptydinner = $caloriesperserving /100 * 30 /4;
+                    $proteinsperservingdinner = $caloriesperserving /100 * 30 /4;
+                }
+            }
         }
 
            // Calculate macros for dinner carbs             
         if(count($carbDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerCarb.php';
-        }else{            
-           $carbsperservingUseEmptydinner = $caloriesperserving /100 * 60 /4;
-           $carbsperservingdinner = $caloriesperserving /100 * 60 /4;
+        }else{    
+            if(!empty($dinner->carb)){   
+                if($user_settings->eating_count == 3 || $user_settings->eating_count == 4){       
+                    $carbsperservingUseEmptydinner = $caloriesperserving /100 * 60 /4;
+                    $carbsperservingdinner = $caloriesperserving /100 * 60 /4;
+                }elseif($user_settings->eating_count == 5){
+                    $carbsperservingUseEmptydinner = $caloriesperserving /100 * 65 /4;
+                    $carbsperservingdinner = $caloriesperserving /100 * 65 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $carbsperservingUseEmptydinner = $caloriesperserving /100 * 70 /4;
+                    $carbsperservingdinner = $caloriesperserving /100 * 70 /4;
+                }
+            }
 
         }
 
@@ -260,17 +392,37 @@ class Dashboards extends Controller {
         if(count($fatDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerFat.php';
         }else{            
-           $fatsperservingUseEmptydinner = $caloriesperserving /100 * 20 /9;
-           $fatsperservingdinner = $caloriesperserving /100 * 20 /9;
+            if(!empty($dinner->fat)){  
+                if($user_settings->eating_count == 3 || $user_settings->eating_count == 4){
+                    $fatsperservingUseEmptydinner = $caloriesperserving /100 * 20 /9;
+                    $fatsperservingdinner = $caloriesperserving /100 * 20 /9;
+                }elseif($user_settings->eating_count == 5){
+                    $fatsperservingUseEmptydinner = $caloriesperserving /100 * 25 /9;
+                    $fatsperservingdinner = $caloriesperserving /100 * 25 /9;
+                }elseif($user_settings->eating_count == 6){
+                    $fatsperservingUseEmptydinner = $caloriesperserving /100 * 30 /9;
+                    $fatsperservingdinner = $caloriesperserving /100 * 30 /9;
+                }
+            }
 
         }
 
          // Calculate macros for dinner others            
          if(count($otherDinner) > 1){
             require_once APPROOT . '/libraries/algorithm/dinner/dinnerOther.php';
-        }else{            
-           $othersperservingUseEmptydinner = $caloriesperserving /100 * 20 /4;
-           $othersperservingdinner = $caloriesperserving /100 * 20 /4;
+        }else{      
+            if(!empty($dinner->other)){      
+                if($user_settings->eating_count == 3 || $user_settings->eating_count == 4){  
+                    $othersperservingUseEmptydinner = $caloriesperserving /100 * 20 /4;
+                    $othersperservingdinner = $caloriesperserving /100 * 20 /4;
+                }elseif($user_settings->eating_count == 5){
+                    $othersperservingUseEmptydinner = $caloriesperserving /100 * 25 /4;
+                    $othersperservingdinner = $caloriesperserving /100 * 25 /4;
+                }elseif($user_settings->eating_count == 6){
+                    $othersperservingUseEmptydinner = $caloriesperserving /100 * 30 /4;
+                    $othersperservingdinner = $caloriesperserving /100 * 30 /4;
+                }
+            }
 
         }
 
@@ -281,8 +433,10 @@ class Dashboards extends Controller {
          if(count($proteinEvening) > 1){
             require_once APPROOT . '/libraries/algorithm/evening/eveningProtein.php';
         }else{
-            $proteinsperservingUseEmptyevening = $caloriesperserving /100 * 20 /4;
-            $proteinsperservingevening = $caloriesperserving /100 * 20 /4;
+            if(!empty($evening->protein)){  
+                    $proteinsperservingUseEmptyevening = $caloriesperserving /100 * 15 /4;
+                    $proteinsperservingevening = $caloriesperserving /100 * 15 /4;
+            }
 
         }
 
@@ -290,17 +444,21 @@ class Dashboards extends Controller {
         if(count($carbEvening) > 1){
             require_once APPROOT . '/libraries/algorithm/evening/eveningCarb.php';
         }else{            
-           $carbsperservingUseEmptyevening = $caloriesperserving /100 * 60 /4;
-           $carbsperservingevening = $caloriesperserving /100 * 60 /4;
+            if(!empty($evening->carb)){ 
+                    $carbsperservingUseEmptyevening = $caloriesperserving /100 * 55 /4;
+                    $carbsperservingevening = $caloriesperserving /100 * 55 /4;
+            }
 
         }
 
            // Calculate macros for evening fat             
         if(count($fatEvening) > 1){
             require_once APPROOT . '/libraries/algorithm/evening/eveningFat.php';
-        }else{            
-           $fatsperservingUseEmptyevening = $caloriesperserving /100 * 20 /9;
-           $fatsperservingevening = $caloriesperserving /100 * 20 /9;
+        }else{        
+            if(!empty($evening->fat)){     
+                    $fatsperservingUseEmptyevening = $caloriesperserving /100 * 15 /9;
+                    $fatsperservingevening = $caloriesperserving /100 * 15 /9;
+            }
 
         }
 
@@ -308,14 +466,51 @@ class Dashboards extends Controller {
          if(count($otherEvening) > 1){
             require_once APPROOT . '/libraries/algorithm/evening/eveningOther.php';
         }else{            
-           $othersperservingUseEmptyevening = $caloriesperserving /100 * 20 /4;
-           $othersperservingevening = $caloriesperserving /100 * 20 /4;
+            if(!empty($evening->other)){ 
+                    $othersperservingUseEmptyevening = $caloriesperserving /100 * 15 /4;
+                    $othersperservingevening = $caloriesperserving /100 * 15 /4;
+            }
 
         }
            
-      
+        if($user_settings->eating_count == 3){
+            $caloriesperservingBreak =  $caloriesperserving;
+            $caloriesperservingLunch =  $caloriesperserving;
+            $caloriesperservingDinner =  $caloriesperserving;
+ 
+         }elseif($user_settings->eating_count == 4){
+            $caloriesperservingBreak =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingBrunch =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
+            $caloriesperservingDinner =  $caloriesperserving ;
+ 
+         }elseif($user_settings->eating_count == 5){
+            $caloriesperservingBreak =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingBrunch =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
+            $caloriesperservingAfternoon =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingDinner =  $caloriesperserving + ($caloriesperserving /100 * 5);
+ 
+         }elseif($user_settings->eating_count == 6){
+            $caloriesperservingBreak =  $caloriesperserving;
+            $caloriesperservingBrunch =  $caloriesperserving;
+            $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
+            $caloriesperservingAfternoon =  $caloriesperserving - ($caloriesperserving /100 * 5);
+            $caloriesperservingDinner =  $caloriesperserving + ($caloriesperserving /100 * 10);
+            $caloriesperservingEvening =  $caloriesperserving - ($caloriesperserving /100 * 5);
+ 
+         }
+ 
             $data = [
                 'user_settings' => $user_settings,
+                'caloriesperserving' => $caloriesperserving,
+                'caloriesperservingBreak' => $caloriesperservingBreak,
+                'caloriesperservingBrunch' => $caloriesperservingBrunch,
+                'caloriesperservingLunch' => $caloriesperservingLunch,
+                'caloriesperservingAfternoon' => $caloriesperservingAfternoon,
+                'caloriesperservingDinner' => $caloriesperservingDinner,
+                'caloriesperservingEvening' => $caloriesperservingEvening,
+
                 'breakfast' => $breakfast,
                 'brunch' => $brunch,
                 'lunch' => $lunch,
