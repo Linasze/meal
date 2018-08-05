@@ -14,9 +14,10 @@
    
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
+    <link href="<?php echo URLROOT;?>/public/css/style.css" rel="stylesheet">
+    
 
-    <link href="<?php echo URLROOT; ?>/timepicker/dist/timepicker.min.css" rel="stylesheet">
-  </head>
+ </head>
 
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
