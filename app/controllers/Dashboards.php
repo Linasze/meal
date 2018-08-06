@@ -10,33 +10,67 @@ class Dashboards extends Controller {
         $this->productModel = $this->model('Product');
         $this->getproModel = $this->model('MealProducts');
         $this->userModel = $this->model('User');
+        $this->dt = new DateTime;
     }
 
     public function index(){
         if(!empty($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
         $user_settings = $this->settingModel->getUserSettings($user_id);
-        $breakfast = $this->mealModel->getMealById($user_settings->breakfast);
-        $brunch = $this->mealModel->getMealById($user_settings->brunch);
-        $lunch = $this->mealModel->getMealById($user_settings->lunch);
-        $afternoon = $this->mealModel->getMealById($user_settings->afternoon_meal);
-        $dinner = $this->mealModel->getMealById($user_settings->dinner);
-        $evening = $this->mealModel->getMealById($user_settings->evening_meal);
+        
+        //  Get meals by user settings
+        // $breakfast = $this->mealModel->getMealById($user_settings->breakfast);
+        // $brunch = $this->mealModel->getMealById($user_settings->brunch);
+        // $lunch = $this->mealModel->getMealById($user_settings->lunch);
+        // $afternoon = $this->mealModel->getMealById($user_settings->afternoon_meal);
+        // $dinner = $this->mealModel->getMealById($user_settings->dinner);
+        // $evening = $this->mealModel->getMealById($user_settings->evening_meal);
+        
         $getbreakfast = $this->mealModel->getMealByType(1);
         $getbrunch = $this->mealModel->getMealByType(2);
         $getlunch = $this->mealModel->getMealByType(3);
         $getafternoon = $this->mealModel->getMealByType(4);
         $getdinner = $this->mealModel->getMealByType(5);
         $getevening = $this->mealModel->getMealByType(6);
-
+        $dt = $this->dt;
         $products = $this->productModel->getProducts();
-       
-      
+        // Get user meals
+        $breakfastWeek = explode(",", $user_settings->breakfast);
+        $brunchWeek = explode(",", $user_settings->brunch);
+
+
+        // Get breakfast by week day
+        $breakfast = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')]);
+        $breakfast2Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+1]);
+        $breakfast3Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+2]);
+        $breakfast4Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+3]);
+        $breakfast5Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+4]);
+        $breakfast6Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+5]);
+        $breakfast7Day = $this->mealModel->getMealById($breakfastWeek[$dt->format('w')+6]);
+
+        // Get brunch by week day 
+        $brunch = $this->mealModel->getMealById($brunchWeek[$dt->format('w')]);
+        $brunch2Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+1]);
+        $brunch3Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+2]);
+        $brunch4Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+3]);
+        $brunch5Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+4]);
+        $brunch6Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+5]);
+        $brunch7Day = $this->mealModel->getMealById($brunchWeek[$dt->format('w')+6]);
+
         // Get breakfast nutrients
+        // Sunday
         $protein = explode(",", $breakfast->protein);
         $carb = explode(",", $breakfast->carb);
         $fat = explode(",", $breakfast->fat);
         $other = explode(",", $breakfast->other);
+
+        // Monday
+        // Get breakfast nutrients
+        $protein2day = explode(",", $breakfast2Day->protein);
+        $carb2day = explode(",", $breakfast2Day->carb);
+        $fat2day = explode(",", $breakfast2Day->fat);
+        $other2day = explode(",", $breakfast2Day->other);
+
 
         // Get brunch nutrients
         $proteinBrunch = explode(",", $brunch->protein);
@@ -83,9 +117,6 @@ class Dashboards extends Controller {
         if(!empty($user_settings)){
            $caloriesperserving = $kcal / $user_settings->eating_count; 
         }
-
-       
-
 
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 
@@ -502,6 +533,7 @@ class Dashboards extends Controller {
          }
  
             $data = [
+                'dt' => $dt,
                 'user_settings' => $user_settings,
                 'caloriesperserving' => $caloriesperserving,
                 'caloriesperservingBreak' => $caloriesperservingBreak,
@@ -512,7 +544,21 @@ class Dashboards extends Controller {
                 'caloriesperservingEvening' => $caloriesperservingEvening,
 
                 'breakfast' => $breakfast,
+                'breakfast2Day' => $breakfast2Day,
+                'breakfast3Day' => $breakfast3Day,
+                'breakfast4Day' => $breakfast4Day,
+                'breakfast5Day' => $breakfast5Day,
+                'breakfast6Day' => $breakfast6Day,
+                'breakfast7Day' => $breakfast7Day,
+
                 'brunch' => $brunch,
+                'brunch2Day' => $brunch2Day,
+                'brunch3Day' => $brunch3Day,
+                'brunch4Day' => $brunch4Day,
+                'brunch5Day' => $brunch5Day,
+                'brunch6Day' => $brunch6Day,
+                'brunch7Day' => $brunch7Day,
+
                 'lunch' => $lunch,
                 'afternoon' => $afternoon,
                 'dinner' => $dinner,
@@ -530,6 +576,10 @@ class Dashboards extends Controller {
                 'carb' => $carb,
                 'fat' => $fat,
                 'other' => $other,
+                'protein2day' => $protein2day,
+                'carb2day' => $carb2day,
+                'fat2day' => $fat2day,
+                'other2day' => $other2day,
 
                 'proteinBrunch' => $proteinBrunch,
                 'carbBrunch' => $carbBrunch,

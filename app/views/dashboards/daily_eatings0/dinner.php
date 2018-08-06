@@ -2,7 +2,7 @@
 
     <div class="card-header">
         <div class="row">
-   <div class="col-md-2 text-center" > <?php echo "09:00";?><br>Dinner</div>
+   <div class="col-md-2 text-center" > <?php echo "18:00";?><br>Dinner</div>
      <div class="col-md-3 text-center"> 
      <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="true" aria-controls="collapseFifth">
        <font size="2"><?php echo $data['dinner']->title; ?></font>
