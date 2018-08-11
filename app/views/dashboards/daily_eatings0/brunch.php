@@ -2,24 +2,24 @@
 
     <div class="card-header">
         <div class="row">
-   <div class="col-md-2 text-center" > <?php echo "09:00";?><br>Brunch</div>
-     <div class="col-md-3 text-center"> 
+   <div class="col-md-2 col-2 text-center" > <?php echo "09:00";?><br>Brunch</div>
+     <div class="col-md-3 col-3 text-center">
      <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
        <font size="2"><?php echo $data['brunch']->title; ?></font>
      </button>
      </div>
-   <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptybrunch']);?></div>
-   <div class="col-md-2 text-center mt-2 "> <?php echo round($data['carbsperservingUseEmptybrunch']);?></div>
-   <div class="col-md-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmptybrunch']);?></div>
-   <div class="col-md-1 text-center mt-2"> <?php echo round($data['caloriesperservingBrunch']);?></div>
-   <div class="col-md-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
+   <div class="col-md-2 col-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptybrunch']);?></div>
+   <div class="col-md-2 col-2 text-center mt-2 "> <?php echo round($data['carbsperservingUseEmptybrunch']);?></div>
+   <div class="col-md-1 col-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmptybrunch']);?></div>
+   <div class="col-md-1 col-1 text-center mt-2"> <?php echo round($data['caloriesperservingBrunch']);?></div>
+   <div class="col-md-1 col-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
    </div>
 </div>
 
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
    <div class="row">
-<div class="col-md-4 text-left">
+<div class="col-md-4 col-4 text-left">
 <h5>Products</h5>
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
@@ -231,7 +231,7 @@ if(!empty($product->use_id)){
 <?php endforeach;?>
 <?php endfor;?>
 </div>
-<div class="col-md-8 text-left">
+<div class="col-md-8 col-8 text-left">
 <h5>Recipe</h5>
 <font size="2"><?php echo $data['brunch']->recipe; ?></font>
 </div>

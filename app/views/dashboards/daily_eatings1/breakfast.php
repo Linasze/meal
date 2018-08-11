@@ -1,21 +1,21 @@
 <div id="headingOne">
    <div class="card-header">
         <div class="row">
-   <div class="col-md-2 text-center"> <?php echo date('h:i',strtotime($data['user_settings']->wake_up));?><br> Breakfast</div>
+   <div class="col-md-2 col-sm-2 text-center"> <?php echo date('h:i',strtotime($data['user_settings']->wake_up));?><br> Breakfast</div>
      <div class="col-md-3">
 
      <button class="meal-title btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
        <font size="2"><?php echo $data['breakfast2Day']->title; ?></font>
      </button>
    </div>
- 
+
    <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmpty']);?></div>
    <div class="col-md-2 text-center mt-2"> <?php echo round($data['carbsperservingUseEmpty']);?></div>
    <div class="col-md-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmpty']);?></div>
    <div class="col-md-1 text-center mt-2"> <?php echo round($data['caloriesperservingBreak']);?></div>
    <div class="col-md-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
-    
-     
+
+
       </div>
       </div>
 
@@ -29,40 +29,40 @@
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
 
-<?php if($product->id == $data['protein'][$i]): ?>
+<?php if($product->id == $data['protein2day'][$i]): ?>
 <?php echo $product->title . " ";?>
 <?php
 
 if(empty($product->use_id)){
     if(!empty($product->use_id)){
-        if($product->id == $data['protein'][$i]){
+        if($product->id == $data['protein2day'][$i]){
             echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " g". "<br>";
         }
     }else{
 
-        if(count($data['protein']) == 2 && empty($data['get_product1']->use_id)){
-            if($product->id == $data['protein'][$i]){
+        if(count($data['protein2day']) == 2 && empty($data['get_product1']->use_id)){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is
-        }elseif(count($data['protein']) == 2 && !empty($data['get_product1']->use_id)){
-            if($product->id == $data['protein'][$i]){
+        }elseif(count($data['protein2day']) == 2 && !empty($data['get_product1']->use_id)){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['protein']) == 3 && !empty($data['get_product1']->use_id) && !empty($data['get_product2']->use_id)){
-            if($product->id == $data['protein'][$i]){
+        }elseif(count($data['protein2day']) == 3 && !empty($data['get_product1']->use_id) && !empty($data['get_product2']->use_id)){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['protein']) == 3 && !empty($data['get_product2']->use_id)){
-            if($product->id == $data['protein'][$i]){
+        }elseif(count($data['protein2day']) == 3 && !empty($data['get_product2']->use_id)){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty']/2 * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['protein']) == 4 && !empty($data['get_product3']->use_id)){
-            if($product->id == $data['protein'][$i]){
+        }elseif(count($data['protein2day']) == 4 && !empty($data['get_product3']->use_id)){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['protein'][$i]){
+            if($product->id == $data['protein2day'][$i]){
                 echo round($data['proteinsperservingUseEmpty'] * 100/ $product->protein).  " g". "<br>";
             }
         }
@@ -70,7 +70,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){
-    if($product->id == $data['protein'][$i]){
+    if($product->id == $data['protein2day'][$i]){
       echo round($data['proteinsperserving'] /100 * $product->use_id). " g". "<br>";
     }
 }
@@ -79,41 +79,41 @@ if(!empty($product->use_id)){
 
 <?php  endif;?>
 
-<?php if($product->id == $data['carb'][$i]): ?>
+<?php if($product->id == $data['carb2day'][$i]): ?>
 <?php echo $product->title . " ";?>
 
 <?php
 
 if(empty($product->use_id)){
     if(!empty($product->use_id)){
-        if($product->id == $data['carb'][$i]){
+        if($product->id == $data['carb2day'][$i]){
             echo round($data['carbsperservingUseEmpty']/2 * 100/ $product->carb).  " g". "<br>";
         }
     }else{
 
-        if(count($data['carb']) == 2 && empty($data['getProduct1']->use_id)){
-            if($product->id == $data['carb'][$i]){
+        if(count($data['carb2day']) == 2 && empty($data['getProduct1']->use_id)){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty']  * 100/ $product->carb).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is
-        }elseif(count($data['carb']) == 2 && !empty($data['getProduct1']->use_id)){
-            if($product->id == $data['carb'][$i]){
+        }elseif(count($data['carb2day']) == 2 && !empty($data['getProduct1']->use_id)){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carb']) == 3 && !empty($data['getProduct1']->use_id) && !empty($data['getProduct2']->use_id)){
-            if($product->id == $data['carb'][$i]){
+        }elseif(count($data['carb2day']) == 3 && !empty($data['getProduct1']->use_id) && !empty($data['getProduct2']->use_id)){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carb']) == 3 && !empty($data['getProduct2']->use_id)){
-            if($product->id == $data['carb'][$i]){
+        }elseif(count($data['carb2day']) == 3 && !empty($data['getProduct2']->use_id)){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carb']) == 4 && !empty($data['getProduct3']->use_id)){
-            if($product->id == $data['carb'][$i]){
+        }elseif(count($data['carb2day']) == 4 && !empty($data['getProduct3']->use_id)){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['carb'][$i]){
+            if($product->id == $data['carb2day'][$i]){
                 echo round($data['carbsperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
         }
@@ -121,7 +121,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){
-    if($product->id == $data['carb'][$i]){
+    if($product->id == $data['carb2day'][$i]){
       echo round($data['carbsperserving']/100 * $product->use_id  * 100/ $product->carb). " g". "<br>";
     }
 }
@@ -131,41 +131,41 @@ if(!empty($product->use_id)){
 <?php  endif;?>
 
 
-<?php if($product->id == $data['fat'][$i]): ?>
+<?php if($product->id == $data['fat2day'][$i]): ?>
 <?php echo $product->title . " ";?>
 
 <?php
 
 if(empty($product->use_id)){
     if(!empty($product->use_id)){
-        if($product->id == $data['fat'][$i]){
+        if($product->id == $data['fat2day'][$i]){
             echo round($data['fatsperservingUseEmpty']/2 * 100/ $product->fat).  " g". "<br>";
         }
     }else{
 
-        if(count($data['fat']) == 2 && empty($data['getPro1']->use_id)){
-            if($product->id == $data['fat'][$i]){
+        if(count($data['fat2day']) == 2 && empty($data['getPro1']->use_id)){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty']  * 100/ $product->fat).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is
-        }elseif(count($data['fat']) == 2 && !empty($data['getPro1']->use_id)){
-            if($product->id == $data['fat'][$i]){
+        }elseif(count($data['fat2day']) == 2 && !empty($data['getPro1']->use_id)){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fat']) == 3 && !empty($data['getPro1']->use_id) && !empty($data['getPro2']->use_id)){
-            if($product->id == $data['fat'][$i]){
+        }elseif(count($data['fat2day']) == 3 && !empty($data['getPro1']->use_id) && !empty($data['getPro2']->use_id)){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fat']) == 3 && !empty($data['getPro2']->use_id)){
-            if($product->id == $data['fat'][$i]){
+        }elseif(count($data['fat2day']) == 3 && !empty($data['getPro2']->use_id)){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fat']) == 4 && !empty($data['getPro3']->use_id)){
-            if($product->id == $data['fat'][$i]){
+        }elseif(count($data['fat2day']) == 4 && !empty($data['getPro3']->use_id)){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty'] * 100/ $product->fat).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['fat'][$i]){
+            if($product->id == $data['fat2day'][$i]){
                 echo round($data['fatsperservingUseEmpty'] * 100/ $product->fat).  " g". "<br>";
             }
         }
@@ -173,7 +173,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){
-    if($product->id == $data['fat'][$i]){
+    if($product->id == $data['fat2day'][$i]){
       echo round($data['fatsperserving']/100 * $product->use_id  * 100/ $product->fat). " g". "<br>";
     }
 }
@@ -182,36 +182,36 @@ if(!empty($product->use_id)){
 
 <?php  endif;?>
 
-<?php if($product->id == $data['other'][$i]): ?>
+<?php if($product->id == $data['other2day'][$i]): ?>
 <?php echo $product->title . " ";?>
 
 <?php
 
 if(empty($product->use_id)){
     if(!empty($product->use_id)){
-        if($product->id == $data['other'][$i]){
+        if($product->id == $data['other2day'][$i]){
             echo round($data['othersperservingUseEmpty']/2 * 100/ $product->carb).  " g". "<br>";
         }
     }else{
 
-        if(count($data['other']) == 2 && empty($data['getPr1']->use_id)){
+        if(count($data['other2day']) == 2 && empty($data['getPr1']->use_id)){
             if($product->id == $data['other2Day'][$i]){
                 echo round($data['othersperservingUseEmpty']/2 * 100/ $product->carb).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is
-        }elseif(count($data['other']) == 2 && !empty($data['getPr1']->use_id)){
+        }elseif(count($data['other2day']) == 2 && !empty($data['getPr1']->use_id)){
             if($product->id == $data['other2Day'][$i]){
                 echo round($data['othersperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['other']) == 3 && !empty($data['getPr1']->use_id) && !empty($data['getPr2']->use_id)){
+        }elseif(count($data['other2day']) == 3 && !empty($data['getPr1']->use_id) && !empty($data['getPr2']->use_id)){
             if($product->id == $data['other2Day'][$i]){
                 echo round($data['othersperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['other']) == 3 && !empty($data['getPr2']->use_id)){
+        }elseif(count($data['other2day']) == 3 && !empty($data['getPr2']->use_id)){
             if($product->id == $data['other2Day'][$i]){
                 echo round($data['othersperservingUseEmpty']/2 * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['other']) == 4 && !empty($data['getPr3']->use_id)){
+        }elseif(count($data['other2day']) == 4 && !empty($data['getPr3']->use_id)){
             if($product->id == $data['other2Day'][$i]){
                 echo round($data['othersperservingUseEmpty'] * 100/ $product->carb).  " g". "<br>";
             }

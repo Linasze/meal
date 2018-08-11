@@ -10,16 +10,17 @@
             <div class="carousel-item <?php if(date("l") == $data['dt']->format("l")) { echo 'active';} ?>">
                 <div class="carousel-caption text-secondary">
                     <h2> <?php echo $data['dt']->format('l d F'); $data['dt']->modify('+1 day');?></h2>
+                    <div class="col-md">
                    <div class="card">
                        <div class="card-body">
                        <div class="row">
-                       <div class="col-md-2 text-center">Time</div>
-                       <div class="col-md-3 text-center">Dish</div>
-                       <div class="col-md-2 text-center">Protein</div>
-                       <div class="col-md-2 text-center">Carb</div>
-                       <div class="col-md-1 text-center">Fat</div>
-                       <div class="col-md-1 text-center">Kcal</div>
-                       <div class="col-md-1 text-center">Change</div>
+                       <div class="col-md-2 col-xs-2 text-center">Time</div>
+                       <div class="col-md-3 col-xs-3 text-center">Dish</div>
+                       <div class="col-md-2 col-xs-2 text-center">Protein</div>
+                       <div class="col-md-2 col-xs-2 text-center">Carb</div>
+                       <div class="col-md-1 col-xs-1 text-center">Fat</div>
+                       <div class="col-md-1 col-xs-1 text-center">Kcal</div>
+                       <div class="col-md-1 col-xs-1 text-center">Change</div>
 
                        </div>
                        </div>
@@ -53,6 +54,7 @@
         </div>
             </div>
               </div>
+                    </div>
              </div>
                 </div>
                 <?php endfor; ?>

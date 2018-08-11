@@ -5,7 +5,7 @@
      <div class="col-md-3">
 
      <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-       <font size="2"><?php echo $data['lunch']->title; ?></font>
+       <font size="2"><?php echo  $data['lunch2Day']->title; ?></font>
      </button>
    </div>
    <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptylunch']);?></div>
@@ -26,41 +26,41 @@
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
 
-<?php if($product->id == $data['proteinLunch'][$i]): ?>
+<?php if($product->id == $data['proteinLunch2day'][$i]): ?>
 <?php echo $product->title . " ";?> 
 
 <?php 
 
 if(empty($product->use_id)){ 
     if(!empty($product->use_id)){
-        if($product->id == $data['proteinLunch'][$i]){
+        if($product->id == $data['proteinLunch2day'][$i]){
             echo round($data['proteinsperservingUseEmptylunch']/2 * 100/ $product->protein).  " g". "<br>";
         } 
     }else{
  
-        if(count($data['proteinLunch']) == 2 && empty($data['get_product1lunch']->use_id)){
-            if($product->id == $data['proteinLunch'][$i]){
+        if(count($data['proteinLunch2day']) == 2 && empty($data['get_product1lunch']->use_id)){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch']/2 * 100/ $product->protein).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is  
-        }elseif(count($data['proteinLunch']) == 2 && !empty($data['get_product1lunch']->use_id)){
-            if($product->id == $data['proteinLunch'][$i]){
+        }elseif(count($data['proteinLunch2day']) == 2 && !empty($data['get_product1lunch']->use_id)){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch'] * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['proteinLunch']) == 3 && !empty($data['get_product1lunch']->use_id) && !empty($data['get_product2lunch']->use_id)){
-            if($product->id == $data['proteinLunch'][$i]){
+        }elseif(count($data['proteinLunch2day']) == 3 && !empty($data['get_product1lunch']->use_id) && !empty($data['get_product2lunch']->use_id)){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch'] * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['proteinLunch']) == 3 && !empty($data['get_product2lunch']->use_id)){
-            if($product->id == $data['proteinLunch'][$i]){
+        }elseif(count($data['proteinLunch2day']) == 3 && !empty($data['get_product2lunch']->use_id)){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch']/2 * 100/ $product->protein).  " g". "<br>";
             }
-        }elseif(count($data['proteinLunch']) == 4 && !empty($data['get_product3lunch']->use_id)){
-            if($product->id == $data['proteinLunch'][$i]){
+        }elseif(count($data['proteinLunch2day']) == 4 && !empty($data['get_product3lunch']->use_id)){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch'] * 100/ $product->protein).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['proteinLunch'][$i]){
+            if($product->id == $data['proteinLunch2day'][$i]){
                 echo round($data['proteinsperservingUseEmptylunch'] * 100/ $product->protein).  " g". "<br>";
             }
         }
@@ -68,7 +68,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){ 
-    if($product->id == $data['proteinLunch'][$i]){
+    if($product->id == $data['proteinLunch2day'][$i]){
       echo round($data['proteinsperservinglunch'] /100 * $product->use_id). " g". "<br>";      
     }
 }
@@ -77,41 +77,41 @@ if(!empty($product->use_id)){
 
 <?php  endif;?>
 
-<?php if($product->id == $data['carbLunch'][$i]): ?>
+<?php if($product->id == $data['carbLunch2day'][$i]): ?>
 <?php echo $product->title . " ";?> 
 
 <?php 
 
 if(empty($product->use_id)){ 
     if(!empty($product->use_id)){
-        if($product->id == $data['carbLunch'][$i]){
+        if($product->id == $data['carbLunch2day'][$i]){
             echo round($data['carbsperservingUseEmptylunch']/2 * 100/ $product->carb).  " g". "<br>";
         } 
     }else{
  
-        if(count($data['carbLunch']) == 2 && empty($data['getProduct1lunch']->use_id)){
-            if($product->id == $data['carbLunch'][$i]){
+        if(count($data['carbLunch2day']) == 2 && empty($data['getProduct1lunch']->use_id)){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch']  * 100/ $product->carb).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is  
-        }elseif(count($data['carbLunch']) == 2 && !empty($data['getProduct1lunch']->use_id)){
-            if($product->id == $data['carbLunch'][$i]){
+        }elseif(count($data['carbLunch2day']) == 2 && !empty($data['getProduct1lunch']->use_id)){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carbLunch']) == 3 && !empty($data['getProduct1lunch']->use_id) && !empty($data['getProduct2lunch']->use_id)){
-            if($product->id == $data['carbLunch'][$i]){
+        }elseif(count($data['carbLunch2day']) == 3 && !empty($data['getProduct1lunch']->use_id) && !empty($data['getProduct2lunch']->use_id)){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carbLunch']) == 3 && !empty($data['getProduct2lunch']->use_id)){
-            if($product->id == $data['carbLunch'][$i]){
+        }elseif(count($data['carbLunch2day']) == 3 && !empty($data['getProduct2lunch']->use_id)){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['carbLunch']) == 4 && !empty($data['getProduct3lunch']->use_id)){
-            if($product->id == $data['carbLunch'][$i]){
+        }elseif(count($data['carbLunch2day']) == 4 && !empty($data['getProduct3lunch']->use_id)){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['carbLunch'][$i]){
+            if($product->id == $data['carbLunch2day'][$i]){
                 echo round($data['carbsperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
         }
@@ -119,7 +119,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){ 
-    if($product->id == $data['carbLunch'][$i]){
+    if($product->id == $data['carbLunch2day'][$i]){
       echo round($data['carbsperservinglunch']/100 * $product->use_id  * 100/ $product->carb). " g". "<br>";      
     }
 }
@@ -129,41 +129,41 @@ if(!empty($product->use_id)){
 <?php  endif;?>
 
 
-<?php if($product->id == $data['fatLunch'][$i]): ?>
+<?php if($product->id == $data['fatLunch2day'][$i]): ?>
 <?php echo $product->title . " ";?> 
 
 <?php 
 
 if(empty($product->use_id)){ 
     if(!empty($product->use_id)){
-        if($product->id == $data['fatLunch'][$i]){
+        if($product->id == $data['fatLunch2day'][$i]){
             echo round($data['fatsperservingUseEmptylunch']/2 * 100/ $product->fat).  " g". "<br>";
         } 
     }else{
  
-        if(count($data['fatLunch']) == 2 && empty($data['getPro1lunch']->use_id)){
+        if(count($data['fatLunch2day']) == 2 && empty($data['getPro1lunch']->use_id)){
             if($product->id == $data['faLuncht'][$i]){
                 echo round($data['fatsperservingUseEmptylunch']  * 100/ $product->fat).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is  
-        }elseif(count($data['fatLunch']) == 2 && !empty($data['getPro1lunch']->use_id)){
-            if($product->id == $data['fatLunch'][$i]){
+        }elseif(count($data['fatLunch2day']) == 2 && !empty($data['getPro1lunch']->use_id)){
+            if($product->id == $data['fatLunch2day'][$i]){
                 echo round($data['fatsperservingUseEmptylunch'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fatLunch']) == 3 && !empty($data['getPro1']->use_id) && !empty($data['getPro2lunch']->use_id)){
-            if($product->id == $data['fatLunch'][$i]){
+        }elseif(count($data['fatLunch2day']) == 3 && !empty($data['getPro1']->use_id) && !empty($data['getPro2lunch']->use_id)){
+            if($product->id == $data['fatLunch2day'][$i]){
                 echo round($data['fatsperservingUseEmptylunch'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fatLunch']) == 3 && !empty($data['getPro2lunch']->use_id)){
-            if($product->id == $data['fatLunch'][$i]){
+        }elseif(count($data['fatLunch2day']) == 3 && !empty($data['getPro2lunch']->use_id)){
+            if($product->id == $data['fatLunch2day'][$i]){
                 echo round($data['fatsperservingUseEmptylunch'] * 100/ $product->fat).  " g". "<br>";
             }
-        }elseif(count($data['fatLunch']) == 4 && !empty($data['getPro3lunch']->use_id)){
-            if($product->id == $data['fatLunch'][$i]){
+        }elseif(count($data['fatLunch2day']) == 4 && !empty($data['getPro3lunch']->use_id)){
+            if($product->id == $data['fatLunch2day'][$i]){
                 echo round($data['fatsperservingUseEmptylunch'] * 100/ $product->fat).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['fatLunch'][$i]){
+            if($product->id == $data['fatLunch2day'][$i]){
                 echo round($data['fatsperservingUseEmptylunch'] * 100/ $product->fat).  " g". "<br>";
             }
         }
@@ -171,7 +171,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){ 
-    if($product->id == $data['fatLunch'][$i]){
+    if($product->id == $data['fatLunch2day'][$i]){
       echo round($data['fatsperservinglunch']/100 * $product->use_id  * 100/ $product->fat). " g". "<br>";      
     }
 }
@@ -180,41 +180,41 @@ if(!empty($product->use_id)){
 
 <?php  endif;?>
 
-<?php if($product->id == $data['otherLunch'][$i]): ?>
+<?php if($product->id == $data['otherLunch2day'][$i]): ?>
 <?php echo $product->title . " ";?> 
 
 <?php 
 
 if(empty($product->use_id)){ 
     if(!empty($product->use_id)){
-        if($product->id == $data['otherLunch'][$i]){
+        if($product->id == $data['otherLunch2day'][$i]){
             echo round($data['othersperservingUseEmptylunch']/2 * 100/ $product->carb).  " g". "<br>";
         } 
     }else{
  
-        if(count($data['otherLunch']) == 2 && empty($data['getPr1lunch']->use_id)){
-            if($product->id == $data['otherLunch'][$i]){
+        if(count($data['otherLunch2day']) == 2 && empty($data['getPr1lunch']->use_id)){
+            if($product->id == $data['otherLunch2day'][$i]){
                 echo round($data['othersperservingUseEmptylunch']/2 * 100/ $product->carb).  " g". "<br>";
             }
             // Two products one with out use_id and one with use_is  
-        }elseif(count($data['otherLunch']) == 2 && !empty($data['getPr1lunch']->use_id)){
-            if($product->id == $data['otherLunch'][$i]){
+        }elseif(count($data['otherLunch2day']) == 2 && !empty($data['getPr1lunch']->use_id)){
+            if($product->id == $data['otherLunch2day'][$i]){
                 echo round($data['othersperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['otherLunch']) == 3 && !empty($data['getPr1lunch']->use_id) && !empty($data['getPr2lunch']->use_id)){
-            if($product->id == $data['otherLunch'][$i]){
+        }elseif(count($data['otherLunch2day']) == 3 && !empty($data['getPr1lunch']->use_id) && !empty($data['getPr2lunch']->use_id)){
+            if($product->id == $data['otherLunch2day'][$i]){
                 echo round($data['othersperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['otherLunch']) == 3 && !empty($data['getPr2lunch']->use_id)){
+        }elseif(count($data['otherLunch2day']) == 3 && !empty($data['getPr2lunch']->use_id)){
             if($product->id == $data['otherLunchlunch'][$i]){
                 echo round($data['othersperservingUseEmptylunch']/2 * 100/ $product->carb).  " g". "<br>";
             }
-        }elseif(count($data['otherLunch']) == 4 && !empty($data['getPr3lunch']->use_id)){
-            if($product->id == $data['otherLunch'][$i]){
+        }elseif(count($data['otherLunch2day']) == 4 && !empty($data['getPr3lunch']->use_id)){
+            if($product->id == $data['otherLunch2day'][$i]){
                 echo round($data['othersperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
         }else{
-            if($product->id == $data['otherLunch'][$i]){
+            if($product->id == $data['otherLunch2day'][$i]){
                 echo round($data['othersperservingUseEmptylunch'] * 100/ $product->carb).  " g". "<br>";
             }
         }
@@ -222,7 +222,7 @@ if(empty($product->use_id)){
 }
 
 if(!empty($product->use_id)){ 
-    if($product->id == $data['otherLunch'][$i]){
+    if($product->id == $data['otherLunch2day'][$i]){
       echo round($data['othersperservinglunch'] /100 * $product->use_id * 100/ $product->carb). " g". "<br>";      
     }
 }
@@ -237,7 +237,7 @@ if(!empty($product->use_id)){
 <div class="col-md-8 text-left">
     <h5>Recipe</h5>
     <font size="2">
-        <?php echo $data['lunch']->recipe; ?>
+        <?php echo $data['lunch2Day']->recipe; ?>
     </font>
 </div>
 </div>
