@@ -21,6 +21,21 @@ $("#trigger").click(function () {
   return false; // avoid to execute the actual submit of the form.
 });
 
+var sliderHeight = document.getElementById("heightRange");
+var outputHeight = document.getElementById("heightValue");
+outputHeight.innerHTML = sliderHeight.value;
+
+sliderHeight.oninput = function () {
+  outputHeight.innerHTML = this.value;
+}
+
+var sliderWeight = document.getElementById("weightRange");
+var outputWeight = document.getElementById("weightValue");
+outputWeight.innerHTML = sliderWeight.value;
+
+sliderWeight.oninput = function () {
+  outputWeight.innerHTML = this.value;
+}
 
 
 
