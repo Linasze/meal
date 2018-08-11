@@ -6,21 +6,55 @@
 <div class="card card-body">
 
 <form id="myform" method="POST">
+
+<div class="form-group">
+<!-- <label>Purpose:</label> -->
+<select name='purpose' class='form-control' required>
+ <option selected hidden>Choose what you want to reach.</option>
+ <option value='0'>To live healthier, and get more fit</option>
+ <option value='-500'>Reduce weight, get rid of unnecessary kilograms</option>
+ <option value='+500'>Grow muscle mass and volume</option>
+ </select>
+</div>
+<div class="form-group">
+<div class="slidecontainer">
+  <input type="range" min="120" max="220" value="120" name="height" class="slider" id="heightRange">
+  <p>Height: <span id="heightValue"></span></p>
+</div>
+
+<div class="slidecontainer">
+  <input type="range" min="40" max="150" value="40" name="weight" class="slider" id="weightRange">
+  <p>Weight: <span id="weightValue"></span></p>
+</div>
+    </div>
+
 <div class="form-inline">
 <!-- <label>Enter age:</label> -->
-<input class="form-control col-md-2" type="text" name="age" placeholder="Age" required>
 <!-- <label>Sex:</label> -->
-<select name='sex' class='form-control  mx-sm-3 col-md-2' required>
+<select name='sex' class='form-control  mx-2 col-md-2' required>
   <option value='1'>Men</option>
   <option value='2'>Women</option>
  </select>
+<select name="years" class="form-control mx-2" >
+       <option selected hidden>Years</option>
+   <?php for($y = 1950; $y <= date('Y')-10 ; $y++): ?>
+    <option value="<?php echo $y;?>"><?php echo $y;?></option>
+    <?php endfor; ?>
+</select>
+<select name="month" class="form-control mx-2">
+    <option select hidden>Month</option>
+    <?php for($m = 1; $m <= 12; $m++): ?>
+    <option value="<?php echo $m; ?>"><?php echo date('F', mktime(0,0,0,$m)) ;?></option>
+    <?php endfor;?>
+</select>
 
-<!-- <label>Height:</label> -->
-<input type="text" name="height" class="form-control col-md-3" placeholder="Height">
+<select name="day" class="form-control">
+    <option select hidden>Day</option>
+    <?php for($d = 1; $d <= 31; $d++): ?>
+    <option value="<?php echo $d; ?>"><?php echo $d;?></option>
+    <?php endfor;?>
+</select>
 
-
-<!-- <label>Weight:</label> -->
-<input type="text" name="weight" class="form-control mx-sm-3 col-md-3" placeholder="Weight">
 </div>
 
 <div class="form-group mt-2">
@@ -35,15 +69,6 @@
 </select>
 </div>
 
-<div class="form-group">
-<!-- <label>Purpose:</label> -->
-<select name='purpose' class='form-control' required>
- <option selected hidden>Choose what you want to reach.</option>
- <option value='0'>To live healthier, and get more fit</option>
- <option value='-500'>Reduce weight, get rid of unnecessary kilograms</option>
- <option value='+500'>Grow muscle mass and volume</option>
- </select>
-</div>
 
 
 <input type="submit" id="trigger" value="Submit" class="btn btn-primary" >
@@ -68,7 +93,7 @@
       <div id="kcal"></div>
 
                   <h2>Need nutrition plan?</h2>
-                   <p>Register and take it!</p> 
+                   <p>Register and take it!</p>
 
          <form action="users/register" method="post">
           <div class="form-group">
@@ -76,8 +101,10 @@
           <input type="email" class="form-control col-7 mx-auto mb-2" name="email" placeholder="Enter email" required>
           <input type="password" class="form-control col-7 mx-auto mb-2" name="password" placeholder="Enter password" required>
           <input type="password" class="form-control col-7 mx-auto mb-2" name="confirm_password" placeholder="Confirm password" required>
- 
-      <input type="hidden" name="age" id="age" value="age">
+
+      <input type="hidden" name="years" id="years" value="years">
+      <input type="hidden" name="month" id="month" value="month">
+      <input type="hidden" name="day" id="day" value="day">
       <input type="hidden" name="sex" id="sex" value="sex">
       <input type="hidden" name="height" id="height" value="height">
       <input type="hidden" name="weight" id="weight" value="weight">
@@ -98,13 +125,15 @@
 <?php require_once APPROOT . '/views/theme/publicfooter.php'; ?>
 
     <script src="<?php echo URLROOT;?>/js/main.js"></script>
-    <script src="<?php echo URLROOT;?>/js/data/age.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/years.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/month.js"></script>
+    <script src="<?php echo URLROOT;?>/js/data/day.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/sex.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/height.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/weight.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/activity.js"></script>
     <script src="<?php echo URLROOT;?>/js/data/purpose.js"></script>
-    
+
 <?php else: ?>
 
 <?php redirect('dashboards/index'); ?>
