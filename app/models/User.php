@@ -9,11 +9,13 @@ class User {
 
     // Register user
     public function register($data){
-        $this->db->query('INSERT INTO users (name,email,password,age,sex,height,weight,activity,purpose) VALUES(:name, :email, :password, :age, :sex, :height, :weight, :activity, :purpose)');
+        $this->db->query('INSERT INTO users (name,email,password,years,month,day,sex,height,weight,activity,purpose) VALUES(:name, :email, :password, :years, :month, :day, :sex, :height, :weight, :activity, :purpose)');
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
-        $this->db->bind(':age', $data['age']);
+        $this->db->bind(':years', $data['years']);
+        $this->db->bind(':month', $data['month']);
+        $this->db->bind(':day', $data['day']);
         $this->db->bind(':sex', $data['sex']);
         $this->db->bind(':height', $data['height']);
         $this->db->bind(':weight', $data['weight']);
