@@ -52,11 +52,14 @@
         <div class="form-group row">
           <label class="col-4 col-form-label">Kilocalories</label> 
           <div class="col-8">
+  <?php 
+     $age = (date("md", date("U", mktime(0, 0, 0, $data['user']->month, $data['user']->day, $data['user']->years))) > date("md")? ((date("Y") - $data['user']->years) - 1) : (date("Y") - $data['user']->years));
+   ?>
     <input id="kcal" name="kcal" class="form-control here" required="required" type="text" value="<?php
   if($data['user']->sex == 1){
-echo round((66.5 + (13.75 * $data['user']->weight) + (5.003 * $data['user']->height) - (6.755 * $data['user']->age)) * $data['user']->activity + $data['user']->purpose);
+echo round((66.5 + (13.75 * $data['user']->weight) + (5.003 * $data['user']->height) - (6.755 * $age)) * $data['user']->activity + $data['user']->purpose);
 }else{ 
-echo round((655.1 + (9.563 * $data['user']->weight) + (1.850 * $data['user']->height) - (4.676 * $data['user']->age)) * $data['user']->activity + $data['user']->purpose);
+echo round((655.1 + (9.563 * $data['user']->weight) + (1.850 * $data['user']->height) - (4.676 * $age)) * $data['user']->activity + $data['user']->purpose);
  } ?>" disabled>
           </div>
         </div>
@@ -91,7 +94,6 @@ echo round((655.1 + (9.563 * $data['user']->weight) + (1.850 * $data['user']->he
       </form>
         </div>
     </div>
-		            
 		        </div>
 		    </div>
 		</div>
