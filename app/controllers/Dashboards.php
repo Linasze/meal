@@ -1350,40 +1350,38 @@ class Dashboards extends Controller {
             $getevening = $this->mealModel->getMealByType(6);
 
 
-         $arrayBreak = [];
          foreach($getbreakfast as $break){
              $arrayBreak[$i] = $break->id;
              $i++;
          }
 
-         $arrayBrunch = [];
+      
          foreach($getbrunch as $brunch){
-             $arrayBrunch[$i] = $brunch->id;
-             $i++;
+             $arrayBrunch[$a] = $brunch->id;
+             $a++;
          }
 
-         $arrayLunch = [];
+       
          foreach($getlunch as $lunch){
-             $arrayLunch[$i] = $lunch->id;
-             $i++;
+             $arrayLunch[$l] = $lunch->id;
+             $l++;
          }
 
-         $arrayAfternoon = [];
+        
          foreach($getafternoon as $afternoon){
-             $arrayAfternoon[$i] = $afternoon->id;
-             $i++;
+             $arrayAfternoon[$k] = $afternoon->id;
+             $k++;
          }
 
-         $arrayDinner = [];
-         foreach($getdinner as $dinner){
-             $arrayDinner[$i] = $dinner->id;
-             $i++;
-         }
          
-         $arrayEvening = [];
          foreach($getdinner as $dinner){
-             $arrayEvening[$i] = $dinner->id;
-             $i++;
+             $arrayDinner[$h] = $dinner->id;
+             $h++;
+         }
+        
+         foreach($getdinner as $dinner){
+             $arrayEvening[$x] = $dinner->id;
+             $x++;
          }
          
         shuffle($arrayBreak);
