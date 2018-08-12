@@ -1,7 +1,7 @@
 <?php require_once APPROOT . '/views/theme/header.php'; ?>
 <?php if(empty($data['user_settings'])): ?>
 <div class="container">
-<form action="dashboards/generate" method="POST">
+<form action="/generate" method="POST">
 <input type="submit" class="btn btn-secondary" value="Generate Plan">
 </form>
 </div>
