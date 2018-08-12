@@ -17,24 +17,9 @@ class Dashboards extends Controller {
         if(!empty($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
         $user_settings = $this->settingModel->getUserSettings($user_id);
-        
-        //  Get meals by user settings
-        // $breakfast = $this->mealModel->getMealById($user_settings->breakfast);
-        // $brunch = $this->mealModel->getMealById($user_settings->brunch);
-        // $lunch = $this->mealModel->getMealById($user_settings->lunch);
-        // $afternoon = $this->mealModel->getMealById($user_settings->afternoon_meal);
-        // $dinner = $this->mealModel->getMealById($user_settings->dinner);
-        // $evening = $this->mealModel->getMealById($user_settings->evening_meal);
-        
-        $getbreakfast = $this->mealModel->getMealByType(1);
-        $getbrunch = $this->mealModel->getMealByType(2);
-        $getlunch = $this->mealModel->getMealByType(3);
-        $getafternoon = $this->mealModel->getMealByType(4);
-        $getdinner = $this->mealModel->getMealByType(5);
-        $getevening = $this->mealModel->getMealByType(6);
         $dt = $this->dt;
         $products = $this->productModel->getProducts();
-       
+
         // Get user meals
         $breakfastWeek = explode(",", $user_settings->breakfast);
         $brunchWeek = explode(",", $user_settings->brunch);
@@ -259,7 +244,8 @@ class Dashboards extends Controller {
         $proteinAfternoon2day = explode(",", $afternoon2Day->protein);
         $carbAfternoon2day = explode(",", $afternoon2Day->carb);
         $fatAfternoon2day = explode(",", $afternoon2Day->fat);
-        $otherAfternoon2day = explode(",", $afternoon2Day->other);   
+        $otherAfternoon2day = explode(",", $afternoon2Day->other);
+        
         
         // Get afternoon nutrients
         // Tuesday
@@ -1218,7 +1204,6 @@ class Dashboards extends Controller {
                
             ];
             
-
         $this->view('dashboards/index', $data);
     }else{    
         $this->view('users/login');
@@ -1352,15 +1337,98 @@ class Dashboards extends Controller {
             $this->view('dashboards/index');
         }
     }
-    
+  
                    
     public function generate(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
-            $user_id = $_SESSION['user_id'];
-               if($this->userModel->generatePlan($user_id)){    
+            $getbreakfast = $this->mealModel->getMealByType(1);
+            $getbrunch = $this->mealModel->getMealByType(2);
+            $getlunch = $this->mealModel->getMealByType(3);
+            $getafternoon = $this->mealModel->getMealByType(4);
+            $getdinner = $this->mealModel->getMealByType(5);
+            $getevening = $this->mealModel->getMealByType(6);
+
+
+         $arrayBreak = [];
+         foreach($getbreakfast as $break){
+             $arrayBreak[$i] = $break->id;
+             $i++;
+         }
+
+         $arrayBrunch = [];
+         foreach($getbrunch as $brunch){
+             $arrayBrunch[$i] = $brunch->id;
+             $i++;
+         }
+
+         $arrayLunch = [];
+         foreach($getlunch as $lunch){
+             $arrayLunch[$i] = $lunch->id;
+             $i++;
+         }
+
+         $arrayAfternoon = [];
+         foreach($getafternoon as $afternoon){
+             $arrayAfternoon[$i] = $afternoon->id;
+             $i++;
+         }
+
+         $arrayDinner = [];
+         foreach($getdinner as $dinner){
+             $arrayDinner[$i] = $dinner->id;
+             $i++;
+         }
+         
+         $arrayEvening = [];
+         foreach($getdinner as $dinner){
+             $arrayEvening[$i] = $dinner->id;
+             $i++;
+         }
+         
+        shuffle($arrayBreak);
+        $drawn1 = array_slice($arrayBreak, - 7);
+        sort($drawn1);
+        $randomBreakfast = implode(",", $drawn1);
+            
+        shuffle($arrayBrunch);
+        $drawn2 = array_slice($arrayBrunch, - 7);
+        sort($drawn2);
+        $randomBrunch = implode(",", $drawn2);
+
+        shuffle($arrayLunch);
+        $drawn3 = array_slice($arrayLunch, - 7);
+        sort($drawn3);
+        $randomLunch = implode(",", $drawn3);
+
+        shuffle($arrayAfternoon);
+        $drawn4 = array_slice($arrayAfternoon, - 7);
+        sort($drawn4);
+        $randomAfternoon = implode(",", $drawn4);
+
+        shuffle($arrayDinner);
+        $drawn5 = array_slice($arrayDinner, - 7);
+        sort($drawn5);
+        $randomDinner = implode(",", $drawn5);
+
+        shuffle($arrayEvening);
+        $drawn6 = array_slice($arrayEvening, - 7);
+        sort($drawn6);
+        $randomEvening = implode(",", $drawn6);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'breakfast' => $randomBreakfast,
+                'brunch' => $randomBrunch,
+                'lunch' => $randomLunch,
+                'afternoon' => $randomAfternoon,
+                'dinner' => $randomDinner,
+                'evening' => $randomEvening 
+                  ];
+            
+               if($this->userModel->generatePlan($data)){    
                  flash('message', 'Nutrition plan generated!');
-                    redirect('dashboards/index');
+                    redirect('dashboards');
                }else{
                    die('Something went wrong');
                }
