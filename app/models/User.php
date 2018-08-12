@@ -31,9 +31,15 @@ class User {
            
     }
 
-    public function generatePlan($user_id){
-        $this->db->query("INSERT INTO user_settings (user_id) VALUES (:user_id)");
-        $this->db->bind(':user_id', $user_id);
+    public function generatePlan($data){
+        $this->db->query("INSERT INTO user_settings (user_id, breakfast, brunch,lunch,afternoon_meal,dinner,evening_meal) VALUES (:user_id, :breakfast,:brunch,:lunch,:afternoon_meal,:dinner,:evening_meal)");
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':breakfast', $data['breakfast']);
+        $this->db->bind(':brunch', $data['brunch']);
+        $this->db->bind(':lunch', $data['lunch']);
+        $this->db->bind(':afternoon_meal', $data['afternoon']);
+        $this->db->bind(':dinner', $data['dinner']);
+        $this->db->bind(':evening_meal', $data['evening']);
         // Execute
         if($this->db->execute()){
             return true;
