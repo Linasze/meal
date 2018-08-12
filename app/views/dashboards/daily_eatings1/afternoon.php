@@ -180,6 +180,7 @@ if(!empty($product->use_id)){
 
 <?php  endif;?>
 
+
 <?php if($product->id == $data['otherAfternoon2day'][$i]): ?>
 <?php echo $product->title . " ";?> 
 
@@ -229,6 +230,7 @@ if(!empty($product->use_id)){
 ?>
 
 <?php  endif;?>
+
 
 <?php endforeach;?>
 <?php endfor;?>

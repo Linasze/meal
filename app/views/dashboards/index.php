@@ -1,5 +1,12 @@
 <?php require_once APPROOT . '/views/theme/header.php'; ?>
+<?php if(empty($data['user_settings'])): ?>
+<div class="container">
+<form action="dashboards/generate" method="POST">
+<input type="submit" class="btn btn-secondary" value="Generate Plan">
+</form>
+</div>
 
+<?php else: ?>
 <div id="carauselSlide" class="carousel slide carousel-fade" data-ride="carousel" data-Interval="false">
  <div class="controls-top">
     <a class="btn-floating" href="#carauselSlide" data-slide="prev"><img src="<?php echo URLROOT;?>/public/img/prev.svg" height="50" width="50"></a>
@@ -62,5 +69,5 @@
 
     </div>
     </div>
-
+<?php endif; ?>
     <?php require_once APPROOT . '/views/theme/footer.php'; ?>
