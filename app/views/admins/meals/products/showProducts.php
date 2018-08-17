@@ -10,11 +10,29 @@
 <div class="col-sm-8 col-lg-8">
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
-   <form action="<?php echo URLROOT; ?>/products/searchProduct" method="post">
-   <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" name="search" type="text" placeholder="Search" aria-label="Search">
+   <form action="searchProduct" method="post">
+   <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" name="search" id="search" type="text" placeholder="Search" aria-label="Search">
    </form>
-                    <?php if(!empty($data['products'])) : ?>
-                     <?php foreach($data['products'] as $product) : ?>   
+   <?php if(isset($data['productSearch'])): ?>
+   <?php foreach($data['productSearch'] as $product) : ?>   
+                       <div class="dropdown float-right">   
+                           <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                               <i class="fa fa-cog"></i>
+                           </button>
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                               <div class="dropdown-menu-content">
+                                   <a class="dropdown-item" href="editProduct/<?php echo $product->id;?>">Edit</a>
+                                   <a class="dropdown-item" href="deleteProduct/<?php echo $product->id;?>">Delete</a>
+                               </div>
+                           </div>
+                       </div>  
+                   <div class="text-white"><?php echo $product->title; ?></div>
+                    <hr>
+<?php endforeach; ?>
+<?php else: ?>
+
+<?php if(!empty($data['products'])) : ?>
+<?php foreach($data['products'] as $product) : ?>   
                        
     <div class="dropdown float-right">   
         <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
@@ -54,6 +72,8 @@
                      <p class="text-light mt-1">No records</p>
                     </div>
                 <?php endif; ?>
+                <?php endif; ?>
+
                 </div>
             </div>
 <?php require_once APPROOT . '/views/admins/layouts/rightPanel.php'; ?>

@@ -167,7 +167,7 @@ class Products extends Controller {
                 $productSearch = $this->productModel->searchProduct($data);              
              
                 $data = ['productSearch' => $productSearch];
-                $this->view('admins/meals/products/searchProduct', $data);
+                $this->view('admins/meals/products/showProducts', $data);
               
             
             }else{
