@@ -11,7 +11,7 @@
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
    <form action="<?php echo URLROOT; ?>/products/searchProduct" method="post">
-   <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" name="search" type="text" placeholder="Neveikia" aria-label="Search">
+   <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" name="search" type="text" placeholder="Search" aria-label="Search">
    </form>
                     <?php if(!empty($data['products'])) : ?>
                      <?php foreach($data['products'] as $product) : ?>   
