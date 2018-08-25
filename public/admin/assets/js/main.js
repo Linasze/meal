@@ -36,3 +36,26 @@ jQuery(document).ready(function ($) {
 
 
 });
+
+$(document).ready(function () {
+	$("#search").keyup(function () {
+		var name = $('#search').val();
+		if (name == "") {
+			$("#display").html("");
+			$("#hide-list").show();
+		}
+		else {
+			$("#hide-list").hide();
+			$.ajax({
+				type: "POST",
+				url: "searchProduct",
+				data: {
+					search: name
+				},
+				success: function (html) {
+					$("#display").html(html).show();
+				}
+			});
+		}
+	});
+});

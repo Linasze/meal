@@ -16,13 +16,15 @@ class Product {
     }
 
     public function addProduct($data){
-        $this->db->query('INSERT INTO products (title,carb,protein,fat,kcal,cat) VALUES (:title, :carb, :protein,:fat,:kcal, :cat)');
+        $this->db->query('INSERT INTO products (title,carb,protein,fat,kcal,cat,use_id) VALUES (:title, :carb, :protein,:fat,:kcal, :cat, :use_id)');
         $this->db->bind(':title', $data['title']);
         $this->db->bind(':carb', $data['carb']);
         $this->db->bind(':protein', $data['protein']);
         $this->db->bind(':fat', $data['fat']);
         $this->db->bind(':kcal', $data['kcal']);
         $this->db->bind(':cat', $data['cat']);
+        $this->db->bind(':use_id', $data['use_id']);
+
 
         if($this->db->execute()){
             return true;
@@ -46,7 +48,7 @@ class Product {
 
     
     public function searchProduct($data){
-        $this->db->query("SELECT * FROM products WHERE title LIKE :title");
+        $this->db->query("SELECT * FROM products WHERE title LIKE :title LIMIT 5");
         $this->db->bind(':title', '%' . $data['search'] . '%');
         return $this->db->resultSet();
        

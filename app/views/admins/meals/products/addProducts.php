@@ -53,6 +53,10 @@
      <?php endforeach;?>
     </select>
 </div>
+<div class="col-md-2 pt-2">
+              <input type="text" name="use_id" class="form-control form-control-lg"
+                    value="<?php echo $data['use_id']; ?>" placeholder="Use %?">
+            </div> 
 <div class="col-md mt-3">
 <input type="submit" value="Save" class="btn btn-primary mt-3">
 </div>

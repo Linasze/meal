@@ -21,8 +21,9 @@ $sex = $_POST['sex'];
 $purpose = $_POST['purpose'];
 
 // Calculate calories
+if(is_numeric($years) && is_numeric($month) && is_numeric($day)){
  $age = (date("md", date("U", mktime(0, 0, 0, $month, $day, $years))) > date("md")? ((date("Y") - $years) - 1) : (date("Y") - $years));
-
+}
 $rezul = round(($men + ($men1 * $weight) + ($men2 * $height) - ($men3 * $age)) * $activity + $purpose,0);
 $rezul2 = round(($women + ($women1 * $weight) + ($women2 * $height) - ($women3 * $age)) * $activity + $purpose,0);
 if ($sex == $sex2) {

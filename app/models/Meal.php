@@ -14,6 +14,12 @@ class Meal {
         return $row;
     }
 
+    public function getAllMeals(){
+        $this->db->query("SELECT * FROM meals");
+        return $this->db->resultSet();
+        
+    }
+
     public function getMeals($starting_limit, $limit){
         $this->db->query("SELECT * FROM meals ORDER BY id DESC LIMIT :starting_limit, :limit");
         $this->db->bind(':starting_limit', $starting_limit);

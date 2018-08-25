@@ -14,7 +14,6 @@
                                 <div class="dropdown-menu-content">
                                     <a class="dropdown-item" href="<?php echo URLROOT;?>/products/addProducts">Add</a>
                                     <a class="dropdown-item" href="<?php echo URLROOT;?>/products/showProducts">Review</a>
-                                    <a class="dropdown-item" href="#">Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -39,7 +38,6 @@
                                 <div class="dropdown-menu-content">
                                     <a class="dropdown-item" href="<?php echo URLROOT;?>/meals/addMeals">Add</a>
                                     <a class="dropdown-item" href="<?php echo URLROOT;?>/meals/showMeals">Review</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </div>
                         </div>

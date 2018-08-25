@@ -1,7 +1,9 @@
 <?php require_once APPROOT . '/views/theme/header.php'; ?>
+<?php flash('message'); ?>
+<?php if(!empty($data['meals'])):?>
 <?php if(empty($data['user_settings'])): ?>
 <div class="container">
-<form action="/generate" method="POST">
+<form action="<?php echo URLROOT;?>/dashboards/generate" method="POST">
 <input type="submit" class="btn btn-secondary" value="Generate Plan">
 </form>
 </div>
@@ -14,7 +16,7 @@
  </div>
         <div class="carousel-inner" role="listbox">
            <?php for($day_eating = 0; $day_eating <= 6; $day_eating++): ?>
-            <div class="carousel-item <?php if(date("l") == $data['dt']->format("l")) { echo 'active';} ?>">
+               <div class="carousel-item <?php if(date("l") == $data['dt']->format("l")) { echo 'active';} ?>">
                 <div class="carousel-caption text-secondary">
                     <h2> <?php echo $data['dt']->format('l d F'); $data['dt']->modify('+1 day');?></h2>
                     <div class="col-md">
@@ -70,4 +72,13 @@
     </div>
     </div>
 <?php endif; ?>
-    <?php require_once APPROOT . '/views/theme/footer.php'; ?>
+<?php else: ?>
+<div class="container">
+<div class="col md-9 col-xs">
+<div class="card card-body mx-auto">
+No meals
+</div>
+</div>
+</div>
+<?php endif; ?>
+<?php require_once APPROOT . '/views/theme/footer.php'; ?>

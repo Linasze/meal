@@ -9,8 +9,8 @@
 
    </div>
 
-<div class="col-sm-8 col-lg-8">
-                <div class="card text-white bg-flat-color-1">
+<div class="col-sm-12 col-md-8">
+                <div class="card text-white bg-flat-color-4">
                     <div class="card-body pb-0">
                     <?php if(!empty($data['meals'])) : ?>
                      <?php foreach($data['meals'] as $meal) : ?>   
@@ -34,7 +34,7 @@
 <nav aria-label="Page navigation">
   <ul class="pagination ">
 <?php for ($page=1; $page <= $data['total_pages']; $page++):?>
-   <li class="page-item "><a class="page-link bg-flat-color-1" href="<?php echo "?page=$page"; ?>"><?php echo $page;?></a></li>
+   <li class="page-item "><a class="page-link bg-flat-color-4" href="<?php echo "?page=$page"; ?>"><?php echo $page;?></a></li>
 <?php endfor; ?>
   </ul>
 </nav>          
@@ -50,7 +50,7 @@
                                 </div>
                                 </div>
                         </div>
-                     <p class="text-light mt-1">No records</p>
+                     <p class="text-light mt-1">No meals</p>
                     </div>
                 <?php endif; ?>
                 </div>

@@ -2,30 +2,18 @@
 <?php flash('update'); ?>
 <div class="container">
 	<div class="row">
-		<div class="col-md-3 ">
-		     <div class="list-group ">
-              <a href="<?php echo URLROOT;?>/settings/index" class="list-group-item list-group-item-action">Personal settings</a>
-              <a href="<?php echo URLROOT;?>/settings/planSets" class="list-group-item list-group-item-action active">Plan Settings</a>
-              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Used</a>
-              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Enquiry</a>
-              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Dealer</a>
-              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Media</a>
-              <a href="<?php echo URLROOT;?>/settings/#" class="list-group-item list-group-item-action">Post</a>
-                           
-              
-            </div> 
-		</div>
-<div class="col-md-9">
+
+<div class="col-md-9 col-xs mx-auto">
   <div class="card">
 <div class="card-body">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md">
             <h4>Nutrition plan settings</h4>
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md col-xs">
   <form action="updatePlan" method="post">
         <div class="form-group row">
           <label class="col-4 col-form-label">Wake up time</label> 

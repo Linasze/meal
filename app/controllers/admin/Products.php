@@ -17,6 +17,9 @@ class Products extends Controller {
     // }
 
 
+
+    
+
     public function addProducts(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -28,6 +31,7 @@ class Products extends Controller {
                'fat' => $_POST['fat'],
                'kcal' => $_POST['kcal'],
                'cat' => $_POST['cat'],
+               'use_id' => $_POST['use_id'],
                'title_err' => '',
                'carb_err' => '',
                'protein_err' => '',
@@ -158,23 +162,32 @@ class Products extends Controller {
         }
     }
      
-    
     public function searchProduct(){
         if($_SERVER['REQUEST_METHOD'] = 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = ['search' => $_POST['search'] ];
-            if(!empty($data['search'])) {
-                $productSearch = $this->productModel->searchProduct($data);              
-             
-                $data = ['productSearch' => $productSearch];
-                $this->view('admins/meals/products/showProducts', $data);
-              
-            
-            }else{
-                die("Enter Text");
-            }
+            $productSearch = $this->productModel->searchProduct($data);          
+            foreach($productSearch as $product): ?>            
+                 <div class="dropdown float-right">
+                <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                      <i class="fa fa-cog"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu-content">                    
+                        <a class="dropdown-item" href="editProduct/<?php echo $product->id;?>">Edit</a>
+                        <a class="dropdown-item" href="deleteProduct/<?php echo $product->id;?>">Delete</a>
+                    </div>
+                </div>
+           </div>
+            <div class="text-white"><?php echo $product->title; ?></div>
+          
+           
+         
+           <?php endforeach;
+                         
         }
     }
+  
 
     public function deleteProduct($id){
          if($this->productModel->deleteProduct($id)){

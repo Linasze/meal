@@ -31,7 +31,7 @@ class Setting {
     public function updateBreakfast($data){
         $this->db->query("UPDATE user_settings SET breakfast = :breakfast WHERE user_id = :user_id");
         $this->db->bind(':user_id', $data['user_id']);       
-        $this->db->bind(':breakfast', $data['breakfast']);
+        $this->db->bind(':breakfast', $data['randomChangeBreakfast']);
         if($this->db->execute()){
             return true;
         }else{

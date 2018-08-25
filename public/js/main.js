@@ -1,4 +1,3 @@
-
 $("#trigger").click(function () {
   $("#myModal").modal("show");
 });
@@ -36,6 +35,7 @@ outputWeight.innerHTML = sliderWeight.value;
 sliderWeight.oninput = function () {
   outputWeight.innerHTML = this.value;
 }
+
 
 
 
