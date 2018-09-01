@@ -401,13 +401,19 @@ class Dashboards extends Controller {
            $caloriesperserving = $kcal / $user_settings->eating_count; 
         }
 
+      
         // Macro nutrients per one serving
         $proteinsperservingAll = $caloriesperserving /100 * 20 /4; 
         $carbsperservingAll = $caloriesperserving /100 * 60 /4;  
         $fatsperservingAll = $caloriesperserving /100 * 20 /9; 
         
+        // Macros per day
+        $proteinsperday = round($kcal /100 * 20 /4);
+        $carbsperday = round($kcal /100 * 60 /4);
+        $fatsperday = round($kcal /100 * 20 /9);
+
              // BREAKFAST
-             
+          
         // Calculate macro nutrients for breakfast protein
         if(count($protein) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastProtein.php';
@@ -426,7 +432,7 @@ class Dashboards extends Controller {
             }
 
         }
-
+   
            // Calculate macros for breakfast carbs             
         if(count($carb) > 1){
             require_once APPROOT . '/libraries/algorithm/breakfast/breakfastCarb.php';
@@ -791,12 +797,23 @@ class Dashboards extends Controller {
             $caloriesperservingBreak =  $caloriesperserving;
             $caloriesperservingLunch =  $caloriesperserving;
             $caloriesperservingDinner =  $caloriesperserving;
+            $allDayCal =  $caloriesperservingBreak + $caloriesperservingLunch + $caloriesperservingDinner;
+            $allDayPro = round($proteinsperservingUseEmpty + $proteinsperservingUseEmptylunch + $proteinsperservingUseEmptydinner);
+            $allDayCarb = round($carbsperservingUseEmpty + $carbsperservingUseEmptylunch + $carbsperservingUseEmptydinner);
+            $allDayFat = round($fatsperservingUseEmpty + $fatsperservingUseEmptylunch + $fatsperservingUseEmptydinner);
  
          }elseif($user_settings->eating_count == 4){
             $caloriesperservingBreak =  $caloriesperserving - ($caloriesperserving /100 * 5);
             $caloriesperservingBrunch =  $caloriesperserving - ($caloriesperserving /100 * 5);
             $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
             $caloriesperservingDinner =  $caloriesperserving ;
+            $allDayCal =  $caloriesperservingBreak + $caloriesperservingBrunch + $caloriesperservingLunch + $caloriesperservingDinner;
+            $allDayPro = round($proteinsperservingUseEmpty + $proteinsperservingUseEmptybrunch +
+            $proteinsperservingUseEmptylunch + $proteinsperservingUseEmptydinner);
+            $allDayCarb = round($carbsperservingUseEmpty + $carbsperservingUseEmptybrunch +
+            $carbsperservingUseEmptylunch + $carbsperservingUseEmptydinner);
+            $allDayFat = round($fatsperservingUseEmpty + $fatsperservingUseEmptybrunch +
+            $fatsperservingUseEmptylunch + $fatsperservingUseEmptydinner);
  
          }elseif($user_settings->eating_count == 5){
             $caloriesperservingBreak =  $caloriesperserving - ($caloriesperserving /100 * 5);
@@ -804,22 +821,105 @@ class Dashboards extends Controller {
             $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
             $caloriesperservingAfternoon =  $caloriesperserving - ($caloriesperserving /100 * 5);
             $caloriesperservingDinner =  $caloriesperserving + ($caloriesperserving /100 * 5);
+            $allDayCal =  $caloriesperservingBreak + $caloriesperservingBrunch + $caloriesperservingLunch + $caloriesperservingAfternoon + $caloriesperservingDinner;
+            $allDayPro = round($proteinsperservingUseEmpty + $proteinsperservingUseEmptybrunch +
+            $proteinsperservingUseEmptylunch + $proteinsperservingUseEmptyafternoon + $proteinsperservingUseEmptydinner);
+            $allDayCarb = round($carbsperservingUseEmpty + $carbsperservingUseEmptybrunch +
+            $carbsperservingUseEmptylunch + $carbsperservingUseEmptyafternoon + $carbsperservingUseEmptydinner);
+            $allDayFat = round($fatsperservingUseEmpty + $fatsperservingUseEmptybrunch +
+            $fatsperservingUseEmptylunch + $fatsperservingUseEmptyafternoon + $fatsperservingUseEmptydinner);
  
          }elseif($user_settings->eating_count == 6){
             $caloriesperservingBreak =  $caloriesperserving;
-            $caloriesperservingBrunch =  $caloriesperserving;
+            $caloriesperservingBrunch =  $caloriesperserving  - ($caloriesperserving /100 * 5);
             $caloriesperservingLunch =  $caloriesperserving + ($caloriesperserving /100 * 10);
             $caloriesperservingAfternoon =  $caloriesperserving - ($caloriesperserving /100 * 5);
-            $caloriesperservingDinner =  $caloriesperserving + ($caloriesperserving /100 * 10);
+            $caloriesperservingDinner =  $caloriesperserving + ($caloriesperserving /100 * 5);
             $caloriesperservingEvening =  $caloriesperserving - ($caloriesperserving /100 * 5);
- 
+            $allDayCal = $caloriesperservingBreak + $caloriesperservingBrunch + $caloriesperservingLunch + 
+            $caloriesperservingAfternoon + $caloriesperservingDinner + $caloriesperservingEvening;
+            $allDayPro = round($proteinsperservingUseEmpty + $proteinsperservingUseEmptybrunch +
+            $proteinsperservingUseEmptylunch + $proteinsperservingUseEmptyafternoon + $proteinsperservingUseEmptydinner + 
+            $proteinsperservingUseEmptyevening);
+            $allDayCarb = round($carbsperservingUseEmpty + $carbsperservingUseEmptybrunch +
+            $carbsperservingUseEmptylunch + $carbsperservingUseEmptyafternoon + $carbsperservingUseEmptydinner + 
+            $carbsperservingUseEmptyevening);
+            $allDayFat = round($fatsperservingUseEmpty + $fatsperservingUseEmptybrunch +
+            $fatsperservingUseEmptylunch + $fatsperservingUseEmptyafternoon + $fatsperservingUseEmptydinner + 
+            $fatsperservingUseEmptyevening);
          }
 
+         if($kcal < $allDayCal){
+            $kiloProcent = round((($allDayCal - $kcal) + $kcal) / $kcal * 100);
+            $changinKcal = round(($allDayCal - $kcal) + $kcal);
+            $above =  round($allDayCal - $kcal);
+         }elseif($allDayCal == $kcal){
+            $kiloProcent = 100;
+            $changinKcal = $kcal;
+         }else{
+            $kiloProcent = round(($kcal - ($kcal - $allDayCal)) / $kcal * 100); 
+            $changinKcal = round($kcal - ($kcal - $allDayCal));
+            $missing = round($kcal - $allDayCal);     
+         }
 
-        
+         if($proteinsperday < $allDayPro){
+            $proProcent = round((($allDayPro - $proteinsperday) + $proteinsperday) / $proteinsperday * 100);
+            $changinPro = round(($allDayPro  - $proteinsperday) + $proteinsperday);
+            $abovePro =  round($allDayPro  - $proteinsperday);
+         }elseif($allDayPro  == $proteinsperday){
+            $proProcent = 100;
+            $changinPro = $proteinsperday;
+         }else{
+            $proProcent = round(($proteinsperday - ($proteinsperday - $allDayPro )) / $proteinsperday * 100); 
+            $changinPro = round($proteinsperday - ($proteinsperday - $allDayPro ));
+            $missingPro = round($proteinsperday - $allDayPro );     
+         }
+
+         if($carbsperday < $allDayCarb){
+            $carbProcent = round((($allDayCarb - $carbsperday) + $carbsperday) / $carbsperday * 100);
+            $changinCarb = round(($allDayCarb  - $carbsperday) + $carbsperday);
+            $aboveCarb =  round($allDayCarb  - $carbsperday);
+         }elseif($allDayPro  == $carbsperday){
+            $carbProcent = 100;
+            $changinCarb = $carbsperday;
+         }else{
+            $carbProcent = round(($carbsperday - ($carbsperday - $allDayCarb )) / $carbsperday * 100); 
+            $changinCarb = round($carbsperday - ($carbsperday - $allDayCarb ));
+            $missingCarb = round($carbsperday - $allDayCarb );     
+         }
+
+         if($fatsperday < $allDayFat){
+            $fatProcent = round((($allDayFat - $fatsperday) + $fatsperday) / $fatsperday * 100);
+            $changinFat = round(($allDayFat  - $fatsperday) + $fatsperday);
+            $aboveFat =  round($allDayFat  - $fatsperday);
+         }elseif($allDayPro  == $fatsperday){
+            $fatProcent = 100;
+            $changinFat = $fatsperday;
+         }else{
+            $fatProcent = round(($fatsperday - ($fatsperday - $allDayFat )) / $fatsperday * 100); 
+            $changinFat = round($fatsperday - ($fatsperday - $allDayFat ));
+            $missingFat = round($fatsperday - $allDayFat );     
+         }
+         
             $data = [
                 'dt' => $dt,
                 'meals' => $meals,
+                'changinKcal' => $changinKcal,
+                'kiloProcent' => $kiloProcent,
+                'above' => $above,
+                'missing' => $missing,
+                'changinPro' => $changinPro,
+                'proProcent' => $proProcent,
+                'abovePro' => $abovePro,
+                'missingPro' => $missingPro,
+                'changinCarb' => $changinCarb,
+                'carbProcent' => $carbProcent,
+                'aboveCarb' => $aboveCarb,
+                'missingCarb' => $missingCarb,
+                'changinFat' => $changinFat,
+                'fatProcent' => $fatProcent,
+                'aboveFat' => $aboveFat,
+                'missingFat' => $missingFat,
                 'user_settings' => $user_settings,
                 'caloriesperserving' => $caloriesperserving,
                 'caloriesperservingBreak' => $caloriesperservingBreak,
@@ -1313,7 +1413,7 @@ class Dashboards extends Controller {
                }
             
             }else{
-            $this->view('dashboards/index');
+                redirect('dashboards/index');
                 }
     }
 
@@ -1326,9 +1426,9 @@ class Dashboards extends Controller {
                 $arrayChangeBreak[$i] = $changeBreak->id;
                 $i++;
             }
-
+            $arrayChangeBreak = array_merge($arrayChangeBreak,$arrayChangeBreak,$arrayChangeBreak);
             shuffle($arrayChangeBreak);
-            $drawn1 = array_slice($arrayChangeBreak, - 7);
+            $drawn1 = array_slice($arrayChangeBreak, - 14);
             sort($drawn1);
             $randomChangeBreakfast = implode(",", $drawn1);
             $data = [

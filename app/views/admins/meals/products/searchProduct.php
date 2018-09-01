@@ -17,7 +17,7 @@
 
        <?php foreach($data['productSearch'] as $product) : ?>   
                        
-                       <div class="dropdown float-right">   
+                       <div class="dropdown float-right fixed">   
                            <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                                <i class="fa fa-cog"></i>
                            </button>

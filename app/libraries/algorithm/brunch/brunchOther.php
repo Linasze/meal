@@ -2,9 +2,11 @@
  switch (count($otherBrunch)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -391,9 +393,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch2day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch2day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch2day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -779,9 +783,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch3day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch3day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch3day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -1168,9 +1174,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch4day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch4day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch4day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -1557,9 +1565,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch5day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch5day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch5day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -1946,9 +1956,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch6day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch6day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch6day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
@@ -2334,9 +2346,11 @@ if(empty($getPr0brunch->use_id)){
 switch (count($otherBrunch7day)) {
     case 1:
         // One Product with out use_id or with use_id
+        if(empty($otherBrunch7day)){
         $getPr0brunch = $this->productModel->getProductById($otherBrunch7day[0]);
         $othersperservingUseEmptybrunch = $caloriesperserving /100 * 20 /4; 
         $othersperservingbrunch = $caloriesperserving /100 * 20 /4;
+        }
     break;
 
     case 2:
