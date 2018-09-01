@@ -2,7 +2,7 @@
 
     <div class="card-header">
         <div class="row">
-   <div class="col-lg-2 d-none d-lg-block text-center" > <?php echo "09:00";?><br>Brunch</div>
+        <div class="col-lg-2 d-none d-lg-block text-center" > <?php if(substr(date('h',strtotime($data['user_settings']->wake_up))+3, 0, 1 ) != 1){echo "0";}?><?php echo date('h',strtotime($data['user_settings']->wake_up)) + 3 .":00";?><br>Brunch</div>
      <div class="col-lg-3 d-none d-lg-block text-center"> 
      <button class="btn btn-link text-secondary float-left" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
      <img src="<?php echo URLROOT;?>/public/img/arrow-down.svg" height="15" weight="15">
