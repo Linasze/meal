@@ -202,6 +202,34 @@ class Meals extends Controller {
         }
     }
 
+
+    public function searchMeal(){
+        if($_SERVER['REQUEST_METHOD'] = 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = ['search' => $_POST['search'] ];
+            $mealSearch = $this->mealModel->searchMeal($data);          
+            foreach($mealSearch as $meal): ?>            
+           
+            <div class="col-lg-10 col-9 text-white"><?php echo $meal->title; ?></div>
+                 <div class="col-lg-2 col-2 dropdown">
+                 <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                 <i class="fa fa-cog"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="dropdown-menu-content">                    
+                        <a class="dropdown-item" href="editMeal/<?php echo $meal->id;?>">Edit</a>
+                        <a class="dropdown-item" href="deleteMeal/<?php echo $meal->id;?>">Delete</a>
+                    </div>
+                </div>
+           </div>
+    
+           <?php endforeach;
+                         
+        }
+    }
+
+
+
     public function deleteMeal($id){
         if($this->mealModel->deleteMeal($id)){
              flash('product_message', 'Meal removed');

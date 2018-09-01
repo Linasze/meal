@@ -1365,33 +1365,39 @@ class Dashboards extends Controller {
              $x++;
          }
          
+        $arrayBreak = array_merge($arrayBreak,$arrayBreak);
         shuffle($arrayBreak);
-        $drawn1 = array_slice($arrayBreak, - 7);
+        $drawn1 = array_slice($arrayBreak, - 14);
         sort($drawn1);
         $randomBreakfast = implode(",", $drawn1);
             
+        $arrayBrunch = array_merge($arrayBrunch,$arrayBrunch);
         shuffle($arrayBrunch);
-        $drawn2 = array_slice($arrayBrunch, - 7);
+        $drawn2 = array_slice($arrayBrunch, - 14);
         sort($drawn2);
         $randomBrunch = implode(",", $drawn2);
 
+        $arrayLunch = array_merge($arrayLunch,$arrayLunch);
         shuffle($arrayLunch);
-        $drawn3 = array_slice($arrayLunch, - 7);
+        $drawn3 = array_slice($arrayLunch, - 14);
         sort($drawn3);
         $randomLunch = implode(",", $drawn3);
 
+        $arrayAfternoon = array_merge($arrayAfternoon,$arrayAfternoon);
         shuffle($arrayAfternoon);
-        $drawn4 = array_slice($arrayAfternoon, - 7);
+        $drawn4 = array_slice($arrayAfternoon, - 14);
         sort($drawn4);
         $randomAfternoon = implode(",", $drawn4);
 
+        $arrayDinner = array_merge($arrayDinner,$arrayDinner);
         shuffle($arrayDinner);
-        $drawn5 = array_slice($arrayDinner, - 7);
+        $drawn5 = array_slice($arrayDinner, - 14);
         sort($drawn5);
         $randomDinner = implode(",", $drawn5);
 
+        $arrayEvening = array_merge($arrayEvening,$arrayEvening);
         shuffle($arrayEvening);
-        $drawn6 = array_slice($arrayEvening, - 7);
+        $drawn6 = array_slice($arrayEvening, - 14);
         sort($drawn6);
         $randomEvening = implode(",", $drawn6);
 

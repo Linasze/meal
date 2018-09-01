@@ -1,20 +1,29 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 <?php flash('product_message'); ?>
+<style>
+.page-link {
+  color: white; 
+}
 
+.page-link:hover{
+    color: black;
+}
+</style>
 <div class="col-md-12 card card-body">
 <div class="mb-3 col-md-12 d-flex bd-highlight">
 <h3 class="mr-auto p-2 bd-highlight">Show Meal</h3> 
 <a href="<?php echo URLROOT; ?>/meals/addMeals" class="p-2 bd-highlight btn btn-light"><i class="fa fa-plus-circle"></i> Add</a>
 <a href="<?php echo URLROOT; ?>/admins/manageMeals" class="p-2 bd-highlight btn btn-light"><i class="fa fa-backward"></i> Back</a>
-
-   </div>
-
+</div>
 <div class="col-sm-12 col-md-8">
                 <div class="card text-white bg-flat-color-4">
                     <div class="card-body pb-0">
                     <?php if(!empty($data['meals'])) : ?>
-                     <?php foreach($data['meals'] as $meal) : ?>   
-                       
+<input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" id="searchMeal" type="text" placeholder="Search" aria-label="Search">
+<div id="display"></div>
+                    <hr>                  
+   <?php foreach($data['meals'] as $meal) : ?> 
+   <div id="hide-list">              
     <div class="dropdown float-right">   
         <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
             <i class="fa fa-cog"></i>

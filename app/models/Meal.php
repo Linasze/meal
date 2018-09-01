@@ -128,6 +128,13 @@ class Meal {
         } 
     }
 
+    public function searchMeal($data){
+        $this->db->query("SELECT * FROM meals WHERE title LIKE :title LIMIT 5");
+        $this->db->bind(':title', '%' . $data['search'] . '%');
+        return $this->db->resultSet();
+       
+    }
+
         public function deleteMeal($id){
             $this->db->query('DELETE FROM meals WHERE id = :id');
             $this->db->bind(':id', $id);
