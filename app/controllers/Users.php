@@ -153,7 +153,7 @@ class Users extends Controller {
         unset($_SESSION['user_name']);
         unset($_SESSION['user_email']);
         session_destroy();
-        redirect();
+        redirect('');
    
     }
 }
