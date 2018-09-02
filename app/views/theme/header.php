@@ -21,7 +21,7 @@
 
   <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="<?php echo URLROOT;?>/dashboards"><?php echo SITENAME;?></a>
+      <a class="navbar-brand col- col-sm- col-md-3 mr-0" href="<?php echo URLROOT;?>/dashboards"><?php echo SITENAME;?></a>
       <ul class="navbar-nav float-left px-2">
         <li class="nav-item text-nowrap">
         <a class="nav-link" href="<?php echo URLROOT; ?>/dashboards">Home <span class="sr-only"></span></a>
