@@ -1424,6 +1424,111 @@ class Dashboards extends Controller {
     }
 
 
+
+    public function regenerate(){
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            $getbreakfast = $this->mealModel->getMealByType(1);
+            $getbrunch = $this->mealModel->getMealByType(2);
+            $getlunch = $this->mealModel->getMealByType(3);
+            $getafternoon = $this->mealModel->getMealByType(4);
+            $getdinner = $this->mealModel->getMealByType(5);
+            $getevening = $this->mealModel->getMealByType(6);
+
+
+         foreach($getbreakfast as $break){
+             $arrayBreak[$i] = $break->id;
+             $i++;
+         }
+
+      
+         foreach($getbrunch as $brunch){
+             $arrayBrunch[$a] = $brunch->id;
+             $a++;
+         }
+
+       
+         foreach($getlunch as $lunch){
+             $arrayLunch[$l] = $lunch->id;
+             $l++;
+         }
+
+        
+         foreach($getafternoon as $afternoon){
+             $arrayAfternoon[$k] = $afternoon->id;
+             $k++;
+         }
+
+         
+         foreach($getdinner as $dinner){
+             $arrayDinner[$h] = $dinner->id;
+             $h++;
+         }
+        
+         foreach($getdinner as $dinner){
+             $arrayEvening[$x] = $dinner->id;
+             $x++;
+         }
+         
+        $arrayBreak = array_merge($arrayBreak,$arrayBreak);
+        shuffle($arrayBreak);
+        $drawn1 = array_slice($arrayBreak, - 14);
+        sort($drawn1);
+        $randomBreakfast = implode(",", $drawn1);
+            
+        $arrayBrunch = array_merge($arrayBrunch,$arrayBrunch);
+        shuffle($arrayBrunch);
+        $drawn2 = array_slice($arrayBrunch, - 14);
+        sort($drawn2);
+        $randomBrunch = implode(",", $drawn2);
+
+        $arrayLunch = array_merge($arrayLunch,$arrayLunch);
+        shuffle($arrayLunch);
+        $drawn3 = array_slice($arrayLunch, - 14);
+        sort($drawn3);
+        $randomLunch = implode(",", $drawn3);
+
+        $arrayAfternoon = array_merge($arrayAfternoon,$arrayAfternoon);
+        shuffle($arrayAfternoon);
+        $drawn4 = array_slice($arrayAfternoon, - 14);
+        sort($drawn4);
+        $randomAfternoon = implode(",", $drawn4);
+
+        $arrayDinner = array_merge($arrayDinner,$arrayDinner);
+        shuffle($arrayDinner);
+        $drawn5 = array_slice($arrayDinner, - 14);
+        sort($drawn5);
+        $randomDinner = implode(",", $drawn5);
+
+        $arrayEvening = array_merge($arrayEvening,$arrayEvening);
+        shuffle($arrayEvening);
+        $drawn6 = array_slice($arrayEvening, - 14);
+        sort($drawn6);
+        $randomEvening = implode(",", $drawn6);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'breakfast' => $randomBreakfast,
+                'brunch' => $randomBrunch,
+                'lunch' => $randomLunch,
+                'afternoon' => $randomAfternoon,
+                'dinner' => $randomDinner,
+                'evening' => $randomEvening 
+                  ];
+            
+               if($this->userModel->regeneratePlan($data)){    
+                 flash('message', 'Nutrition plan regenerated!');
+                    redirect('dashboards');
+               }else{
+                   die('Something went wrong');
+               }
+            
+            }else{
+                redirect('dashboards/index');
+                }
+    }
+
+
     public function changeBreak(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);

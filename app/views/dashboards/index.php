@@ -15,7 +15,11 @@
  <div class="controls-top">
     <a class="btn-floating" href="#carauselSlide" data-slide="prev"><img src="<?php echo URLROOT;?>/public/img/prev.svg" height="50" width="50"></a>
     <a class="btn-floating" href="#carauselSlide" data-slide="next"><img src="<?php echo URLROOT;?>/public/img/forward.svg" height="50" width="50"></a>
+<form action="<?php echo URLROOT;?>/dashboards/regenerate" method="POST" class="btn-floating col-12">
+<input type="submit" class="btn btn-secondary" value="Regenerate Plan" style="margin-left: 80%;">
+</form>
  </div>
+
         <div class="carousel-inner" role="listbox">
            <?php for($day_eating = 0; $day_eating <= 6; $day_eating++): ?>
                <div class="carousel-item <?php if(date("l") == $data['dt']->format("l")) { echo 'active';} ?>">

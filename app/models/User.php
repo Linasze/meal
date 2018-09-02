@@ -48,6 +48,25 @@ class User {
         }
     }
 
+
+    public function regeneratePlan($data){
+        $this->db->query("UPDATE user_settings SET user_id = :user_id, breakfast = :breakfast, brunch = :brunch,lunch = :lunch,afternoon_meal = afternoon_meal,dinner = :dinner,evening_meal = :evening_meal WHERE user_id = :user_id");
+        $this->db->bind(':user_id', $data['user_id']);
+        $this->db->bind(':breakfast', $data['breakfast']);
+        $this->db->bind(':brunch', $data['brunch']);
+        $this->db->bind(':lunch', $data['lunch']);
+        $this->db->bind(':afternoon_meal', $data['afternoon']);
+        $this->db->bind(':dinner', $data['dinner']);
+        $this->db->bind(':evening_meal', $data['evening']);
+        // Execute
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
     public function NewUsers(){
         $this->db->query("SELECT * FROM users ORDER BY created_at DESC LIMIT 10");
         return $this->db->resultSet();
