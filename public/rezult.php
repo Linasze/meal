@@ -20,16 +20,32 @@ $sex2 = 1;
 $sex = $_POST['sex'];
 $purpose = $_POST['purpose'];
 
-// Calculate calories
+
+if($purpose == ""){
+ echo "Please select your purpose";
+}elseif(empty($sex)){
+    echo "Please choose your gender";
+}elseif(empty($years)){
+    echo "Please select years that your born";
+}elseif(empty($month)){
+    echo "Please select month that your born";
+}elseif(empty($day)){
+    echo "Please select day that your bord";
+}elseif(empty($activity)){
+    echo "Please choose your physical activity";
+}else{
+
 if(is_numeric($years) && is_numeric($month) && is_numeric($day)){
  $age = (date("md", date("U", mktime(0, 0, 0, $month, $day, $years))) > date("md")? ((date("Y") - $years) - 1) : (date("Y") - $years));
 }
+// Calculate calories
 $rezul = round(($men + ($men1 * $weight) + ($men2 * $height) - ($men3 * $age)) * $activity + $purpose,0);
 $rezul2 = round(($women + ($women1 * $weight) + ($women2 * $height) - ($women3 * $age)) * $activity + $purpose,0);
 if ($sex == $sex2) {
     echo $rezul;
     }else{
     echo $rezul2;
+}
 }
 
 ?>
