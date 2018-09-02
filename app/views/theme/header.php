@@ -34,7 +34,7 @@
       </ul>
       <ul class="navbar-nav mr-auto px-2">
         <li class="nav-item text-nowrap">
-        <a class="nav-link" href="<?php echo URLROOT; ?>/settings/planSets">Nuttrition plan settings <span class="sr-only"></span></a>
+        <a class="nav-link" href="<?php echo URLROOT; ?>/settings/planSets">Nutrition plan settings <span class="sr-only"></span></a>
         </li>
       </ul>
       <ul class="navbar-nav px-1">
