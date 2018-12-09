@@ -16,10 +16,6 @@ class Products extends Controller {
     //     $this->view('admins/meals/products/showProducts');
     // }
 
-
-
-    
-
     public function addProducts(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

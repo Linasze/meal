@@ -12,15 +12,8 @@
                     <div class="card-body pb-0">
                     <?php if(!empty($data['products'])) : ?>
    <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" id="search" type="text" placeholder="Search" aria-label="Search">
-
-                       <div id="display"></div>
-                       
+<div id="display"></div>
                     <hr>
-                    
-
-
-  
-
 <?php foreach($data['products'] as $product) : ?>
 <div id="hide-list">
     <div class="dropdown float-right">

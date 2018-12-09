@@ -1,12 +1,6 @@
 <?php require_once APPROOT . '/views/theme/publicheader.php'; ?>
 <?php if(empty($_SESSION['user_id'])): ?>
 <style>
-.carousel-caption {
-    position: absolute;
-    top: 0px;
-}
-
-
 .carousel-item {
     height: 100%;
     background: no-repeat center center scroll;
@@ -20,15 +14,14 @@
       position:absolute;
       right:0px;
       bottom:0px;
-      left:0px;
+      left:70px;
       z-index:10;
-      padding-top:0px;
-      padding-bottom:20px;
+      padding-top: 0px;
       color:#fff;
       text-align: left;
 }
 </style>
-<div id="main-slider" class="carousel" data-ride="carousel">
+<div id="main-slider" class="carousel carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
     <li data-target="#main-slider" data-slide-to="0" class="active"></li>
     <li data-target="#main-slider" data-slide-to="1"></li>
@@ -37,7 +30,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="public/img/First3.jpg" alt="First slide">
-      <div class="carousel-caption d-none d-sm-block">
+      <div class="carousel-caption d-none d-sm-none d-md-block">
     <div id="text">
         <h2>Eating habits change</h2>
         <p>You do not have to eat less, just eat the right food</p>
@@ -46,7 +39,7 @@
     </div>
   <div class="carousel-item">
       <img class="d-block w-100" src="public/img/Second2.jpg" alt="Second slide">
-      <div class="carousel-caption d-none d-sm-block">
+      <div class="carousel-caption d-none d-sm-none d-md-block">
     <div id="text">
         <h2>Sport</h2>
         <p>You will be able to reach the desired result in sports faster.</p>
@@ -55,7 +48,7 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="public/img/third2.jpg"  alt="Third slide">
-      <div class="carousel-caption d-none d-sm-block">
+      <div class="carousel-caption d-none d-sm-none d-md-block">
     <div id="text">
         <h2>Progress</h2>
         <p>When you see your changes in your body, you will understand that you have chosen the right one</p>
@@ -75,7 +68,7 @@
 
 <div class="container bg">
 <div class="row">
-<div class="col-md-10 col-xs mx-auto">
+<div class="col-md-10 col- mx-auto">
 
 <h2 style="font-family: 'Open Sans', sans-serif;">Learn how many kilocalories you need to take during the day</h2>
 <form id="myform" method="POST">
@@ -101,9 +94,9 @@
 
 <div class="form-group">
 <div class="row">
-<div class="col-md-12 col-xs-12 mb-2 text-center" style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
+<div class="col-md-12 col--12 mb-2 text-center" style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
 <div class="col-md-2"></div>
-<div class="col-md-2 col-xs">
+<div class="col-md-2 col-">
 <select name='sex' class='form-control'>
   <option selected hidden>Gender</option>
   <option value='1'>Men</option>
@@ -111,7 +104,7 @@
  </select>
     </div>
 
-    <div class="col-md-2 col-xs">
+    <div class="col-md-2 col-">
 <select name="years" class="form-control" >
        <option selected hidden>Years</option>
    <?php for($y = 1950; $y <= date('Y')-10 ; $y++): ?>
@@ -120,7 +113,7 @@
 </select>
     </div>
 
-    <div class="col-md-2 col-xs">
+    <div class="col-md-2 col-">
 <select name="month" class="form-control">
     <option select hidden>Month</option>
     <?php for($m = 1; $m <= 12; $m++): ?>
@@ -129,7 +122,7 @@
 </select>
     </div>
 
-     <div class="col-md-2 col-xs">
+     <div class="col-md-2 col-">
 <select name="day" class="form-control">
     <option select hidden>Day</option>
     <?php for($d = 1; $d <= 31; $d++): ?>
@@ -218,7 +211,7 @@
     <script src="<?php echo URLROOT;?>/js/data/purpose.js"></script>
 
 <div class="container bg pb-5">
-   <div class="col-md-10 col-xs mx-auto">
+   <div class="col-md-10 col- mx-auto">
     <div class="card" style="font-family: 'Open Sans', sans-serif;">
         <div class="card-header">About Us</div>
         <div class="card-body">Who are we? We are a nutrition planning system that easily, comfortably
@@ -234,13 +227,13 @@ individual needs.</div>
 <footer class="bg2 pb-5">
 <div class="container">
 <div class="row">
-<div class="col-md-2 col-xs"></div>
-   <div class="col-md-5 col-xs mt-3" style="font-family: 'Open Sans', sans-serif; font-size: 25px;">Contact Me
+<div class="col-md-2 col-"></div>
+   <div class="col-md-5 col- mt-3" style="font-family: 'Open Sans', sans-serif; font-size: 25px;">Contact Me
    <p style="color: #666666; font-weight: bold; font-size: 16px;">PHP Developer
     <br><br>Tel: <span style="font-weight:normal;"><?php echo WEB_MASTER_TEL;?></span><br>Email: <span style="font-weight:normal;"><?php echo WEB_MASTER_EMAIL;?></span>
     </div>
 
-<div class="col-md-2 col-xs mt-3" style="font-family: 'Open Sans', sans-serif; font-size: 25px;">Fallow Me<br>
+<div class="col-md-2 col- mt-3" style="font-family: 'Open Sans', sans-serif; font-size: 25px;">Fallow Me<br>
     <span><a target="_blank" href="https://www.facebook.com/zemgulys" class="fab fa-facebook"></a> <a target="_blank" href="https://www.instagram.com/linas._zem/" class="fab fa-instagram"></a></span>
 </div>
    <div class="col-md-3 col-xs"> </div>

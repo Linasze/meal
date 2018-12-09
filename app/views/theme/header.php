@@ -11,14 +11,12 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
-<!--    <link href="<?php echo URLROOT;?>/public/css/style.css" rel="stylesheet">-->
     <link href="<?php echo URLROOT;?>/public/css/dash.css" rel="stylesheet">
-
-
+    <link href="<?php echo URLROOT;?>/public/css/css-circular-prog-bar.css" rel="stylesheet">
  </head>
 
   <body>

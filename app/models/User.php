@@ -48,6 +48,11 @@ class User {
         }
     }
 
+    public function NewUsers(){
+        $this->db->query("SELECT * FROM users ORDER BY created_at DESC LIMIT 10");
+        return $this->db->resultSet();
+    }
+
 
 
     public function findUserByEmail($email){
@@ -88,10 +93,22 @@ class User {
     }
 
     public function updatePersonalInfo($data){
-        $this->db->query('UPDATE users SET name = :name, first_name = :first_name, last_name = :last_name, password = :password WHERE id = : id');
+        $this->db->query("UPDATE users SET name = :name, height = :height, weight = :weight WHERE id = :id");
+        $this->db->bind('id', $data['id']);
         $this->db->bind('name', $data['name']);
-        $this->db->bind('first_name', $data['first_name']);
-        $this->db->bind('last_name', $data['last_name']);
+        $this->db->bind('height', $data['height']);
+        $this->db->bind('weight', $data['weight']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function updatePersonalInfoWithPassword($data){
+        $this->db->query("UPDATE users SET name = :name, password = :password WHERE id = :id");
+        $this->db->bind('id', $data['id']);
+        $this->db->bind('name', $data['name']);
         $this->db->bind('password', $data['password']);
         if($this->db->execute()){
             return true;

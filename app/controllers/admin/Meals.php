@@ -198,7 +198,7 @@ class Meals extends Controller {
         ];
 
       
-         $this->view('admins/meals/meals/editMeal', $data, $product);
+         $this->view('admins/meals/meals/editMeal', $data);
         }
     }
 
