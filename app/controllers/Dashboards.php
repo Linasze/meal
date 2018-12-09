@@ -337,49 +337,49 @@ class Dashboards extends Controller {
          // Get evening nutrients
          // Sunday
          $proteinEvening = explode(",", $evening->protein);
-         $carbEveningr = explode(",", $evening->carb);
+         $carbEvening = explode(",", $evening->carb);
          $fatEvening = explode(",", $evening->fat);
          $otherEvening = explode(",", $evening->other);
 
         // Get evening nutrients
          // Monday
          $proteinEvening2day = explode(",", $evening2Day->protein);
-         $carbEveningr2day = explode(",", $evening2Day->carb);
+         $carbEvening2day = explode(",", $evening2Day->carb);
          $fatEvening2day = explode(",", $evening2Day->fat);
          $otherEvening2day = explode(",", $evening2Day->other);
 
         // Get evening nutrients
          // Tuesday
          $proteinEvening3day = explode(",", $evening3Day->protein);
-         $carbEveningr3day = explode(",", $evening3Day->carb);
+         $carbEvening3day = explode(",", $evening3Day->carb);
          $fatEvening3day = explode(",", $evening3Day->fat);
          $otherEvening3day = explode(",", $evening3Day->other);
 
          // Get evening nutrients
          // Wednesday
          $proteinEvening4day = explode(",", $evening4Day->protein);
-         $carbEveningr4day = explode(",", $evening4Day->carb);
+         $carbEvening4day = explode(",", $evening4Day->carb);
          $fatEvening4day = explode(",", $evening4Day->fat);
          $otherEvening4day = explode(",", $evening4Day->other);
 
         // Get evening nutrients
          // Thuesday
          $proteinEvening5day = explode(",", $evening5Day->protein);
-         $carbEveningr5day = explode(",", $evening5Day->carb);
+         $carbEvening5day = explode(",", $evening5Day->carb);
          $fatEvening5day = explode(",", $evening5Day->fat);
          $otherEvening5day = explode(",", $evening5Day->other);
 
          // Get evening nutrients
          // Friday
          $proteinEvening6day = explode(",", $evening6Day->protein);
-         $carbEveningr6day = explode(",", $evening6Day->carb);
+         $carbEvening6day = explode(",", $evening6Day->carb);
          $fatEvening6day = explode(",", $evening6Day->fat);
          $otherEvening6day = explode(",", $evening6Day->other);
 
          // Get evening nutrients
          // Saturday
          $proteinEvening7day = explode(",", $evening7Day->protein);
-         $carbEveningr7day = explode(",", $evening7Day->carb);
+         $carbEvening7day = explode(",", $evening7Day->carb);
          $fatEvening7day = explode(",", $evening7Day->fat);
          $otherEvening7day = explode(",", $evening7Day->other);
 
