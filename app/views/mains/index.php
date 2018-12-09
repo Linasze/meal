@@ -94,32 +94,19 @@
 
 <div class="form-group">
 <div class="row">
-<<<<<<< HEAD
 <div class="col-md-12 col--12 mb-2 text-center" style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
 <div class="col-md-2"></div>
 <div class="col-md-2 col-">
 <select name='sex' class='form-control'>
   <option selected hidden>Gender</option>
-=======
-<div class="col-md-12 col-12 mb-2 text-center " style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
-<div class="col-md-2"></div>
-<div class="col-md-2 col-">
-<select name='sex' class='form-control' id="select-sex">
-  <option selected hidden value="">Gender</option>
->>>>>>> master
   <option value='1'>Men</option>
   <option value='2'>Women</option>
  </select>
     </div>
 
     <div class="col-md-2 col-">
-<<<<<<< HEAD
 <select name="years" class="form-control" >
        <option selected hidden>Years</option>
-=======
-<select name="years" class="form-control" id="select-years">
-       <option selected hidden value="">Years</option>
->>>>>>> master
    <?php for($y = 1950; $y <= date('Y')-10 ; $y++): ?>
     <option value="<?php echo $y;?>"><?php echo $y;?></option>
     <?php endfor; ?>
@@ -127,13 +114,8 @@
     </div>
 
     <div class="col-md-2 col-">
-<<<<<<< HEAD
 <select name="month" class="form-control">
     <option select hidden>Month</option>
-=======
-<select name="month" class="form-control" id="select-month">
-    <option select hidden value="">Month</option>
->>>>>>> master
     <?php for($m = 1; $m <= 12; $m++): ?>
     <option value="<?php echo $m; ?>"><?php echo date('F', mktime(0,0,0,$m)) ;?></option>
     <?php endfor;?>
@@ -141,13 +123,8 @@
     </div>
 
      <div class="col-md-2 col-">
-<<<<<<< HEAD
 <select name="day" class="form-control">
     <option select hidden>Day</option>
-=======
-<select name="day" class="form-control" id="select-day">
-    <option select hidden value="">Day</option>
->>>>>>> master
     <?php for($d = 1; $d <= 31; $d++): ?>
     <option value="<?php echo $d; ?>"><?php echo $d;?></option>
     <?php endfor;?>

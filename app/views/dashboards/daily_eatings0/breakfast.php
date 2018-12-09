@@ -3,12 +3,8 @@
         <div class="row">
    <div class="col-lg-2 d-none d-lg-block text-center"> <?php echo date('h:i',strtotime($data['user_settings']->wake_up));?><br> Breakfast</div>
      <div class="col-lg-3 d-none d-lg-block">
-<<<<<<< HEAD
-     <button class="meal-title btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-=======
           <button class="meal-title btn btn-link text-secondary float-left" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <img src="<?php echo URLROOT;?>/public/img/arrow-down.svg" height="15" weight="15">
->>>>>>> master
        <font size="2"><?php echo $data['breakfast']->title; ?></font>
      </button>
    </div>
@@ -19,46 +15,15 @@
    <div class="col-lg-1 d-none d-lg-block text-center mt-2"> 
 <img src="<?php echo URLROOT;?>/public/img/repeat.svg" id="changeBreak" height="15" width="15"></a>
 </div>
-<<<<<<< HEAD
-      </div>
-
-<div class="col-12 d-block d-sm-block d-md-none pt-2">
-<div class="col-12">Time: <?php echo date('h:i',strtotime($data['user_settings']->wake_up));?></div>
-    <div class="col-12">Dish: <?php echo $data['breakfast']->title; ?></div>
-=======
 </div>
 
 <div class="col-12 d-block d-sm-block d-md-none pt-2">
 <div class="col-12">Breakfast<br>Time: <?php echo date('h:i',strtotime($data['user_settings']->wake_up));?></div>
     <div class="col-12"><?php echo $data['breakfast']->title; ?></div>
->>>>>>> master
 <div class="col-12">Protein: <?php echo round($data['proteinsperservingUseEmpty']);?></div>
 <div class="col-12">Carb: <?php echo round($data['carbsperservingUseEmpty']);?></div>
 <div class="col-12">Fat: <?php echo round($data['fatsperservingUseEmpty']);?></div>
 <div class="col-12">Kcal: <?php echo round($data['caloriesperservingBreak']);?></div>
-<<<<<<< HEAD
-<div class="col-12">Recipe: <img src="<?php echo URLROOT;?>/public/img/eye-solid.svg" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" height="25" width="25"></a></div>
-</div>
-     <div class="col-md-12 d-none d-md-block d-lg-none">
-        <div class="row">
-         <div class="col-md-2">Time</div>
-         <div class="col-md-4">Dish</div>
-         <div class="col-md-2">Protein</div>
-         <div class="col-md-2">Carb</div>
-         <div class="col-md-2">Fat</div>
-         <div class="col-md-2"><?php echo date('h:i',strtotime($data['user_settings']->wake_up));?></div>
-         <div class="col-md-4"><?php echo $data['breakfast']->title; ?></div>
-         <div class="col-md-2"><?php echo round($data['proteinsperservingUseEmpty']);?></div>
-         <div class="col-md-2"><?php echo round($data['carbsperservingUseEmpty']);?></div>
-         <div class="col-md-2"><?php echo round($data['fatsperservingUseEmpty']);?></div>
-         <hr>
-         <div class="col-md-4">Kcal</div>
-         <div class="col-md-4">Recipe</div>
-         <div class="col-md-4">Change</div>
-         <div class="col-md-4"><?php echo round($data['caloriesperservingBreak']);?></div>
-         <div class="col-md-4"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/eye-solid.svg" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" height="25" width="25"></a></div>
-          <div class="col-md-4"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
-=======
 <div class="col-12">Recipe: <input type="image" src="<?php echo URLROOT;?>/public/img/eye-solid.svg" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" height="25" width="25"></div>
 </div>
      <div class="col-md-12 d-none d-md-block d-lg-none">
@@ -81,7 +46,6 @@
          <div class="col-md-6">Change</div>
          <div class="col-md-6"><input type="image" src="<?php echo URLROOT;?>/public/img/eye-solid.svg" height="25" width="25" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"></div>
           <div class="col-md-6"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
->>>>>>> master
 <hr>
          </div>
      </div>

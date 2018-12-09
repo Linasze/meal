@@ -72,10 +72,10 @@ class User {
     }
 
 
-    public function NewUsers(){
-        $this->db->query("SELECT * FROM users ORDER BY created_at DESC LIMIT 10");
-        return $this->db->resultSet();
-    }
+    // public function NewUsers(){
+    //     $this->db->query("SELECT * FROM users ORDER BY created_at DESC LIMIT 10");
+    //     return $this->db->resultSet();
+    // }
 
 
 
