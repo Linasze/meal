@@ -1,6 +1,14 @@
 <?php require_once APPROOT . '/views/admins/layouts/leftPanel.php'; ?>
 <?php flash('product_message'); ?>
+<style>
+.page-link {
+  color: white; 
+}
 
+.page-link:hover{
+    color: black;
+}
+</style>
 <div class="col-md-12 card card-body">
 <div class="mb-3 col-md-12 d-flex bd-highlight">
 <h3 class="mr-auto p-2 bd-highlight">Show Products</h3>
@@ -11,6 +19,7 @@
                 <div class="card text-white bg-flat-color-1">
                     <div class="card-body pb-0">
                     <?php if(!empty($data['products'])) : ?>
+                    
    <input class="form-control col-md bg-dark shadow text-white mr-auto mb-3" id="search" type="text" placeholder="Search" aria-label="Search">
 <div id="display"></div>
                     <hr>

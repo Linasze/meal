@@ -73,8 +73,8 @@
 <h2 style="font-family: 'Open Sans', sans-serif;">Learn how many kilocalories you need to take during the day</h2>
 <form id="myform" method="POST">
 <div class="form-group">
-<select name="purpose" class="form-control">
- <option selected hidden>Choose your purpose</option>
+<select name="purpose" class="form-control" id="select-purpose">
+ <option selected hidden value="">Choose your purpose</option>
  <option value='0'>To live healthier, and get more fit</option>
  <option value='-500'>Reduce weight, get rid of unnecessary kilograms</option>
  <option value='+500'>Grow muscle mass and volume</option>
@@ -94,19 +94,32 @@
 
 <div class="form-group">
 <div class="row">
+<<<<<<< HEAD
 <div class="col-md-12 col--12 mb-2 text-center" style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
 <div class="col-md-2"></div>
 <div class="col-md-2 col-">
 <select name='sex' class='form-control'>
   <option selected hidden>Gender</option>
+=======
+<div class="col-md-12 col-12 mb-2 text-center " style="font-family: 'Open Sans', sans-serif; font-size: 30px;">Your gender and how old you are?</div>
+<div class="col-md-2"></div>
+<div class="col-md-2 col-">
+<select name='sex' class='form-control' id="select-sex">
+  <option selected hidden value="">Gender</option>
+>>>>>>> master
   <option value='1'>Men</option>
   <option value='2'>Women</option>
  </select>
     </div>
 
     <div class="col-md-2 col-">
+<<<<<<< HEAD
 <select name="years" class="form-control" >
        <option selected hidden>Years</option>
+=======
+<select name="years" class="form-control" id="select-years">
+       <option selected hidden value="">Years</option>
+>>>>>>> master
    <?php for($y = 1950; $y <= date('Y')-10 ; $y++): ?>
     <option value="<?php echo $y;?>"><?php echo $y;?></option>
     <?php endfor; ?>
@@ -114,8 +127,13 @@
     </div>
 
     <div class="col-md-2 col-">
+<<<<<<< HEAD
 <select name="month" class="form-control">
     <option select hidden>Month</option>
+=======
+<select name="month" class="form-control" id="select-month">
+    <option select hidden value="">Month</option>
+>>>>>>> master
     <?php for($m = 1; $m <= 12; $m++): ?>
     <option value="<?php echo $m; ?>"><?php echo date('F', mktime(0,0,0,$m)) ;?></option>
     <?php endfor;?>
@@ -123,8 +141,13 @@
     </div>
 
      <div class="col-md-2 col-">
+<<<<<<< HEAD
 <select name="day" class="form-control">
     <option select hidden>Day</option>
+=======
+<select name="day" class="form-control" id="select-day">
+    <option select hidden value="">Day</option>
+>>>>>>> master
     <?php for($d = 1; $d <= 31; $d++): ?>
     <option value="<?php echo $d; ?>"><?php echo $d;?></option>
     <?php endfor;?>
@@ -136,8 +159,8 @@
 
 <div class="form-group mt-2">
 <!-- <label>Activity:</label> -->
-<select name='activity' class='form-control'>
-  <option selected hidden>Select physical activity</option>
+<select name='activity' class='form-control' id="select-activity">
+  <option selected hidden value="">Select physical activity</option>
   <option value='1.2'>Sedentary work and low physical activity</option>
   <option value='1.375'>3-5 days a week for 30-50 minutes, or housekeeping</option>
   <option value='1.55'>3-5 days a week for 30-60 minutes training</option>
@@ -214,11 +237,9 @@
    <div class="col-md-10 col- mx-auto">
     <div class="card" style="font-family: 'Open Sans', sans-serif;">
         <div class="card-header">About Us</div>
-        <div class="card-body">Who are we? We are a nutrition planning system that easily, comfortably
-and easily solves nutrition, planning, and analyzing issues. You will
-have a diet plan that you can adjust in different ways. Can we help if
-I do not eat, just want to eat healthy and lose weight? The system will
-consist of a nutrition plan for weight loss, you will have specific recipes,
+        <div class="card-body">Who are we? We are a nutrition planning system that comfortably and easily solves nutrition, planning, and 
+        analyzing issues. You will have a diet plan that you can adjust in different ways. Can we help if you just want to eat healthy and lose weight? The system will
+consist of a nutrition plan for weight loss, you will have specific recipes that
 will specify exactly what you need. The nutrition plan is easily adapted to
 individual needs.</div>
        </div>

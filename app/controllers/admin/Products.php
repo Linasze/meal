@@ -164,9 +164,11 @@ class Products extends Controller {
             $data = ['search' => $_POST['search'] ];
             $productSearch = $this->productModel->searchProduct($data);          
             foreach($productSearch as $product): ?>            
-                 <div class="dropdown float-right">
-                <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                      <i class="fa fa-cog"></i>
+           
+            <div class="col-lg-10 col-9 text-white"><?php echo $product->title; ?></div>
+                 <div class="col-lg-2 col-2 dropdown">
+                 <button class="btn bg-transparent dropdown-toggle theme-toggle text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                 <i class="fa fa-cog"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <div class="dropdown-menu-content">                    
@@ -175,10 +177,7 @@ class Products extends Controller {
                     </div>
                 </div>
            </div>
-            <div class="text-white"><?php echo $product->title; ?></div>
-          
-           
-         
+    
            <?php endforeach;
                          
         }

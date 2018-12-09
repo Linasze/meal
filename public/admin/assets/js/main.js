@@ -59,3 +59,28 @@ $(document).ready(function () {
 		}
 	});
 });
+
+
+
+$(document).ready(function () {
+	$("#searchMeal").keyup(function () {
+		var name = $('#searchMeal').val();
+		if (name == "") {
+			$("#display").html("");
+			$("#hide-list").show();
+		}
+		else {
+			$("#hide-list").hide();
+			$.ajax({
+				type: "POST",
+				url: "searchMeal",
+				data: {
+					search: name
+				},
+				success: function (html) {
+					$("#display").html(html).show();
+				}
+			});
+		}
+	});
+});

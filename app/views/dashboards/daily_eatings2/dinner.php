@@ -2,24 +2,57 @@
 
     <div class="card-header">
         <div class="row">
-   <div class="col-md-2 text-center" > <?php echo "18:00";?><br>Dinner</div>
-     <div class="col-md-3 text-center"> 
-     <button class="btn btn-link text-secondary" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="true" aria-controls="collapseFifth">
+        <div class="col-lg-2 d-none d-lg-block text-center" ><?php echo date('h:i',strtotime($data['user_settings']->wake_up)) + 12 . ":00";?><br>Dinner</div>   
+     <div class="col-lg-3 d-none d-lg-block text-center"> 
+     <button class="btn btn-link text-secondary float-left" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="true" aria-controls="collapseFifth">
+     <img src="<?php echo URLROOT;?>/public/img/arrow-down.svg" height="15" weight="15">      
        <font size="2"><?php echo $data['dinner3Day']->title; ?></font>
      </button>
      </div>
-   <div class="col-md-2 text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptydinner']);?></div>
-   <div class="col-md-2 text-center mt-2 "> <?php echo round($data['carbsperservingUseEmptydinner']);?></div>
-   <div class="col-md-1 text-center mt-2"> <?php echo round($data['fatsperservingUseEmptydinner']);?></div>
-   <div class="col-md-1 text-center mt-2"> <?php echo round($data['caloriesperservingDinner']);?></div>
-   <div class="col-md-1 text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
+   <div class="col-lg-2 d-none d-lg-block text-center mt-2"> <?php echo round($data['proteinsperservingUseEmptydinner']);?></div>
+   <div class="col-lg-2 d-none d-lg-block text-center mt-2 "> <?php echo round($data['carbsperservingUseEmptydinner']);?></div>
+   <div class="col-lg-1 d-none d-lg-block text-center mt-2"> <?php echo round($data['fatsperservingUseEmptydinner']);?></div>
+   <div class="col-lg-1 d-none d-lg-block text-center mt-2"> <?php echo round($data['caloriesperservingDinner']);?></div>
+   <div class="col-lg-1 d-none d-lg-block text-center mt-2"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
    </div>
+   <div class="col-12 d-block d-sm-block d-md-none pt-2">
+<div class="col-12">Dinner<br>Time: <?php echo date('h:i',strtotime($data['user_settings']->wake_up)) + 12 . ":00";?></div>
+    <div class="col-12"><?php echo $data['dinner3Day']->title; ?></div>
+<div class="col-12">Protein: <?php echo round($data['proteinsperservingUseEmptydinner']);?></div>
+<div class="col-12">Carb: <?php echo round($data['carbsperservingUseEmptydinner']);?></div>
+<div class="col-12">Fat: <?php echo round($data['fatsperservingUseEmptydinner']);?></div>
+<div class="col-12">Kcal: <?php echo round($data['caloriesperservingDinner']);?></div>
+<div class="col-12">Recipe: <input type="image" src="<?php echo URLROOT;?>/public/img/eye-solid.svg" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="true" aria-controls="collapseFifth" height="25" width="25"></div>
 </div>
+     <div class="col-md-12 d-none d-md-block d-lg-none">
+        <div class="row">
+        <div class="col-md-12">Dinner</div>
+        <div class="col-md-12"><?php echo $data['dinner3Day']->title; ?></div>
+        <hr>
+         <div class="col-md-3">Time</div>
+         <div class="col-md-2">Protein</div>
+         <div class="col-md-2">Carb</div>
+         <div class="col-md-2">Fat</div>
+         <div class="col-md-3">Kcal</div>
+         <div class="col-md-3"><?php echo date('h:i',strtotime($data['user_settings']->wake_up)) + 12 . ":00";?></div>
+         <div class="col-md-2"><?php echo round($data['proteinsperservingUseEmptydinner']);?></div>
+         <div class="col-md-2"><?php echo round($data['carbsperservingUseEmptydinner']);?></div>
+         <div class="col-md-2"><?php echo round($data['fatsperservingUseEmptydinner']);?></div>
+         <div class="col-md-3"><?php echo round($data['caloriesperservingDinner']);?></div>
+         <hr>
+         <div class="col-md-6">Recipe</div>
+         <div class="col-md-6">Change</div>
+         <div class="col-md-6"> <input type="image" src="<?php echo URLROOT;?>/public/img/eye-solid.svg" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="true" aria-controls="collapseFifth" height="25" width="25"></div>
+          <div class="col-md-6"> <a href="#"><img src="<?php echo URLROOT;?>/public/img/repeat.svg" height="15" width="15"></a></div>
+<hr>
+         </div>
+     </div>
+      </div>
 
     <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
       <div class="card-body">
    <div class="row">
-<div class="col-md-4 text-left">
+<div class="col-md-4 col- text-left">
 <h5>Products</h5>
 <?php for($i = 0; $i <=4; $i++): ?>
 <?php foreach($data['products'] as $product) : ?>
@@ -232,7 +265,7 @@ if(!empty($product->use_id)){
 <?php endfor;?>
 </div>
 
-<div class="col-md-8 text-left">
+<div class="col-md-8 col- text-left">
     <h5>Recipe</h5>
     <font size="2">
         <?php echo $data['dinner3Day']->recipe; ?>
